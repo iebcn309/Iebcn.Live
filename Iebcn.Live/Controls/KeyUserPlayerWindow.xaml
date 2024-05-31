@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="Iebcn.Live.Controls.KeyUserPlayerWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Iebcn.Live.Controls" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Title="重点关注" Width="480" Height="580" Background="#FFFFFFFF" WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow" MouseLeftButtonDown="WiW">
+    <FrameworkElement.Resources>
+        <ResourceDictionary>
+            <local:WidthToThicknessConverter x:Key="widthToThicknessConverter" />
+            <DataTemplate x:Key="t1">
+                <Border Background="#A41A1B1B" CornerRadius="12">
+                    <TextBlock Margin="0" Padding="2,0,6,0" VerticalAlignment="Center" FontWeight="Bold" TextWrapping="Wrap" MaxWidth="{Binding Path=ActualWidth, ElementName=listDanmu}">
+            <InlineUIContainer>
+              <Image VerticalAlignment="Center" Stretch="Uniform" MaxHeight="{Binding Path=FontSize, ElementName=listDanmu}" Source="{Binding NewImIconWithLevel}" />
+            </InlineUIContainer> <InlineUIContainer><Border><UIElement.RenderTransform><TranslateTransform Y="-0" /></UIElement.RenderTransform><TextBlock VerticalAlignment="Center" Foreground="#FF33BEF9" Text="{Binding UserNickWithSymbol}" /></Border></InlineUIContainer> <InlineUIContainer><Border><UIElement.RenderTransform><TranslateTransform Y="-0" /></UIElement.RenderTransform><TextBlock TextWrapping="Wrap" Text="{Binding PureMsg}" /></Border></InlineUIContainer> <InlineUIContainer><Image MaxWidth="30" Stretch="Uniform" Source="{Binding GiftUrl}" /></InlineUIContainer></TextBlock>
+                </Border>
+            </DataTemplate>
+        </ResourceDictionary>
+    </FrameworkElement.Resources>
+    <Grid Background="#FF000000">
+        <ListBox Name="listDanmu" Margin="0,40,0,24" Background="#00FFFFFF" BorderBrush="#02ffffff" FontSize="16" Foreground="#FFFFFFFF" IsHitTestVisible="True" ItemTemplate="{StaticResource t1}" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Auto" Style="{StaticResource BaseStyle}" ToolTip="单击可复制" VirtualizingPanel.IsContainerVirtualizable="True" VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling" SelectionChanged="NiN" />
+        <Grid Name="cmdBarPanel" VerticalAlignment="Top" Background="#Ff888888">
+            <Label HorizontalAlignment="Left" Background="#00FFFFFF" BorderThickness="0" Foreground="#FFFFC0CB">鼠标可滚动，单击条目可复制条目信息</Label>
+            <Button Margin="0,0,100,0" HorizontalAlignment="Right" Background="#FF555555" BorderBrush="#FF000000" BorderThickness="1" Foreground="#FFFFFFFF" ToolTip="清空" Click="viu">清空</Button>
+            <Button HorizontalAlignment="Right" Background="#FF555555" BorderBrush="#FF000000" BorderThickness="1" Foreground="#FFFFC0CB" ToolTip="导出全部信息到文本文件" Click="TiP">导出全部信息</Button>
+        </Grid>
+    </Grid>
+</Window>

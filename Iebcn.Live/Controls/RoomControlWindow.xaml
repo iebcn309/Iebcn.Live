@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="Iebcn.Live.Controls.RoomControlWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:gif="http://wpfanimatedgif.codeplex.com" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Iebcn.Live.Controls" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" Title="关注和黑名单" Width="822" Height="500" BorderBrush="#FFFDF9FD" BorderThickness="1" FontFamily="Arial" FontSize="12" Icon="/Assets/app.ico" Style="{StaticResource NoResize_window}" WindowStartupLocation="CenterScreen" MouseLeftButtonDown="tY7">
+    <Control.Background>
+        <ImageBrush ImageSource="/Assets/bg.jpg" />
+    </Control.Background>
+    <Border Background="#E0EDECEC" CornerRadius="6">
+        <Grid>
+            <Grid VerticalAlignment="Top">
+                <Label Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Top" HorizontalContentAlignment="Left" hc:BorderElement.CornerRadius="6,6,0,0" Background="#AF144196" BorderThickness="0" FontSize="16" FontWeight="Bold" Foreground="#FFFFFFFF">关注和黑名单</Label>
+                <Button Name="x" Width="36" Height="26" HorizontalAlignment="Right" VerticalAlignment="Top" Content="x" Style="{StaticResource ButtonDanger}" ToolTip="关闭" Click="vY6" />
+            </Grid>
+            <Grid Margin="22,47,22,22" Background="#A2FFFFFF">
+                <Label Grid.Row="0" Width="121" Height="38" Margin="13,4,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Left" Background="#38FFFFFF" Content="黑名单(一行一个)：" ToolTip="列入黑名单的用户，不显示和语音播报" />
+                <TextBox Width="222" Height="NaN" Margin="13,47,0,19" HorizontalAlignment="Left" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" AcceptsReturn="True" BorderThickness="1" FontSize="14" Foreground="#FF0F1123" ToolTip="填写观众昵称，一行一个，列入黑名单的用户，不显示和语音播报" VerticalScrollBarVisibility="Auto" Text="{Binding BlackList}" />
+                <CheckBox Height="32" Margin="254,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Left" BorderBrush="#FF000000" Content="开启重点关注土豪(一行一个)：" Foreground="{StaticResource Vip1ColorBrush}" IsChecked="{Binding KeyUser.Enabled}" Click="HYh" />
+                <Button Name="btnShowKeyUserPage" Grid.Row="0" Width="127" Height="36" Margin="450,6,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" BorderBrush="{StaticResource Vip1ColorBrush}" BorderThickness="1" Content="查看重点用户信息" ToolTip="查看重点用户的弹幕和送礼信息" Click="IY9" />
+                <TextBox Width="322" Margin="255,47,0,19" HorizontalAlignment="Left" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" AcceptsReturn="True" BorderBrush="{StaticResource Vip1ColorBrush}" BorderThickness="1" FontSize="14" Foreground="#FF0F1123" ToolTip="填写重点关注的用户昵称，一行一个，可在弹幕页复制" VerticalScrollBarVisibility="Auto" IsEnabled="{Binding KeyUser.Enabled}" Text="{Binding KeyUser.KeyUserList}" />
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

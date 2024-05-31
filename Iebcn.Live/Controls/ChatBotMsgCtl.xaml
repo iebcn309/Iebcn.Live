@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="Iebcn.Live.Controls.ChatBotMsgCtl"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:local="clr-namespace:Iebcn.Live.Controls"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
+    <!-- 聊天机器人消息控件 -->
+    <Grid Name="gridRoot" Background="#01000000" MouseLeftButtonDown="MouseDownHandler" MouseMove="MouseMoveHandler" MouseUp="MouseUpHandler">
+        <!-- 根容器 -->
+        <!-- 根容器 -->
+        <StackPanel Name="myStackPanel" Background="#01000000" IsHitTestVisible="True">
+            <!-- 垂直布局容器 -->
+            <UIElement.RenderTransform>
+                <!-- 设置渲染变换 -->
+                <TransformGroup x:Name="group">
+                    <TranslateTransform x:Name="transer" />
+                </TransformGroup>
+            </UIElement.RenderTransform>
+            <!-- 渲染变换组 -->
+            <TextBlock Name="txtQuery" Foreground="#FFADD8E6" IsHitTestVisible="False" Text="数字人:" TextWrapping="Wrap">
+        <!-- 查询文本块 -->
+        <UIElement.Effect>
+          <DropShadowEffect Opacity="1" ShadowDepth="3" />
+        </UIElement.Effect>
+        <!-- 设置效果 -->
+            </TextBlock>
+        </StackPanel>
+        <local:PrintMessageCtl x:Name="printMessageCtl" IsHitTestVisible="False" />
+
+    </Grid>
+</UserControl>

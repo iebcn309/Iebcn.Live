@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<!-- saved from url=(0197)https://xcdn.php.cn/js/date/%E8%B7%9F%E9%9A%8F%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%BC%B9%E6%80%A7%E6%B5%AE%E9%9B%95%E6%97%B6%E9%92%9F/index.html?sign=1c7ea8052a9565ffae950565ce8ae40a&timestamp=1667822956 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title>CodePen - Bouncy Embossed Clock</title>
+  <style>
+html body {
+background:rgba(0,0,0,0);
+}
+
+@font-face {
+  font-family: 'Spartan';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/spartan/v14/l7gfbjR61M69yt8Z2QytlBfK.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Spartan';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/spartan/v14/l7gfbjR61M69yt8Z2QKtlA.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Spartan';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/spartan/v14/l7gfbjR61M69yt8Z2QytlBfK.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Spartan';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/spartan/v14/l7gfbjR61M69yt8Z2QKtlA.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+* {
+	border: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+:root {
+	--hue: 223;
+	--bg: hsl(var(--hue),10%,90%);
+	--fg: hsl(var(--hue),10%,10%);
+	--primary: hsl(var(--hue),90%,55%);
+	--shadow: hsl(var(--hue),90%,35%);
+	font-size: calc(20px + (40 - 20) * (100vw - 320px) / (1280 - 320));
+}
+body {
+	font: 1em/1.5 Spartan, sans-serif;
+	height: 100vh;
+	display: grid;
+	place-items: center;
+}
+.clock {
+	background-color: var(--primary);
+	background-image: linear-gradient(-45deg,hsla(var(--hue),10%,10%,0),hsla(var(--hue),10%,10%,0.2));
+	border-radius: 0.25rem;
+	box-shadow: 0 0 0 0.1rem hsla(var(--hue),10%,10%,0.2) inset;
+	color: hsl(var(--hue),10%,100%);
+	display: flex;
+	justify-content: center;
+	font-size: 2em;
+	line-height: 1;
+	padding: 0.25rem 0.5rem;
+}
+.clock__digit {
+	display: inline-block;
+	font-weight: bold;
+	text-align: center;
+	text-shadow:
+		0 0 0 var(--shadow),
+		0 0 0 var(--shadow),
+		1px 1px 0 var(--shadow),
+		2px 2px 0 var(--shadow),
+		3px 3px 0 var(--shadow),
+		3px 3px 0 var(--shadow),
+		4px 4px 0 var(--shadow);
+	width: 1ch;
+}
+.clock__digit:not(:nth-child(3n)) {
+	margin-top: 0.25rem;
+}
+.clock__digit--bounce {
+	animation: bounce 0.5s ease-in;
+}
+
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+	:root {
+		--bg: hsl(var(--hue),10%,10%);
+		--fg: hsl(var(--hue),10%,90%);
+	}
+}
+
+/* Animations */
+@keyframes bounce {
+	from, to {
+		animation-timing-function: ease-in;
+		text-shadow:
+			0 0 0 var(--shadow),
+			0 0 0 var(--shadow),
+			1px 1px 0 var(--shadow),
+			2px 2px 0 var(--shadow),
+			3px 3px 0 var(--shadow),
+			3px 3px 0 var(--shadow),
+			4px 4px 0 var(--shadow);
+		transform: translate(0,0);
+	}
+	33% {
+		animation-timing-function: ease-out;
+		text-shadow:
+			0 0 0 var(--shadow),
+			0 0 0 var(--shadow),
+			0 0 0 var(--shadow),
+			0 0 0 var(--shadow),
+			0 0 0 var(--shadow),
+			1px 1px 0 var(--shadow);
+		transform: translate(4px,4px);
+	}
+	67% {
+		animation-timing-function: ease-in;
+		text-shadow:
+			1px 1px 0 var(--shadow),
+			2px 2px 0 var(--shadow),
+			3px 3px 0 var(--shadow),
+			4px 4px 0 var(--shadow),
+			5px 5px 0 var(--shadow),
+			6px 6px 0 var(--shadow);
+		transform: translate(-2px,-2px);
+	}
+}
+  </style>
+
+</head>
+<body>
+
+<div class="clock">
+	<span class="clock__digit">2</span>
+	<span class="clock__digit">0</span>
+	<span class="clock__digit">:</span>
+	<span class="clock__digit">0</span>
+	<span class="clock__digit">9</span>
+	<span class="clock__digit">:</span>
+	<span class="clock__digit">5</span>
+	<span class="clock__digit">3</span>
+</div>
+
+  <script>
+  window.addEventListener("DOMContentLoaded",() => {
+	const clock = new BouncyEmbossedClock(".clock");
+});
+
+class BouncyEmbossedClock {
+	constructor(el) {
+		this.el = document.querySelector(el);
+		this.els = this.el ? this.el.querySelectorAll(".clock__digit") : [];
+		this.digits = [];
+		this.to = null;
+		this.dto = [
+			[null,null,null],
+			[null,null,null],
+			[null,null],
+			[null,null,null],
+			[null,null,null],
+			[null,null],
+			[null,null,null],
+			[null,null,null],
+		];
+		this.staticUpdate();
+		this.update();
+	}
+	getTime() {
+		const time = new Date();
+		const hms = [
+			time.getHours(),
+			time.getMinutes(),
+			time.getSeconds()
+		];
+
+		return hms.map(u => u < 10 ? `0${u}` : `${u}`).join(":").split("");	
+	}
+	staticUpdate() {
+		if (this.els) {
+			this.digits = this.getTime();
+			this.digits.forEach((d,i) => {
+				this.els[i].textContent = d;
+			});
+		}
+	}
+	update() {
+		if (this.els) {
+			// get the time
+			const display = this.getTime();
+			const bounce = "clock__digit--bounce";
+			const baseDelay = 350;
+			const delayDec = 50;
+
+			// display the digits
+			display.forEach((d,i) => {
+				if (+d > +this.digits[i] || +d === 0 && +this.digits[i] !== 0) {
+					const colonElCL = display[i + 1] === ":" ? this.els[i + 1].classList : null;
+					const el = this.els[i];
+					const timeout = baseDelay - delayDec * i;
+
+					this.dto[i].forEach(t => {
+						clearTimeout(t);
+					});
+
+					// run the animation
+					this.dto[i][0] = setTimeout(() => {
+						el.classList.add(bounce);
+					}, timeout);
+
+					// show the next digit
+					this.dto[i][1] = setTimeout(() => {
+						el.textContent = d;
+					}, timeout + 167);
+
+					// kill the animation
+					this.dto[i][2] = setTimeout(() => {
+						el.classList.remove(bounce);
+					}, timeout + 500);
+
+					// colon animation (if applicable)
+					if (colonElCL) {
+						this.dto[i + 1].forEach(t => {
+							clearTimeout(t);
+						});
+
+						this.dto[i + 1][0] = setTimeout(() => {
+							 colonElCL.add(bounce);
+						}, timeout - delayDec);
+
+						this.dto[i + 1][1] = setTimeout(() => {
+							 colonElCL.remove(bounce);
+						}, (timeout - delayDec) + 500);
+					}
+				}
+
+				this.digits[i] = d;
+			});
+
+			// loop
+			clearTimeout(this.to);
+			this.to = setTimeout(this.update.bind(this),1e3);
+		}
+	}
+}
+  
+  </script>
+
+</body></html>

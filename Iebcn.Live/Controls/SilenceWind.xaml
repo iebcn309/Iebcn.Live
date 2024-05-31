@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="Iebcn.Live.Controls.SilenceWind" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Iebcn.Live.Controls" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Title="冷场播报" Width="694" Height="448" BorderBrush="#FFFDF9FD" BorderThickness="1" FontFamily="Microsoft YaHei" FontSize="12" Icon="/Assets/app.ico" ShowInTaskbar="False" Style="{StaticResource NoResize_window}" WindowStartupLocation="CenterScreen" MouseLeftButtonDown="lh4">
+    <Control.Background>
+        <ImageBrush ImageSource="/Assets/bg.jpg" />
+    </Control.Background>
+    <Border CornerRadius="6">
+        <Grid>
+            <Grid Name="gridBar" VerticalAlignment="Top" Background="#3A000000">
+                <Image Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" Source="/Assets/plugin_icon/voice_silence.png" />
+                <Label Margin="34,2,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#00FFFFFF" BorderThickness="0" FontSize="16" FontWeight="Bold" Foreground="#FFF5F5F5">冷场播报</Label>
+                <Button Name="x" Width="36" Height="26" HorizontalAlignment="Right" VerticalAlignment="Top" Content="x" Style="{StaticResource ButtonDanger}" ToolTip="关闭" Click="RhF" />
+            </Grid>
+            <Grid Margin="0,35,0,0" Background="#EBffffff">
+                <Grid Visibility="Visible">
+                    <StackPanel Margin="18,18,25,0" VerticalAlignment="Top" Orientation="Horizontal">
+                        <CheckBox HorizontalAlignment="Left" BorderBrush="#FF827C81" BorderThickness="1" Content="开启冷场播报" FontSize="14" FontWeight="Bold" Foreground="{StaticResource Vip1ColorBrush}" IsChecked="{Binding Enabled}" Click="Thf" />
+                        <Label Margin="12,0,0,0" Background="#00FFFFFF" BorderThickness="0" Content="无动静时间超过:" />
+                        <hc:NumericUpDown Increment="1" Maximum="600" Minimum="0" ToolTip="最大10分钟（600秒）" Value="{Binding CheckSeconds}" />
+                        <Label Margin="0" Padding="5" Background="#00FFFFFF" BorderThickness="0" Content="秒判为定冷场(0秒相当于不停轮播设定的话术或音频)" />
+                    </StackPanel>
+                    <TextBlock Margin="28,56,33,0" VerticalAlignment="Top" Background="#00FFFFFF" Foreground="#FF777777" TextWrapping="Wrap">说明：当长时间没有动静(如设定时间内没有观众进场/发言/点赞/关注/送礼)被称为'冷场'，可设置冷场话术播报避免尴尬！ 同时如果是无人直播，也能有效避免无互动的判定！<LineBreak />注:检测到冷场后将随机播放设置的话术或自定义声音文件。话术内容支持插入变量{当前时间}</TextBlock>
+                    <Grid Margin="2,99,0,0">
+                        <StackPanel Margin="28,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
+                            <RadioButton Margin="2,0,0,0" BorderBrush="#FF000000" BorderThickness="1" Content="冷场时用话术播报(内容一行一条)：" Foreground="#FF995555" GroupName="rdSilenceType" IsChecked="{Binding UseText}" />
+                            <CheckBox Margin="6,0,0,0" BorderBrush="#FF000000" BorderThickness="1" Foreground="#FF995555" ToolTip="随机播报（默认为顺序播报）" IsChecked="{Binding RndReadText}">随机播报</CheckBox>
+                            <CheckBox Name="ckTextGroupMode" Margin="38,0,0,0" BorderBrush="#FF000000" BorderThickness="1" Foreground="#FFA410DE" ToolTip="勾选后将使用【话术组】模式" IsChecked="{Binding TextGroupModeEnabled}" Checked="ThP" Click="DhO" Unchecked="Xhu">使用【话术组】模式</CheckBox>
+                            <Button Margin="12,0,0,0" BorderBrush="#FFA410DE" Content="话术组设置" Foreground="#FF6D1490" ToolTip="话术组设置" Click="JhL" />
+                        </StackPanel>
+                        <TextBox Name="txtSilenceContent" Height="156" Margin="33,48,33,0" VerticalAlignment="Top" VerticalContentAlignment="Top" AcceptsReturn="True" Background="#ffFFFFFF" BorderBrush="#FF000000" BorderThickness="1" ToolTip="冷场时的话术播报内容(一行一条),例如：{当前时间}祝直播间的各位家人身体健康万事如意！" VerticalScrollBarVisibility="Auto" IsEnabled="{Binding UseText}" Text="{Binding Content}" />
+                        <StackPanel Margin="33,220,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
+                            <RadioButton BorderBrush="#FF59495B" Content="自定义声音文件" Foreground="#FF995555" GroupName="rdSilenceType" ToolTip="将自定义的声音文件丢进去，程序下次启动生效(此功能【互动版】可用)" IsChecked="{Binding UseLocalSound}" Click="DhO" />
+                            <Label Name="lbSoundCound" Background="#00FFFFFF" BorderBrush="#FF59495B" BorderThickness="0" Content="(当前0个)" Foreground="#FF808080" />
+                            <Button BorderBrush="#FF59495B" Content="声音文件夹" Foreground="#FF995555" ToolTip="将自定义的声音文件丢进去，程序下次启动生效" Click="Ahw" />
+                            <Button BorderBrush="#FF59495B" Content="刷新" Foreground="#FF995555" ToolTip="刷新声音文件夹里的新文件" Click="ohC" />
+                            <CheckBox Margin="12,0,0,0" BorderBrush="#FF000000" BorderThickness="1" Foreground="#FF995555" ToolTip="随机播报（默认为顺序播报）" IsChecked="{Binding RndPlayAudio}">随机播报</CheckBox>
+                            <CheckBox Margin="3,0,0,0" BorderBrush="#FF000000" BorderThickness="1" Foreground="#FFA410DE" ToolTip="勾选后将使用【音频组】模式" IsChecked="{Binding AudioGroupModeEnabled}" Click="DhO">使用【音频组】模式</CheckBox>
+                            <Button Margin="12,0,0,0" BorderBrush="#FFA410DE" Content="音频组设置" Foreground="#FF6D1490" ToolTip="音频组设置" Click="Rhr" />
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </Grid>
+            <Grid Name="gridTextGroupSetting" Background="#FF808080" Visibility="Collapsed">
+                <Grid Margin="33" Background="#FFF5F5F5">
+                    <Label HorizontalAlignment="Stretch" VerticalAlignment="Top" BorderThickness="0">高级话术组合设置</Label>
+                    <TextBlock Margin="20,52,20,0" HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap">说明：<LineBreak />话术组播报方案： 如1-2-3-4 (表示每次依次从【话术组】文件夹里的1,2,3,4文本文件里读取一条随机文本进行文本播报朗读)。 因此首先必须在【话术组】文件夹里建立好分组的多个文本文件如1.txt、2.txt、3.txt......20.txt，相当于在每个文本文件是一组话术，内容一行一条。</TextBlock>
+                    <StackPanel Margin="0,152,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal">
+                        <Label>话术组播报方案:</Label>
+                        <TextBox Name="txtTextGroupSolution" Width="147" BorderBrush="#FF000000" ToolTip="如:1-2-3-4 (表示每次依次从【话术组】文件夹1,2,3,4文本文件里读取一条随机文本进行文本播报朗读)" Text="{Binding TextGroupSolution}" />
+                        <Button Margin="10,0,0,0" BorderBrush="#FF59495B" Content="打开话术组文件夹" Foreground="#FF995555" ToolTip="将自定义的声音文件丢进去，程序下次启动生效" Click="Jh1" />
+                        <Button Margin="10,0,0,0" BorderBrush="#FF59495B" Content="测试读取话术组" Click="dhU" />
+                    </StackPanel>
+                    <Button Width="149" Margin="0,280,0,0" VerticalAlignment="Top" Content="确 定" Style="{StaticResource ButtonPrimary}" Click="RhN" />
+                </Grid>
+            </Grid>
+            <Grid Name="gridAudioGroupSetting" Background="#FF808080" Visibility="Collapsed">
+                <Grid Margin="33" Background="#FFF5F5F5">
+                    <Label HorizontalAlignment="Stretch" VerticalAlignment="Top" BorderThickness="0">音频组合设置</Label>
+                    <TextBlock Margin="20,52,20,0" HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap">说明：<LineBreak />音频组播报方案： 如1-2-3-4 (表示每次依次从【音频组】文件夹里的1,2,3,4...文件夹里读取一条随机音频进播报)。 因此首先必须在【音频组】文件夹里建立好分组的多个音频文件夹如1、2、3、...20，相当于每个音频文件夹是一组音频话术。<LineBreak /><Span Foreground="#FF982E2E">注：音频支持mp3和wav格式</Span></TextBlock>
+                    <StackPanel Margin="0,152,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal">
+                        <Label>音频组播报方案:</Label>
+                        <TextBox Name="txtAudioGroupSolution" Width="147" BorderBrush="#FF000000" ToolTip="如:1-2-3-4 (表示每次依次从【音频组】文件夹1,2,3,4里读取一条随机音频文件进行播报朗读)" Text="{Binding TextGroupSolution}" />
+                        <Button Margin="10,0,0,0" BorderBrush="#FF59495B" Content="打开【音频组】文件夹" Foreground="#FF995555" ToolTip="将声音文件（mp3或wav格式）放进音频分组文件夹里，程序下次启动生效" Click="Khm" />
+                        <Button Margin="10,0,0,0" BorderBrush="#FF59495B" Content="测试读取音频组" Click="Rha" />
+                    </StackPanel>
+                    <Button Width="149" Margin="0,280,0,0" VerticalAlignment="Top" Content="确 定" Style="{StaticResource ButtonPrimary}" Click="JhA" />
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

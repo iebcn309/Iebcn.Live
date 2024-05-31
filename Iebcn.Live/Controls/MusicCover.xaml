@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UserControl x:Class="Iebcn.Live.Controls.MusicCover" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="clr-namespace:Iebcn.Live.Controls">
+    <FrameworkElement.Resources>
+        <ResourceDictionary>
+            <Storyboard x:Key="sb">
+                <DoubleAnimation RepeatBehavior="Forever" Storyboard.TargetName="t" Storyboard.TargetProperty="Angle" From="0" To="360" Duration="0:0:4" />
+            </Storyboard>
+        </ResourceDictionary>
+    </FrameworkElement.Resources>
+    <Grid>
+        <Ellipse RenderTransformOrigin="0.5,0.5">
+            <UIElement.RenderTransform>
+                <TransformGroup>
+                    <SkewTransform />
+                    <RotateTransform x:Name="t" Angle="0" />
+                    <TranslateTransform />
+                </TransformGroup>
+            </UIElement.RenderTransform>
+            <Shape.Fill>
+                <ImageBrush ImageSource="/Assets/singlecover.png" />
+            </Shape.Fill>
+        </Ellipse>
+        <Ellipse Name="imgCover" Fill="#FF324D65" RenderTransformOrigin="0.5,0.5">
+            <UIElement.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="0.7" ScaleY="0.7" />
+                    <SkewTransform />
+                    <TranslateTransform />
+                </TransformGroup>
+            </UIElement.RenderTransform>
+        </Ellipse>
+    </Grid>
+</UserControl>

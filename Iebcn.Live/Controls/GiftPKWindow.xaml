@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="Iebcn.Live.Controls.GiftPKWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:gif="http://wpfanimatedgif.codeplex.com" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Iebcn.Live.Controls" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" Title="礼物PK投票" Width="1320" Height="396" AllowsTransparency="True" Background="#01000000" FontFamily="Arial" FontSize="12" Icon="/Assets/app.ico" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" WindowStyle="None" MouseLeftButtonDown="qMq">
+    <FrameworkElement.Resources>
+        <ResourceDictionary>
+            <Storyboard x:Key="sb1">
+                <DoubleAnimation AutoReverse="True" Storyboard.TargetName="img_scale" Storyboard.TargetProperty="ScaleX" From="1" To="0.97" Duration="0:0:0.2" />
+                <DoubleAnimation AutoReverse="True" Storyboard.TargetName="img_scale" Storyboard.TargetProperty="ScaleY" From="1" To="0.97" Duration="0:0:0.2" />
+            </Storyboard>
+        </ResourceDictionary>
+    </FrameworkElement.Resources>
+    <Grid>
+        <Grid>
+            <Rectangle Fill="#FF01DC55" Visibility="{Binding GreenBackground, Converter={StaticResource Boolean2VisibilityConverter}}" />
+            <Grid Margin="0,0,0,0">
+                <ItemsControl Name="listView" Background="#00FFFFFF" BorderThickness="0" Foreground="#FFFFFFFF" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{StaticResource BaseStyle}" ItemsSource="{Binding}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center" IsItemsHost="True" Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <UIElement.Effect>
+                                    <DropShadowEffect ShadowDepth="1" />
+                                </UIElement.Effect>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Width="66" Height="66" Source="{Binding pic}" ToolTip="{Binding name}" />
+                                    <Grid Margin="0,8,0,0" Visibility="{Binding Path=DataContext.ShowDesc, Converter={StaticResource Boolean2VisibilityConverter}, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}">
+                                        <Label MaxWidth="120" Margin="-2,-2,0,0" HorizontalAlignment="Left" HorizontalContentAlignment="Left" BorderThickness="0" FontSize="20" FontWeight="Bold" Foreground="#FF000000" Background="{x:Null}" Content="{Binding ext}">
+                                            <UIElement.RenderTransform>
+                                                <ScaleTransform ScaleX="1.04" ScaleY="1.04" />
+                                            </UIElement.RenderTransform>
+                                        </Label>
+                                        <Label MaxWidth="120" HorizontalAlignment="Left" HorizontalContentAlignment="Left" BorderThickness="0" FontSize="20" FontWeight="Bold" Background="{x:Null}" Content="{Binding ext}" Foreground="{Binding Path=DataContext.FontColor, Mode=TwoWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" />
+                                    </Grid>
+                                </StackPanel>
+                                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                                    <Grid Margin="0,1,0,0">
+                                        <Border Width="180" HorizontalAlignment="Center" Background="#2F666666" BorderBrush="#9DFFFFFF" BorderThickness="1" CornerRadius="10" Visibility="{Binding Path=DataContext.ShowCounterBar, Converter={StaticResource Boolean2VisibilityConverter}, Mode=TwoWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}">
+                                            <Label Height="28" Margin="1" Padding="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Background="#00FFFFFF" BorderThickness="0" FontSize="20" Foreground="#FFFFFFFF" Content="{Binding giftCount}" />
+                                        </Border>
+                                    </Grid>
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+        </Grid>
+        <Grid Name="gridBar" VerticalAlignment="Top" Background="#FF1572BB">
+            <Label Margin="0,2,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Left" Background="#4F1C58C8" BorderThickness="0" FontSize="16" FontWeight="Bold" Foreground="#FFFFFFFF">礼物PK投票 （也适用于团播,可在OBS或直播伴侣添加窗口到直播间进行展示和统计）</Label>
+            <Button Width="46" Margin="0,0,38,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#FF408ACE" BorderThickness="0" Content="设置" Foreground="#FFF5F5F5" ToolTip="设置" Click="uMn" />
+            <Button Name="x" Width="36" Margin="0" HorizontalAlignment="Right" VerticalAlignment="Top" Content="x" Style="{StaticResource ButtonDanger}" ToolTip="关闭" Click="LM4" />
+        </Grid>
+    </Grid>
+</Window>

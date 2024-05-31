@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="Iebcn.Live.Controls.OvertimeWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Iebcn.Live.Controls" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Title="加班挑战" Width="980" Height="690" AllowsTransparency="True" Background="#00FFFFFF" BorderBrush="#FFFDF9FD" FontFamily="Arial" FontSize="12" Icon="/Assets/app.ico" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" WindowStyle="None" MouseEnter="IJt" MouseLeave="mJD" MouseLeftButtonDown="TJZ">
+    <FrameworkElement.Resources>
+        <ResourceDictionary>
+            <Style x:Key="styleTextBox" TargetType="{x:Type TextBox}">
+                <Setter Property="Background" Value="#00FFFFFF" />
+            </Style>
+            <Storyboard x:Key="sb1">
+                <DoubleAnimation Storyboard.TargetName="lbUserAddTime" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.5" />
+                <DoubleAnimation BeginTime="0:0:2" Storyboard.TargetName="lbUserAddTime" Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:0.5" />
+            </Storyboard>
+        </ResourceDictionary>
+    </FrameworkElement.Resources>
+    <Grid>
+        <Rectangle Name="bg" Fill="#FF000000" Visibility="Visible" Opacity="{Binding BackOpacity}" />
+        <StackPanel Width="404" Height="NaN" Margin="42,126,0,10" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Label Width="222" VerticalAlignment="Top" HorizontalContentAlignment="Center" FontSize="24" FontWeight="Bold">
+                <Control.Template>
+                    <ControlTemplate>
+                        <Grid>
+                            <Border Background="#FFFF0000" CornerRadius="22,22,0,0" />
+                            <Label HorizontalContentAlignment="Center" Background="#00FFFFFF" BorderThickness="0" Content="{Binding TitleText}" Foreground="{Binding OtherForeground}" />
+                        </Grid>
+                    </ControlTemplate>
+                </Control.Template>
+            </Label>
+            <Label Margin="0,0,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Background="#6E222222" BorderBrush="#6999FFFF" BorderThickness="1" FontSize="26" FontWeight="Bold">
+                <Control.Template>
+                    <ControlTemplate>
+                        <Grid>
+                            <Label Width="242" HorizontalContentAlignment="Center" Background="#00FFFFFF" BorderThickness="1" Content="{Binding TimeString}" Foreground="{Binding OtherForeground}" />
+                            <Label Name="lbComplete" Width="242" HorizontalContentAlignment="Center" Background="#FF008000" BorderThickness="1" Content="加班完成！" Foreground="#FFFFFFFF" Visibility="{Binding Complete, Converter={StaticResource Boolean2VisibilityConverter}}" />
+                        </Grid>
+                    </ControlTemplate>
+                </Control.Template>
+            </Label>
+            <WrapPanel Name="wrapPanel" Margin="0,8,0,4" HorizontalAlignment="Center" VerticalAlignment="Top" />
+            <Label Width="322" Margin="0,10,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Background="#6E222222" BorderBrush="#39FFFFFF" BorderThickness="1" FontSize="18" Content="{Binding IdleText}" Foreground="{Binding OtherForeground}" />
+        </StackPanel>
+        <Label Name="lbUserAddTime" Width="246" Height="44" Margin="124,76,0,10" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FFD8FFF5" Content="用户123+2小时" FontSize="14" Opacity="0" RenderTransformOrigin="0.5,0.5" />
+        <Border Width="NaN" Margin="502,0,0,0" Background="#FFEEEEEE" BorderBrush="#FFC8C8C8" BorderThickness="4" CornerRadius="4">
+            <Grid Width="NaN" Margin="20">
+                <Label Margin="2,0,0,20" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#00FFFFFF" BorderThickness="0">文本列表用于显示自定义文本描述项，超过长度自动滚动</Label>
+                <Grid Name="gridSetting" Height="344" Margin="0" VerticalAlignment="Top" Background="#EF000000">
+                    <Rectangle Width="485" Fill="#FFF5F5F5" />
+                    <hc:TextBox Width="334" Margin="0,20,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" hc:InfoElement.Placeholder="输入礼物名查询添加项目" AutoWordSelection="True" ToolTip="输入礼物名称查询要添加的礼物项目" TextChanged="WJr" />
+                    <ListBox Name="listBoxAll" Width="380" Margin="0,61,0,4">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Height="44" ToolTip="礼物图片" Source="{Binding Pic}" />
+                                    <Label BorderThickness="0" ToolTip="礼物名" Content="{Binding GiftName}" />
+                                    <ComboBox Width="58" Margin="13,0,0,0" VerticalAlignment="Center">
+                                        <ComboBoxItem IsSelected="True">+</ComboBoxItem>
+                                        <ComboBoxItem>-</ComboBoxItem>
+                                    </ComboBox>
+                                    <hc:NumericUpDown VerticalAlignment="Center" Maximum="9999999" Minimum="1" ToolTip="秒" Value="{Binding Seconds}" />
+                                    <Label Padding="3" Background="#00FFFFFF" BorderThickness="0">秒</Label>
+                                    <Button Margin="4,0,0,0" Background="#FFEEEEEE" Content="添加" ToolTip="添加" Tag="{Binding}" Click="vJm" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ListBox>
+                </Grid>
+                <StackPanel Margin="0,355,0,0">
+                    <StackPanel Margin="10,2,0,0" Orientation="Horizontal">
+                        <Button Background="#FF476F0B" BorderBrush="#FFADFF2F" BorderThickness="1" Foreground="#FFFFFFFF" Click="pJ2">背景1</Button>
+                        <Button Background="#FF000000" BorderBrush="#FF000000" BorderThickness="2" Foreground="#FFFFFFFF" Click="pJ2">背景2</Button>
+                        <Button Background="#FF980505" BorderBrush="#FFFF0000" BorderThickness="3" Foreground="#FFFFFFFF" Tag="3" Click="pJ2">背景3</Button>
+                        <Label Background="#00FFFFFF" BorderThickness="0">背景透明度:</Label>
+                        <Slider Name="slierOpacity" Width="126" Margin="9,2,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FF008000" Maximum="1" Minimum="0" Value="{Binding BackOpacity}" />
+                    </StackPanel>
+                    <StackPanel Margin="0,8,0,0" Orientation="Horizontal">
+                        <Label Background="#00FFFFFF" BorderThickness="0">初始时间(分钟):</Label>
+                        <hc:NumericUpDown Name="numInitSeconds" Maximum="9999999" Minimum="1" Value="30" ValueChanged="vJ8" />
+                    </StackPanel>
+                    <StackPanel Margin="0,2,0,0" Orientation="Horizontal">
+                        <Label Background="#00FFFFFF" BorderThickness="0">礼物名颜色:</Label>
+                        <Button Width="66" HorizontalAlignment="Left" BorderBrush="#FF000000" Background="{Binding GiftNameForeground}" Click="nJc" />
+                        <Label Background="#00FFFFFF" BorderThickness="0">加减时间颜色:</Label>
+                        <Button Name="btnBorderBrush" Width="66" HorizontalAlignment="Left" BorderBrush="#FF000000" Background="{Binding GiftDescForeground}" Click="AJk" />
+                    </StackPanel>
+                    <StackPanel Margin="0,8,0,0" Orientation="Horizontal">
+                        <Label Background="#00FFFFFF" BorderThickness="0">其他字体颜色:</Label>
+                        <Button Width="66" HorizontalAlignment="Left" BorderBrush="#FF000000" Background="{Binding OtherForeground}" Click="LJM" />
+                    </StackPanel>
+                    <StackPanel Margin="0,8,0,0" Orientation="Horizontal">
+                        <Label Background="#00FFFFFF" BorderThickness="0">标题文字:</Label>
+                        <TextBox Width="266" HorizontalAlignment="Left" BorderBrush="#FF000000" Text="{Binding TitleText}" />
+                    </StackPanel>
+                    <StackPanel Margin="0,8,0,0" Orientation="Horizontal">
+                        <Label Background="#00FFFFFF" BorderThickness="0">空闲文字:</Label>
+                        <TextBox Width="266" HorizontalAlignment="Left" BorderBrush="#FF000000" Text="{Binding IdleText}" />
+                    </StackPanel>
+                    <StackPanel Margin="0,22,0,0" HorizontalAlignment="Center" Orientation="Horizontal">
+                        <Button Width="128" Margin="0,0,0,23" VerticalAlignment="Bottom" Background="#FF9999FF" Foreground="#FFF5F5F5" Click="JJJ">送礼记录</Button>
+                    </StackPanel>
+                </StackPanel>
+                <Grid Name="gridLog" Background="#FFF5F5F5" Visibility="Collapsed">
+                    <Label Margin="0,21,0,4" VerticalAlignment="Top" Background="#00FFFFFF" BorderThickness="0">送礼记录</Label>
+                    <ListBox Name="listLog" Width="380" Margin="0,61,0,64" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label BorderThickness="0" Content="{Binding UserNickCut}" />
+                                    <Label BorderThickness="0" Content="{Binding GiftCount}" />
+                                    <Label BorderThickness="0" Content="{Binding GiftName}" />
+                                    <Image Height="30" Source="{Binding GiftUrl}" />
+                                    <Label Padding="3" Background="#00FFFFFF" BorderThickness="0" Content="{Binding ExtMsg}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ListBox>
+                    <Button Width="128" Margin="0,0,0,23" VerticalAlignment="Bottom" Background="#FF9999FF" Foreground="#FFF5F5F5" Click="tJb">返回</Button>
+                </Grid>
+            </Grid>
+        </Border>
+        <Grid Name="gridBar" VerticalAlignment="Top" Background="#FF525252">
+            <Label Margin="0,2,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Left" Background="#EF3C3C3C" BorderThickness="0" FontSize="14" FontWeight="Bold" Foreground="#FFFFFFFF">加班挑战</Label>
+            <CheckBox Margin="130,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Left" Background="#EF000000" BorderThickness="1" FontSize="12" FontWeight="Bold" Foreground="#FFFFFFFF" ToolTip="开启礼物加减时间统计" IsChecked="{Binding Enabled}" Click="rJR">开启礼物计时统计</CheckBox>
+            <Button Width="46" Margin="0,0,47,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#FF4C4C4C" BorderThickness="0" Content="设置" Foreground="#FFF5F5F5" ToolTip="设置" Click="tJA" />
+            <Button Name="x" Width="36" Margin="0" HorizontalAlignment="Right" VerticalAlignment="Top" Content="x" Style="{StaticResource ButtonDanger}" ToolTip="关闭" Click="qJS" />
+        </Grid>
+    </Grid>
+</Window>

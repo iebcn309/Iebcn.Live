@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="Iebcn.Live.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Controls="clr-namespace:Iebcn.Live.Controls" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Iebcn.Live" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" Title="抖灵" Width="920" Height="570" AllowsTransparency="True" Background="#00FFFFFF" Icon="pack://application:,,,/Assets/app.ico" WindowStartupLocation="CenterScreen" WindowStyle="None" MouseLeftButtonDown="Window_MouseLeftButtonDown">
+    <Grid Background="#01ffffff">
+        <Rectangle Margin="8" Fill="#FF808080">
+            <UIElement.Effect>
+                <DropShadowEffect Opacity="0.6" ShadowDepth="3" />
+            </UIElement.Effect>
+        </Rectangle>
+        <Rectangle Margin="8" Fill="#FF808080">
+            <UIElement.Effect>
+                <DropShadowEffect Direction="135" Opacity="0.6" ShadowDepth="3" />
+            </UIElement.Effect>
+        </Rectangle>
+        <Image Margin="8" Source="/Assets/bg.jpg" Tag="bg" />
+        <Grid Margin="8">
+            <Panel.Background>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <GradientStop Color="#EFE5ECEB" />
+                    <GradientStop Offset="1" Color="#EFffffff" />
+                </LinearGradientBrush>
+            </Panel.Background>
+            <Rectangle Name="AppMenuBackground" Width="138" HorizontalAlignment="Left" Fill="{Binding BackgroundBrush}" />
+            <TabControl Name="tabctl" Margin="0,42,0,0" HorizontalAlignment="Stretch" Background="#00334F5B" BorderThickness="1" TabStripPlacement="Left" SelectionChanged="tabctl_SelectionChanged">
+                <TabItem Background="#00FFFFFF" IsEnabled="False">
+                    <HeaderedContentControl.Header>
+                        <Grid>
+                            <TextBlock Height="28" FontSize="14" Foreground="#FFeeeeee" Text="" />
+                        </Grid>
+                    </HeaderedContentControl.Header>
+                </TabItem>
+                <TabItem Background="#FF343434" Cursor="" IsSelected="True" Tag="navTextHome">
+                    <HeaderedContentControl.Header>
+                        <Grid Background="#01000000" Cursor="Hand">
+                            <TextBlock Margin="18,12,18,12" FontSize="14" Foreground="#FFFFFFFF" Text="🏠  菜单主页" />
+                        </Grid>
+                    </HeaderedContentControl.Header>
+                    <Grid Background="#0FF3D7C0">
+                        <Label Name="lbHomeAppTitle" Margin="0,50,0,0" VerticalAlignment="Top" Background="#00FFFFFF" BorderThickness="0" FontSize="28" FontWeight="Bold" Foreground="#FFFFFFFF" Height="54">
+                            <UIElement.Effect>
+                                <DropShadowEffect ShadowDepth="1" />
+                            </UIElement.Effect> 抖灵(内测版)v4.5 [互动版]
+                        </Label>
+                        <StackPanel Margin="0,227,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal">
+                            <hc:TextBox Name="txtUrl" Width="392" Height="44" VerticalContentAlignment="Center" hc:InfoElement.Placeholder="开播抖音号、直播间地址或房间号" AutoWordSelection="True" Text="" ToolTip="可以去官网 live.douyin.com 搜索自己的直播间地址" />
+                            <Button Name="btnGo" Width="82" Height="44" Margin="4,0,0,0" hc:IconElement.Geometry="{StaticResource PageModeGeometry}" Content="连接" Style="{StaticResource ButtonPrimary}" Click="btnGo_Click" />
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+                <TabItem Background="#00FFFFFF" Tag="navTextPlugs">
+                    <HeaderedContentControl.Header>
+                        <Grid Background="#01000000" Cursor="Hand">
+                            <TextBlock Name="navTextPlugs" Margin="18,12,18,12" FontSize="14" Foreground="#FFCCCCCC" Text="🧩  主播插件" />
+                        </Grid>
+                    </HeaderedContentControl.Header>
+                    <Grid Background="#9Fffffff">
+                        <ScrollViewer Margin="22,0,0,0" VerticalScrollBarVisibility="Auto">
+                            <WrapPanel>
+                                <Label Width="742" HorizontalContentAlignment="Left" Background="#00FFFFFF" BorderThickness="0" FontSize="14" FontWeight="Bold">弹幕插件</Label>
+                                <Controls:PluginItemCtl Click="btnPluginItem_Click" Title="弹幕页" Margin="4" Desc="普通弹幕页" Icon="/Assets/plugin_icon/DanmuPage.png" Tag="DanmuPage" />
+                                <Controls:PluginItemCtl Click="btnPluginItem_Click" Title="全屏弹幕" Margin="4" Desc="弹幕全屏飘屏效果" Icon="/Assets/plugin_icon/fullbullet.png" Tag="FullDanmuPage" />
+                                <Controls:PluginItemCtl Click="btnPluginItem_Click" Title="飘屏动画" Margin="4" Desc="条件动画飘屏" Icon="/Assets/plugin_icon/flybullet.png" Tag="FlyDanmuPage" />
+                                <Label Width="742" HorizontalContentAlignment="Left" Background="#00FFFFFF" BorderThickness="0" FontSize="14" FontWeight="Bold">语音播报</Label>
+                                <Controls:PluginItemCtl Click="btnPluginItem_Click" Title="语音播报" Margin="4" Desc="语音发言人和播报类型等" Icon="/Assets/plugin_icon/voice_settings.png" Tag="VoiceSetting" />
+                                <Controls:PluginItemCtl Click="btnPluginItem_Click" Title="冷场播报" Margin="4" Desc="冷场播报话术设置" Icon="/Assets/plugin_icon/voice_silence.png" Tag="SilenceSpeak" />
+                                <Controls:PluginItemCtl Click="btnPluginItem_Click" Title="定时播报" Margin="4" Desc="定时播报，整点播报" Icon="/Assets/plugin_icon/TimerSpeak.png" Tag="TimerSpeak" />
+                                <Controls:PluginItemCtl Click="btnPluginItem_Click" Title="插播助手" Margin="4" Desc="及时语音插播" Icon="/Assets/plugin_icon/Intercut.png" Tag="Intercut" />
+                                <Label Width="742" HorizontalContentAlignment="Left" Background="#00FFFFFF" BorderThickness="0" FontSize="14" FontWeight="Bold">实用插件</Label>
+                                <Controls:PluginItemCtl Click="btnPluginItem_Click" Title="飘屏触发器" Margin="4" Desc="触发各种飘屏效果" Icon="/Assets/plugin_icon/danmutriger.png" Tag="DanmuTriger" ToolTip="触发进场、点赞、关注、送礼的自定义文字动画和声音效果" />
+                                <Controls:PluginItemCtl Click="btnPluginItem_Click" Title="自动问答" Margin="4" Desc="弹幕关键词回复设置" Icon="/Assets/plugin_icon/autoRaply.png" Tag="DanmuAutoReply" ToolTip="自动语音回复关键词弹幕，支持文字语音和自定义音频回答" />
+                                <Controls:PluginItemCtl Click="btnPluginItem_Click" Title="虚拟人气" Margin="4" Desc="虚拟送礼,进场,点赞效果" Icon="/Assets/plugin_icon/fakeRenqi.png" Tag="FakeRenqi" ToolTip="虚拟进场，送礼等，可贴到自己直播间展示到公屏营造火热人气氛围" />
+                                <Controls:PluginItemCtl Click="btnPluginItem_Click" Title="虚拟弹幕" Margin="4" Desc="模拟发送虚拟弹幕" Icon="/Assets/plugin_icon/fakeDanmu.png" Tag="FakeDanmu" ToolTip="发虚拟自定义弹幕，进场点赞送礼等弹幕（注：虚拟弹幕不发送到服务器公屏）" />
+                                <Controls:PluginItemCtl Click="btnPluginItem_Click" Title="发弹幕" Margin="4" Desc="发自定义弹幕，弹幕回复等" Icon="/Assets/plugin_icon/sendDanmu.png" Tag="SendDanmu" ToolTip="发真实自定义弹幕，弹幕问答回复，欢迎感谢弹幕等" />
+                                <Controls:PluginItemCtl Click="btnPluginItem_Click" Title="人偶" Margin="4" Desc="live2D人偶" Icon="/Assets/plugin_icon/live2DRoles.png" Tag="Live2DRoles" />
+                                <Controls:PluginItemCtl Click="btnPluginItem_Click" Title="榜单" Margin="4" Desc="直播间排行榜单" Icon="/Assets/plugin_icon/roomRank.png" Tag="RoomRank" />
+                                <Controls:PluginItemCtl Click="btnPluginItem_Click" Title="文本文字" Margin="4" Desc="各种文字，可装饰到直播间" Icon="/Assets/plugin_icon/screenText.png" Tag="ScreenText" />
+                                <Controls:PluginItemCtl Click="btnPluginItem_Click" Title="文本列表" Margin="4" Desc="可加到直播间" Icon="/Assets/plugin_icon/TextList.png" Tag="TextList" />
+                                <Controls:PluginItemCtl Click="btnPluginItem_Click" Title="网页特效" Margin="4" Desc="网页特效可加到直播间" Icon="/Assets/plugin_icon/webEffects.png" Tag="WebEffects" />
+                                <Controls:PluginItemCtl Click="btnPluginItem_Click" Title="定时飘屏" Margin="4" Desc="可添加到直播间" Icon="/Assets/plugin_icon/timerNotice.png" Tag="TimerNotice" />
+                                <Controls:PluginItemCtl Click="btnPluginItem_Click" Title="骚气机器人" Margin="4" Desc="幽默搞笑的欢迎感谢" Icon="/Assets/plugin_icon/robotEva.png" Tag="RobotEva" ToolTip="幽默风趣，可爱帮手" />
+                                <Controls:PluginItemCtl Click="btnPluginItem_Click" Title="关注和黑名单" Margin="4" Desc="自动关注和黑名单" Icon="/Assets/plugin_icon/roomControl.png" Tag="RoomControl" />
+                                <Controls:PluginItemCtl Click="btnPluginItem_Click" Title="倒计时" Margin="4" Desc="自动关注和黑名单" Icon="/Assets/plugin_icon/Timer.png" Tag="Timer" />
+                                <Controls:PluginItemCtl Click="btnPluginItem_Click" Title="音效助手" Margin="4" Desc="自定义各种音效" Icon="/Assets/plugin_icon/SoundAssistant.png" Tag="SoundAssistant" ToolTip="自定义音效，可设置快捷键，直播间音效气氛帮手" />
+                                <Label Width="742" HorizontalContentAlignment="Left" Background="#00FFFFFF" BorderThickness="0" FontSize="14" FontWeight="Bold">互动插件</Label>
+                                <Controls:PluginItemCtl Click="btnPluginItem_Click" Title="数字人" Margin="4" Desc="大模型交互数字人" Flag="互动" Icon="/Assets/plugin_icon/VRole.png" Tag="ChatBot" ToolTip="大模型交互数字人，支持数字人互动！支持GPT和自定义接口模型，适合带货、娱乐和各种直播场景" />
+                                <Controls:PluginItemCtl Click="btnPluginItem_Click" Title="ChatGPT问答" Margin="4" Desc="ChatGPT互动问答" Flag="互动" Icon="/Assets/plugin_icon/GPT.png" Tag="ChatGPT" />
+                                <Controls:PluginItemCtl Click="btnPluginItem_Click" Title="弹幕点歌" Margin="4" Desc="弹幕点歌插件" Flag="互动" Icon="/Assets/plugin_icon/musicBox.png" Tag="MusicBox" />
+                                <Controls:PluginItemCtl Click="btnPluginItem_Click" Title="弹幕投票" Margin="4" Desc="弹幕投票" Flag="互动" Icon="/Assets/plugin_icon/danmuVote.png" Tag="DanmuVote" />
+                                <Controls:PluginItemCtl Click="btnPluginItem_Click" Title="头像打印" Margin="4" Desc="打印观众头像" Flag="互动" Icon="/Assets/plugin_icon/printAvatar.png" Tag="PrintAvatar" />
+                                <Controls:PluginItemCtl Click="btnPluginItem_Click" Title="礼物挑战" Margin="4" Desc="互动玩法礼物挑战" Flag="互动" Icon="/Assets/plugin_icon/GiftInteraction.png" Tag="GiftInteraction" />
+                                <Controls:PluginItemCtl Click="btnPluginItem_Click" Title="加班挑战" Margin="4" Desc="送礼物加班" Flag="互动" Icon="/Assets/plugin_icon/Overtime.png" Tag="Overtime" />
+                                <Controls:PluginItemCtl Click="btnPluginItem_Click" Title="Roll点互动" Margin="4" Desc="互动玩法Roll点" Flag="互动" Icon="/Assets/plugin_icon/Roll.png" Tag="Roll" />
+                                <Controls:PluginItemCtl Click="btnPluginItem_Click" Title="电子木鱼" Margin="4" Desc="互动敲木鱼" Flag="互动" Icon="/Assets/plugin_icon/Muyu.png" Tag="Muyu" />
+                                <Controls:PluginItemCtl Click="btnPluginItem_Click" Title="继电器工具" Margin="4" Desc="互动设备扩展" Flag="互动" Icon="/Assets/plugin_icon/RelayTool.png" Tag="RelayTool" />
+                                <Controls:PluginItemCtl Click="btnPluginItem_Click" Title="鼠键触发工具" Margin="4" Desc="礼物或弹幕鼠键触发" Flag="互动" Icon="/Assets/plugin_icon/MouseKeyboardTool.png" Tag="MouseKeyboardTool" />
+                                <Controls:PluginItemCtl Click="btnPluginItem_Click" Title="虚拟礼物特效" Margin="4" Desc="虚拟礼物特效" Icon="/Assets/plugin_icon/FakeGift.png" Tag="FakeGift" />
+                                <Controls:PluginItemCtl Click="btnPluginItem_Click" Title="礼物PK" Margin="4" Desc="礼物PK投票" Icon="/Assets/plugin_icon/GiftPK.png" Tag="GiftPK" />
+                                <Controls:PluginItemCtl x:Name="PluginItemCtlPK2" Click="btnPluginItem_Click" Title="礼物PK2.0" Margin="4" Desc="礼物PK2.0" Icon="/Assets/plugin_icon/GiftPK.png" Tag="GiftPK2.0" Visibility="Collapsed" />
+                                <Controls:PluginItemCtl Click="btnPluginItem_Click" Title="砸礼物" Margin="4" Desc="砸礼物效果" Icon="/Assets/plugin_icon/HitGift.png" Tag="HitGift" ToolTip="砸礼物效果，支持自定义图片和声音" />
+                                <Controls:PluginItemCtl Click="btnPluginItem_Click" Title="OBS控制器" Margin="4" Desc="OBS控制器" Icon="/Assets/plugin_icon/OBS.png" Tag="OBSCmd" />
+                                <Controls:PluginItemCtl Click="btnPluginItem_Click" Title="媒体触发器" Margin="4" Desc="触发视频或动图" Icon="/Assets/plugin_icon/MediaTriger.png" Tag="MediaTriger" />
+                                <Label Width="742" HorizontalContentAlignment="Left" Background="#00FFFFFF" BorderThickness="0" FontSize="14" FontWeight="Bold">实用工具</Label>
+                                <Controls:PluginItemCtl Click="btnPluginItem_Click" Title="弹幕接口" Margin="4" Desc="弹幕API接口" Icon="/Assets/plugin_icon/DanmuApi.png" Tag="DanmuApi" />
+                                <Controls:PluginItemCtl Click="btnPluginItem_Click" Title="图片素材" Margin="4" Desc="图片素材下载" Icon="/Assets/plugin_icon/PicResource.png" Tag="PicResource" />
+                                <Controls:PluginItemCtl Click="btnPluginItem_Click" Title="滑块验证器" Margin="4" Desc="伴侣自动挂机验证" Icon="/Assets/plugin_icon/Validator.png" Tag="Validator" />
+                                <Label Width="742" HorizontalContentAlignment="Left" Background="#00FFFFFF" BorderThickness="0" FontSize="14" FontWeight="Bold">系统工具</Label>
+                                <Controls:PluginItemCtl Click="btnPluginItem_Click" Title="激活码" Margin="4" Desc="激活抖灵会员" Icon="/Assets/plugin_icon/ActiveCode.png" Tag="ActiveCode" />
+                            </WrapPanel>
+                        </ScrollViewer>
+                    </Grid>
+                </TabItem>
+                <TabItem Name="tabItemDanmuDetail" Background="#00FFFFFF" Tag="navTextData">
+                    <HeaderedContentControl.Header>
+                        <Grid Background="#01000000" Cursor="Hand">
+                            <TextBlock Name="navTextData" Margin="18,12,18,12" FontSize="14" Foreground="#FFCCCCCC" Text="📊  弹幕数据" />
+                        </Grid>
+                    </HeaderedContentControl.Header>
+                    <Grid Name="gridDanmuDetail" Background="#77FFFFFF" />
+                </TabItem>
+                <TabItem Name="tabItemSetting" Background="#00FFFFFF">
+                    <Grid Background="#77FFFFFF">
+                        <StackPanel>
+                            <StackPanel Margin="22" VerticalAlignment="Top" Orientation="Horizontal">
+                                <Label Background="#00FFFFFF" BorderThickness="0">主题色：</Label>
+                                <Button Width="80" Height="34" Background="#FF063765" Click="Button_Click" />
+                                <Button Width="80" Height="34" Background="#FF0A546D" Click="Button_Click" />
+                                <Button Width="80" Height="34" Background="#FF127B03" Click="Button_Click" />
+                                <Button Width="80" Height="34" Background="#FF7B6003" Click="Button_Click" />
+                                <Button Width="80" Height="34" Background="#FF9C6D27" Click="Button_Click" />
+                                <Button Width="80" Height="34" Background="#FF540B47" Click="Button_Click" />
+                                <Button Width="80" Height="34" Background="#FF252525" Click="Button_Click" />
+                                <Button Name="btnCustThemaColor" Width="80" Height="34" Background="#FFF5F5F5" Content="自定义" Foreground="#FF333333" Click="btnCustThemaColor_Click" />
+                            </StackPanel>
+                            <StackPanel Margin="20,0,0,0" HorizontalAlignment="Left" Orientation="Horizontal">
+                                <Label Background="#00FFFFFF" BorderThickness="0">声音设置:</Label>
+                                <Label Background="#00FFFFFF" BorderThickness="0">输出声卡:</Label>
+                                <ComboBox Name="comboxAudioDevices" Width="200" SelectionChanged="comboxAudioDevices_SelectionChanged" />
+                                <CheckBox Margin="13,0,0,0" BorderBrush="#FF8E7D7D" Content="减弱外部声音" Foreground="{StaticResource Vip2ColorBrush}" ToolTip="语音播报时减弱外部其他应用的声音,让本程序的声音成为主音(注：需要管理员身份运行本程序才有效)" IsChecked="{Binding GlobalConfig.FadeExternalSoundEnabled}"/>
+                                <CheckBox Margin="18,0,0,0" BorderBrush="#FF8E7D7D" Content="随机改变声音的\音色\音量" Foreground="{StaticResource Vip2ColorBrush}" ToolTip="一般用于需要随机改变语音输出的场景！用于音频随机输出效果！" IsChecked="{Binding GlobalConfig.AudioRndModeEnabled}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+            <Grid Width="138" Height="80" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#4F000000">
+                <Image Height="28" Margin="15,15,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Source="/Assets/logo_top.png" />
+                <TextBlock Name="txtVersion" Margin="0,12,8,0" HorizontalAlignment="Right" VerticalAlignment="Top" Foreground="#FFAAAAAA" Text="v4.6" />
+            </Grid>
+            <Button Width="138" Height="44" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Background="#5F384B52" BorderThickness="0" Content="⚙️ 设置" Cursor="Hand" Foreground="#FFF5F5F5" Click="Button_Click_1" />
+            <Grid Name="topBar" Margin="138,0,0,0" VerticalAlignment="Top" Background="#FFF5F5F5">
+                <StackPanel Height="40" HorizontalAlignment="Right" Orientation="Horizontal">
+                    <!--<Label Name="lbEndDate" Margin="0,6,2,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#00FFFFFF" BorderThickness="0" Content="到期日期：2022/3/3 3:22:66" FontSize="12" Foreground="#FF888888" />-->
+                    <!--<Menu Background="#036496C5" IsMainMenu="True">
+                        <MenuItem Height="34" Margin="0,0,0,0" HorizontalContentAlignment="Center" Background="#036496C5" Foreground="#FF555555" Header="☰">
+                            <MenuItem Header="📆 更新日志" Click="D2g" />
+                            <MenuItem Header="❓ 关于" Click="g2R" />
+                        </MenuItem>
+                    </Menu>-->
+                    <Button Name="btnMinWindow" Width="36" Height="33" VerticalAlignment="Top" Background="#036496C5" BorderBrush="#12000000" BorderThickness="1" Content="-" Foreground="#FF808080" Style="{StaticResource ButtonDanger}" ToolTip="最小化" Click="btnMinWindow_Click" />
+                    <Button Name="x" Width="36" Height="33" Margin="0" VerticalAlignment="Top" Background="#03FF9999" BorderBrush="#12000000" BorderThickness="1" Content="x" Foreground="#FF808080" Style="{StaticResource ButtonDanger}" ToolTip="最小化到系统托盘" Click="x_Click" />
+                </StackPanel>
+                <Button Width="44" Margin="3,3,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#05459DEF" BorderBrush="#FFEEEEEE" Content="☂" Foreground="#FF888888" ToolTip="通知" Visibility="{Binding Agent.AgentUIVisible}" Click="Button_Click_2" />
+                <Button Width="84" Margin="53,3,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#05459DEF" BorderBrush="#FFEEEEEE" Content="🔧直播间" Foreground="#FF888888" ToolTip="可在里面登录账号修复无法获取弹幕的问题，或者切换登录账号" Click="Button_Click_3" />
+            </Grid>
+            <Grid Name="gridLoading" Visibility="Collapsed">
+                <Panel.Background>
+                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                        <GradientStop Color="#FF106D79" />
+                        <GradientStop Offset="1" Color="#EA1B285B" />
+                    </LinearGradientBrush>
+                </Panel.Background>
+                <StackPanel VerticalAlignment="Center">
+                    <Image Height="68" VerticalAlignment="Top" Source="/Assets/logo_top.png" />
+                    <Label Name="lbLoadingState" Margin="0,14,0,0" Background="#00FFFFFF" BorderThickness="0" Content="正在加载....." FontSize="24" Foreground="#FFFFFFFF" />
+                </StackPanel>
+            </Grid>
+            <Controls:MessageTip x:Name="messageTip" Height="55" VerticalAlignment="Top" IsHitTestVisible="False" Visibility="Collapsed" />
+            <Grid Name="gridAppNotice" Visibility="Collapsed">
+                <Panel.Background>
+                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                        <GradientStop Color="#FFE625F1" />
+                        <GradientStop Offset="1" Color="#FA0F2CA2" />
+                    </LinearGradientBrush>
+                </Panel.Background>
+                <Label Margin="12,22,12,60" HorizontalAlignment="Center" VerticalAlignment="Top" Background="#00FFFFFF" BorderThickness="0" Content="通 知" FontSize="28" FontWeight="Bold" Foreground="#FFFFFFFF" />
+                <TextBlock Name="txtAppNotice" Margin="12,60,12,60" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#00FFFFFF" FontSize="14" Foreground="#FFFFFFFF" Text="通知：哦i哦i 哦i 哦哦iiii哦i哦i 哦i 哦哦iiii哦i哦i 哦i 哦哦iiii哦i哦i 哦i 哦哦iiii哦i哦i 哦i 哦哦iiii" TextWrapping="Wrap" />
+                <Button Width="140" Height="39" Margin="0,0,0,60" VerticalAlignment="Bottom" hc:IconElement.Geometry="{StaticResource PageModeGeometry}" Content="知道了" Style="{StaticResource ButtonPrimary}" Click="Button_Click_4" />
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

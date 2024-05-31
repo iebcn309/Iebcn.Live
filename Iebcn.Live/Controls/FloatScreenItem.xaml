@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<StackPanel x:Class="Iebcn.Live.Controls.FloatScreenItem" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:gif="http://wpfanimatedgif.codeplex.com" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Iebcn.Live.Controls" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" x:Name="stackPanel" Width="554" Height="210" Margin="6" HorizontalAlignment="Left" Orientation="Horizontal" RenderTransformOrigin="0.5,0.5">
+    <FrameworkElement.Resources>
+        <ResourceDictionary>
+            <Storyboard x:Key="sb1" Completed="TZO">
+                <DoubleAnimation Storyboard.TargetName="t" Storyboard.TargetProperty="X" From="1000" To="-444" Duration="0:0:1" />
+                <DoubleAnimation Storyboard.TargetName="stackPanel" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:1" />
+            </Storyboard>
+        </ResourceDictionary>
+    </FrameworkElement.Resources>
+    <UIElement.RenderTransform>
+        <TransformGroup>
+            <ScaleTransform />
+            <SkewTransform />
+            <RotateTransform />
+            <TranslateTransform x:Name="t" X="0" />
+        </TransformGroup>
+    </UIElement.RenderTransform>
+    <UIElement.Effect>
+        <DropShadowEffect ShadowDepth="2" />
+    </UIElement.Effect>
+    <Image Name="imgGif" Width="99" Height="99" gif:ImageBehavior.RepeatBehavior="Forever" RenderTransformOrigin="0.5,0.5" gif:ImageBehavior.AnimatedSource="{Binding AnimationPicUrl}" />
+    <Grid Height="88">
+        <Image Width="66" Height="66" Margin="111,-66,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="Uniform" Source="{Binding GiftUrl}" />
+        <Ellipse Width="80" Height="80" HorizontalAlignment="Left" Stroke="#FFF5F5F5" StrokeThickness="6">
+            <Shape.Fill>
+                <ImageBrush ImageSource="{Binding UserHeadPic}" />
+            </Shape.Fill>
+        </Ellipse>
+        <Label Name="lbNickName" Margin="98,4,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#00FFFFFF" BorderThickness="0" FontSize="16" Foreground="#FFFFFFFF" Content="{Binding UserNick}" />
+        <TextBlock Name="txtMsg" Margin="98,44,0,8" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#00FFFFFF" FontSize="18" Foreground="#FF00FFFF" TextWrapping="Wrap" Text="{Binding ThksMsg}" />
+    </Grid>
+</StackPanel>

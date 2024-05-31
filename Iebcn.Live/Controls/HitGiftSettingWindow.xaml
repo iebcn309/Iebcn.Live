@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="Iebcn.Live.Controls.HitGiftSettingWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:gif="http://wpfanimatedgif.codeplex.com" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Iebcn.Live.Controls" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" Title="设置" Width="520" Height="650" BorderBrush="#FFFDF9FD" BorderThickness="1" FontSize="12" Icon="/Assets/app.ico" Style="{StaticResource NoResize_window}" WindowStartupLocation="CenterScreen" MouseLeftButtonDown="DM2">
+    <Control.Background>
+        <ImageBrush ImageSource="/Assets/bg.jpg" />
+    </Control.Background>
+    <Border Background="#F0EDECEC" CornerRadius="6">
+        <Grid Background="#FFFFFFFF">
+            <Grid VerticalAlignment="Top">
+                <Label Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Top" HorizontalContentAlignment="Left" hc:BorderElement.CornerRadius="6,6,0,0" Background="#AF144196" BorderThickness="0" FontSize="16" FontWeight="Bold" Foreground="#FFFFFFFF">砸礼物设置</Label>
+                <Button Name="x" Width="36" Height="26" HorizontalAlignment="Right" VerticalAlignment="Top" Content="x" Style="{StaticResource ButtonDanger}" ToolTip="关闭" Click="cMi" />
+            </Grid>
+            <Grid Margin="0,32,0,0" VerticalAlignment="Top" Background="#FFDDDDDD">
+                <StackPanel Margin="6,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
+                    <Label Background="#00FFFFFF" BorderThickness="0">队列缓存大小</Label>
+                    <hc:NumericUpDown Width="68" Height="30" HorizontalAlignment="Left" BorderBrush="#FF999999" FontSize="12" Increment="1" Maximum="200" Minimum="1" ToolTip="符合条件的弹幕进入触发队列缓存，排队触发，数字越大触发历史记录越长" Value="{Binding CacheMax}" />
+                </StackPanel>
+                <Button Width="66" Margin="0,0,2,0" HorizontalAlignment="Right" BorderBrush="#FF999999" Click="nM7">日志</Button>
+            </Grid>
+            <Grid Margin="20,384,20,20">
+                <Label Margin="0,3,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#00FFFFFF" BorderThickness="0" FontSize="14" Foreground="#FF888888">触发指令列表</Label>
+                <ListBox Name="listBox" Margin="8,33,8,8" Background="#FFEEEEEE" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Width="324" Background="#3FFDFDFD" FontSize="14" Content="{Binding Desc}" ToolTip="{Binding Desc}" />
+                                <Button Tag="{Binding}" Click="DMX">调试</Button>
+                                <Button Tag="{Binding}" Click="tMy">删除</Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ListBox>
+            </Grid>
+            <Grid Height="311" Margin="20,73,22,0" VerticalAlignment="Top" Background="#FFF5F5F5">
+                <StackPanel Height="31" Margin="50,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#00FFFFFF" Orientation="Horizontal">
+                    <Label Background="#00FFFFFF" BorderThickness="0" FontSize="14">条件</Label>
+                    <RadioButton Name="rdTypeGift" Width="66" Margin="12,0,0,0" Padding="4" BorderBrush="#FF000000" GroupName="rdType" IsChecked="True" Checked="OMJ">礼物</RadioButton>
+                    <RadioButton Name="rdTypeChat" Width="66" Margin="5,0,0,0" Padding="4" BorderBrush="#FF000000" GroupName="rdType" Checked="TMR">弹幕</RadioButton>
+                    <RadioButton Name="rdTypeLike" Width="66" Margin="5,0,0,0" Padding="4" BorderBrush="#FF000000" GroupName="rdType" Checked="FMY">点赞</RadioButton>
+                </StackPanel>
+                <StackPanel Name="stackeTypeGift" Height="31" Margin="36,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#00FFFFFF" Orientation="Horizontal" Visibility="Visible">
+                    <Label Height="31" Background="#00FFFFFF" BorderThickness="0" FontSize="14">礼物名</Label>
+                    <TextBox Name="txtGiftName" Width="100" Height="31" Text="小心心" ToolTip="例如:小心心 (如果为空匹配任意礼物)" LostFocus="sM0" />
+                    <CheckBox Name="ckGiftExcByCount" Margin="12,0,0,0" BorderBrush="#FF999999" ToolTip="多少个礼物执行多少次">按数量执行对应次数</CheckBox>
+                </StackPanel>
+                <StackPanel Name="stackeTypeChat" Height="31" Margin="49,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Visibility="Collapsed">
+                    <Label Height="31" Background="#00FFFFFF" BorderThickness="0" FontSize="14">弹幕</Label>
+                    <TextBox Name="txtChatWords" Width="100" Height="31" Text="666" ToolTip="例如:666" />
+                </StackPanel>
+                <StackPanel Height="31" Margin="20,90,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
+                    <Label Height="31" Background="#00FFFFFF" BorderThickness="0" FontSize="14">图片</Label>
+                    <ComboBox Name="comboxPic" Width="142" Height="31" ToolTip="支持图片文件如png,jpg,gif,bmp(可将自己图片复制到【Pic】里)" />
+                    <Button BorderBrush="#FF999999" ToolTip="如果刚都进去自己的文件，可点[重新载入]按钮" Click="AMG">查看图片文件夹</Button>
+                    <Button BorderBrush="#FF999999" ToolTip="如果刚都进去自己的文件，可点此按钮重新载入" Click="mMT">重新载入</Button>
+                </StackPanel>
+                <StackPanel Height="31" Margin="20,130,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
+                    <Label Height="31" Background="#00FFFFFF" BorderThickness="0" FontSize="14">声音</Label>
+                    <ComboBox Name="comboxAudio" Width="142" Height="31" ToolTip="支持wav,mp3音频格式文件(可将自己的音频复制到【Audio】里)" />
+                    <Button BorderBrush="#FF999999" ToolTip="如果刚都进去自己的文件，可点[重新载入]按钮" Click="FMo">查看声音文件夹</Button>
+                    <Button BorderBrush="#FF999999" ToolTip="如果刚都进去自己的文件，可点此按钮重新载入" Click="MMv">重新载入</Button>
+                </StackPanel>
+                <StackPanel Height="31" Margin="7,170,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
+                    <Label Height="31" Background="#00FFFFFF" BorderThickness="0" FontSize="14">一次发射个数</Label>
+                    <hc:NumericUpDown Name="numCount" Width="68" Height="30" HorizontalAlignment="Left" FontSize="12" Increment="1" Maximum="20" Minimum="1" ToolTip="建议不要超过10个，可根据电脑性能来设置" Value="8" />
+                    <Label Height="31" Background="#00FFFFFF" BorderThickness="0" FontSize="14">持续秒</Label>
+                    <hc:NumericUpDown Name="numShowSeconds" Width="68" Height="30" HorizontalAlignment="Left" FontSize="12" Increment="1" Maximum="2000" Minimum="1" ToolTip="持续显示多少秒" Value="3" />
+                </StackPanel>
+                <StackPanel Height="31" Margin="7,210,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
+                    <Label Height="31" Background="#00FFFFFF" BorderThickness="0" FontSize="14">触发优先级</Label>
+                    <hc:NumericUpDown Name="numPriority" Width="67" Height="30" FontSize="12" Increment="1" Maximum="500" Minimum="0" ToolTip="数字越大优先级越高（队列里优先级高的先执行）" Value="0" />
+                </StackPanel>
+                <StackPanel Margin="20,0,20,20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Orientation="Horizontal">
+                    <Button Width="144" Height="33" Padding="0" Background="#FFE4E4E4" BorderBrush="#FF999999" FontSize="14" Foreground="#FF000000" ToolTip="可通过测试看设置的体尺寸和位置是否合适" Click="SMg">测试</Button>
+                    <Button Width="144" Height="33" Margin="8,0,0,0" Padding="0" Background="#FF0000FF" BorderBrush="#FF999999" FontSize="14" Foreground="#FFFFFFFF" ToolTip="添加到触发【媒体列表】" Click="AM9">添加</Button>
+                </StackPanel>
+            </Grid>
+            <Grid Name="gridLog" Margin="0,0,0,0" Background="#FF999999" Visibility="Collapsed">
+                <Rectangle Height="33" VerticalAlignment="Top" Fill="#FF0D6BA7" />
+                <TextBox Name="txtLog" Margin="66,66,66,100" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Text="{Binding Content}" />
+                <Label Margin="0,5,0,0" VerticalAlignment="Top" Background="#00FFFFFF" BorderThickness="0" Foreground="#FFEEEEEE">日志</Label>
+                <Button Width="36" Height="32" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#FF0D5A82" Content="x" Foreground="#FFFFFFFF" Style="{StaticResource ButtonPrimary}" ToolTip="关闭" Click="OM6" />
+                <Button Width="122" Margin="0,55,0,30" VerticalAlignment="Bottom" Click="OM6">确定</Button>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

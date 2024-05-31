@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="Iebcn.Live.Controls.AutoReplyWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Controls="clr-namespace:Iebcn.Live.Controls" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:gif="http://wpfanimatedgif.codeplex.com" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Iebcn.Live.Controls" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" Title="自动问答" Width="822" Height="500" BorderBrush="#FFFDF9FD" BorderThickness="1" FontFamily="Arial" FontSize="12" Icon="/Assets/app.ico" Style="{StaticResource NoResize_window}" WindowStartupLocation="CenterScreen" MouseLeftButtonDown="vnO">
+    <Control.Background>
+        <ImageBrush ImageSource="/Assets/bg.jpg" />
+    </Control.Background>
+    <Border Background="#E0EDECEC" CornerRadius="6">
+        <Grid>
+            <Grid VerticalAlignment="Top" Background="#FF1572BB">
+                <Label Margin="0,2,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Left" Background="#EF1C58C8" BorderThickness="0" FontSize="16" FontWeight="Bold" Foreground="#FFFFFFFF">自动问答</Label>
+                <Button Name="x" Width="36" Height="26" Margin="0" HorizontalAlignment="Right" VerticalAlignment="Top" Content="x" Style="{StaticResource ButtonDanger}" ToolTip="关闭" Click="vn1" />
+            </Grid>
+            <Grid Margin="22,47,22,22" Background="#A2FFFFFF">
+                <TextBlock Margin="8,7,8,8" HorizontalAlignment="Center" VerticalAlignment="Top" Background="#00FFFFFF" TextWrapping="Wrap" ToolTip="注：如果【自定义话术回答】和【自定义声音文件回答】同时开启时则前者【自定义话术回答】优先匹配回答">自动问答用于关键字回答设置好的话术或播放自定义的音频的场景，如产品介绍等场景。设置好关键词和对应的回复内容（或者声音文件）。可设多个关键字对应一个回答，多个关键字用符号“|”隔开。例1：“发货地|哪里发货=我们的发货地是北京”<LineBreak />例2：“什么时候开播|开播时间=开播时间.mp3”<Span Foreground="#FFB14303">（注：自定义话术回答和自定义声音文件回答同时开启时前者优先匹配回答”</Span></TextBlock>
+                <StackPanel Margin="22,60,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FFF0F8FF" Orientation="Horizontal">
+                    <CheckBox HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="#FF000000" BorderThickness="1" FontSize="14" FontWeight="Bold" Foreground="#FF273EBD" IsChecked="{Binding ReadQuestionEnabled}">朗读问题</CheckBox>
+                    <Button Margin="20,0,0,0" VerticalAlignment="Center" Background="#FF255AAF" Foreground="#FFF5F5F5" ToolTip="保存设置" Click="bnP">保存刷新</Button>
+                    <Button Margin="20,0,0,0" VerticalAlignment="Center" Background="#FF67768E" Foreground="#FFF5F5F5" Click="unU">问答日志</Button>
+                    <TextBox Name="txtDanmu" Width="162" Margin="20,0,0,0" BorderBrush="#FF000000" Text="什么时候开播" ToolTip="测试回答效果，输入框输入关键词" />
+                    <Button Margin="5,0,0,0" VerticalAlignment="Center" Background="#FF67768E" Content="测试" Foreground="#FFF5F5F5" ToolTip="测试回答效果" Click="Tnu" />
+                </StackPanel>
+                <Grid Name="gridUseText" Height="144" Margin="22,100,22,0" VerticalAlignment="Top">
+                    <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
+                        <CheckBox Name="ckContentReply" VerticalAlignment="Center" BorderBrush="#FFDA6235" FontWeight="Bold" Foreground="#FFDA6235" ToolTip="开启后播放自定义的声音文件回复" IsChecked="{Binding ContentReplyEnabled}" Click="rnL">自定义话术回答</CheckBox>
+                        <Label Background="#38A5D0F5" BorderThickness="0" ToolTip="例如：发货地|哪里发货|发货是哪里=发货地是北京|北京发货哈">话术内容设置(一行一条)：回复格式： 关键字1|关键字2|关键字...=回复内容1|内容2...</Label>
+                    </StackPanel>
+                    <TextBox Margin="0,33,0,0" VerticalContentAlignment="Top" AcceptsReturn="True" BorderBrush="#FF131B29" BorderThickness="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" ToolTip="自动问答(自动语音回复)用于需要根据用户弹幕关键字回答设置好的话术或播放自定义的音频的场景，如产品介绍等场景。设置好关键词和对应的回复内容（或者都这样声音文件）。可设多个关键字对应多个回答，多个关键字或多个回答用符号“|”隔开。&#xA;例1：“发货地|哪里发货=我们的发货地是北京|背景发货哦” &#xA;例2：“什么时候开播|每天开播时间=下午5点开播！|每天下午5点开播哦宝贝！”" Text="{Binding ContentReplySetting}" />
+                </Grid>
+                <Grid Margin="22,255,22,20">
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" IsEnabled="{Binding Path=IsChecked, ElementName=ckUserCustAudioFile}">
+                        <CheckBox HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="#FFDA6235" FontWeight="Bold" Foreground="#FFDA6235" ToolTip="开启后播放自定义的声音文件回复" IsChecked="{Binding AudioFileReplyEnabled}" Click="inm">自定义声音文件回答</CheckBox>
+                        <Label Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#38A5D0F5" BorderThickness="0" ToolTip="例如：发货地|哪里发货|发货是哪里=发货地回答文件.wav|回复2.mp3&#xA;什么时候开播|每天开播时间=开播时间回答声音文件1.mp3|回答2.mp3">话术内容设置(一行一条)格式： 关键字1|关键字2...=音频文件名|音频文件2....</Label>
+                        <Button Margin="12,0,0,0" Background="#FF819FC1" FontSize="14" Foreground="#FFF5F5F5" ToolTip="将回答的声音文件都放到这个文件夹里才行哦" Click="PnN">查看声音文件夹</Button>
+                    </StackPanel>
+                    <TextBox Margin="0,33,0,0" VerticalContentAlignment="Top" AcceptsReturn="True" BorderBrush="#FF131B29" BorderThickness="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" ToolTip="（注：只支持wav和mp3格式文件,多个关键字或多个回答用符号“|”隔开）&#xA;例1：“发货地|哪里发货=发货地回答声音文件1.wav|回复文件2.mp3” &#xA;例2：“什么时候开播|每天开播时间=开播时间回答声音文件1.mp3|回复开播时间2.wav”" Text="{Binding AudioFileReplySetting}" />
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

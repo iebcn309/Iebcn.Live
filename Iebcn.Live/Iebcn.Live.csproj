@@ -1,0 +1,783 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="assets\aboutbg.png" />
+    <None Remove="assets\aboutpic.png" />
+    <None Remove="assets\app.ico" />
+    <None Remove="assets\bg.jpg" />
+    <None Remove="assets\btnplay.png" />
+    <None Remove="assets\btnplaynext.png" />
+    <None Remove="assets\btnstop.png" />
+    <None Remove="assets\chatbot_tip1.jpg" />
+    <None Remove="assets\defualtsoundass.png" />
+    <None Remove="assets\effects\-请选择各种装饰和特效-.html" />
+    <None Remove="assets\effects\img\160989854578037_2.jpg" />
+    <None Remove="assets\effects\img\bg.jpg" />
+    <None Remove="assets\effects\img\owl.jpg" />
+    <None Remove="assets\effects\js\easeljs.min.js" />
+    <None Remove="assets\effects\js\index.js" />
+    <None Remove="assets\effects\js\jquery-1.7.2.js" />
+    <None Remove="assets\effects\js\jquery.min.js" />
+    <None Remove="assets\effects\js\velocity.js" />
+    <None Remove="assets\effects\文字-炫酷文字背景图案带聚光灯动画.html" />
+    <None Remove="assets\effects\文字-阴影3d特效.url" />
+    <None Remove="assets\effects\文字-阴影跳动.url" />
+    <None Remove="assets\effects\文字-鼠标悬浮文字3d阴影特效.url" />
+    <None Remove="assets\effects\文字霓虹灯文字发光阴影.url" />
+    <None Remove="assets\effects\时钟-3D立体数字时钟滚动特效.url" />
+    <None Remove="assets\effects\时钟-创意刻度尺圆形数字时钟.url" />
+    <None Remove="assets\effects\时钟-原生js实现简单实用微秒计时器特效.url" />
+    <None Remove="assets\effects\时钟-可暂停特效插件.url" />
+    <None Remove="assets\effects\时钟-圆形5.html" />
+    <None Remove="assets\effects\时钟-太空人表盘.url" />
+    <None Remove="assets\effects\时钟-带运动轨迹的时钟.url" />
+    <None Remove="assets\effects\时钟-效果5.com.url" />
+    <None Remove="assets\effects\时钟-炫酷多彩实时数字时钟特效代码.url" />
+    <None Remove="assets\effects\时钟-猫头鹰.html" />
+    <None Remove="assets\effects\时钟-简单实用动态数字时钟特效.url" />
+    <None Remove="assets\effects\时钟-简洁的js时钟效果.url" />
+    <None Remove="assets\effects\时钟-粘稠状液体数字时钟.html" />
+    <None Remove="assets\effects\时钟-精美质感圆形时钟.url" />
+    <None Remove="assets\effects\时钟-计时器网页源码.url" />
+    <None Remove="assets\effects\时钟0.html" />
+    <None Remove="assets\effects\时钟1.html" />
+    <None Remove="assets\effects\时钟2.html" />
+    <None Remove="assets\effects\时钟3.html" />
+    <None Remove="assets\effects\时钟4.html" />
+    <None Remove="assets\effects\时钟5-精美时钟插件.url" />
+    <None Remove="assets\effects\星空多彩璀璨烟花粒子特效canvas动画_在线演示_动画-背景_js特效_js代码.url" />
+    <None Remove="assets\effects\烟花-创意璀璨烟花背景心形生日快乐.url" />
+    <None Remove="assets\effects\烟花-多彩烟花粒.url" />
+    <None Remove="assets\effects\爱心-炫酷爱心表白语动画j.url" />
+    <None Remove="assets\effects\特效-3D绿色粒子动画.html" />
+    <None Remove="assets\effects\特效-下雪花.html" />
+    <None Remove="assets\effects\特效-动态圆形气泡.url" />
+    <None Remove="assets\effects\特效-发光的线条爱心形状.html" />
+    <None Remove="assets\effects\特效-发光线条动画.html" />
+    <None Remove="assets\effects\特效-四叶草背景动画.html" />
+    <None Remove="assets\effects\特效-奇异生物动画素.url" />
+    <None Remove="assets\effects\特效-奔跑的马动画特效.url" />
+    <None Remove="assets\effects\特效-放烟花1.html" />
+    <None Remove="assets\effects\特效-放烟花2.html" />
+    <None Remove="assets\effects\特效-模拟机场航班起落.url" />
+    <None Remove="assets\effects\特效-流体.html" />
+    <None Remove="assets\effects\特效-炫酷多形状动态万花筒.url" />
+    <None Remove="assets\effects\特效-炫酷多彩抽象花瓣跟随鼠标出现.url" />
+    <None Remove="assets\effects\特效-爱心Liked动画.html" />
+    <None Remove="assets\effects\特效-爱心表白动画.html" />
+    <None Remove="assets\effects\特效-粒子动画，粒子光圈特效动态.url" />
+    <None Remove="assets\effects\特效-粒子蛇形游走.html" />
+    <None Remove="assets\effects\特效-线条动画效果.url" />
+    <None Remove="assets\effects\特效-线条动画素材下载.url" />
+    <None Remove="assets\effects\特效-美化大气实用多彩加载中.url" />
+    <None Remove="assets\effects\特效-霓虹灯效果多彩动态气泡js特效背景动画.url" />
+    <None Remove="assets\effects\特效-鲜花绽放动画特效.html" />
+    <None Remove="assets\effects\特效背景-多彩动态3D旋转星球.url" />
+    <None Remove="assets\effects\特效背景-超级炫酷多彩动感水晶灯特效动画.url" />
+    <None Remove="assets\effects\背景-17sucai - Our last dance together.url" />
+    <None Remove="assets\effects\背景-3D艺术抽象派山洞动态变幻黑洞特效动画背景.url" />
+    <None Remove="assets\effects\背景-全屏模糊灯光闪烁背景动画特效.url" />
+    <None Remove="assets\effects\背景-全屏酷炫抽象粒子背景动画特效.url" />
+    <None Remove="assets\effects\背景-全屏酷炫星光闪烁3D视差背景动画特效.url" />
+    <None Remove="assets\effects\背景-创意炫酷圣诞雪花气泡夹杂飘落带视差特效.url" />
+    <None Remove="assets\effects\背景-动态星空群山流星背景.url" />
+    <None Remove="assets\effects\背景-动态水流瀑布.url" />
+    <None Remove="assets\effects\背景-多彩3D万花筒旋转上升时空隧道特效动画.url" />
+    <None Remove="assets\effects\背景-多彩3D立方体飞跃动态炫酷.url" />
+    <None Remove="assets\effects\背景-多彩光影动态气泡背景.url" />
+    <None Remove="assets\effects\背景-多彩动态菱形背景特效动画.url" />
+    <None Remove="assets\effects\背景-多彩圆点淡入淡出js动画背景.url" />
+    <None Remove="assets\effects\背景-多彩气泡粒子环绕星系运动.url" />
+    <None Remove="assets\effects\背景-多彩流动油墨磁场背景.url" />
+    <None Remove="assets\effects\背景-多彩渐变爱心canvas特效动画背景.url" />
+    <None Remove="assets\effects\背景-多彩炫酷彩虹瀑布雨canvas特效动画代码_动画-背景_js特效_js代码.url" />
+    <None Remove="assets\effects\背景-多彩粒子花环动态变化特效.url" />
+    <None Remove="assets\effects\背景-多彩随机背景圆点c.url" />
+    <None Remove="assets\effects\背景-字母代码canvas特效雨滴效果动画.url" />
+    <None Remove="assets\effects\背景-宇宙太空模糊背景动态灰烬粒子.url" />
+    <None Remove="assets\effects\背景-实现线条传输能量动画特效演示.url" />
+    <None Remove="assets\effects\背景-异形科幻波浪状多彩方块.url" />
+    <None Remove="assets\effects\背景-形形色色人来人往人潮涌动.url" />
+    <None Remove="assets\effects\背景-彩色渐变背景动画效果.url" />
+    <None Remove="assets\effects\背景-彩色爱心圆圈背景动画特效.url" />
+    <None Remove="assets\effects\背景-数字粒子点阵散开聚集倒计时.url" />
+    <None Remove="assets\effects\背景-无尽下坠弹性僵尸背景.url" />
+    <None Remove="assets\effects\背景-树藤生成文字美化特效.url" />
+    <None Remove="assets\effects\背景-梦幻宇宙星空璀璨粒子.url" />
+    <None Remove="assets\effects\背景-模糊圆点粒子炫酷背景动画特效.url" />
+    <None Remove="assets\effects\背景-火花特效素材，HTML火花背景图片.url" />
+    <None Remove="assets\effects\背景-炫彩动态彩带动画.url" />
+    <None Remove="assets\effects\背景-炫彩宇宙星空隧道粒子canvas动画.url" />
+    <None Remove="assets\effects\背景-炫彩粒子时空隧道特效动画.url" />
+    <None Remove="assets\effects\背景-炫酷3D动态背景特效.url" />
+    <None Remove="assets\effects\背景-炫酷动态多彩气泡线条粒子.url" />
+    <None Remove="assets\effects\背景-炫酷多彩气泡弹性粒子碰撞动画.url" />
+    <None Remove="assets\effects\背景-炫酷多边形背景图形漂浮上升特效动画.url" />
+    <None Remove="assets\effects\背景-炫酷文字背景图案带聚光灯动画特效.url" />
+    <None Remove="assets\effects\背景-爱心动态生成飞散特效动画.url" />
+    <None Remove="assets\effects\背景-碎纸屑闪烁背景动画特效.url" />
+    <None Remove="assets\effects\背景-竖直流动线条背景动画特效.url" />
+    <None Remove="assets\effects\背景-红色菱形动态背景.url" />
+    <None Remove="assets\effects\背景-绘制梦幻气泡背景动画特效.url" />
+    <None Remove="assets\effects\背景-绿色彩灯雨滴下落流动动画矩阵效果.url" />
+    <None Remove="assets\effects\背景-绿色箭头雨背景动画特效.url" />
+    <None Remove="assets\effects\背景-背景虚化动态霓虹灯特效动画.url" />
+    <None Remove="assets\effects\背景-艺术抽象派多彩浓雾动态背景特效.url" />
+    <None Remove="assets\effects\背景-西游记师徒4人西天取经特效动画背景.url" />
+    <None Remove="assets\effects\背景-超级炫酷星空气泡雪花飘落.url" />
+    <None Remove="assets\effects\背景-超级简单款动态视频背景.url" />
+    <None Remove="assets\effects\背景-超级美观炫酷动画多彩线条音乐喷泉.url" />
+    <None Remove="assets\effects\背景-非常漂亮的多彩喜庆气球放飞升空.url" />
+    <None Remove="assets\effects\背景-黑色炫酷梦幻线条.url" />
+    <None Remove="assets\effects\雪花- - Snow Flake Animatio.url" />
+    <None Remove="assets\effects\雪花-2009.html.url" />
+    <None Remove="assets\effects\雪花-55.url" />
+    <None Remove="assets\effects\雪花-ndex.html.url" />
+    <None Remove="assets\effects\雪花-snowing snow.url" />
+    <None Remove="assets\effects\雪花-全屏炫酷大气漫天飞舞雪花飘落.url" />
+    <None Remove="assets\effects\雪花-夜晚的雪花.url" />
+    <None Remove="assets\effects\雪花-逼真的雪花飘落特效.url" />
+    <None Remove="assets\effects\雪花-逼真的雪花飘落特效6.url" />
+    <None Remove="assets\effects\雪花-飘落场景特效.url" />
+    <None Remove="assets\emoji_list\emoji_1.png" />
+    <None Remove="assets\emoji_list\emoji_10.png" />
+    <None Remove="assets\emoji_list\emoji_11.png" />
+    <None Remove="assets\emoji_list\emoji_12.png" />
+    <None Remove="assets\emoji_list\emoji_13.png" />
+    <None Remove="assets\emoji_list\emoji_14.png" />
+    <None Remove="assets\emoji_list\emoji_15.png" />
+    <None Remove="assets\emoji_list\emoji_16.png" />
+    <None Remove="assets\emoji_list\emoji_17.png" />
+    <None Remove="assets\emoji_list\emoji_18.png" />
+    <None Remove="assets\emoji_list\emoji_19.png" />
+    <None Remove="assets\emoji_list\emoji_2.png" />
+    <None Remove="assets\emoji_list\emoji_20.png" />
+    <None Remove="assets\emoji_list\emoji_21.png" />
+    <None Remove="assets\emoji_list\emoji_22.png" />
+    <None Remove="assets\emoji_list\emoji_23.png" />
+    <None Remove="assets\emoji_list\emoji_24.png" />
+    <None Remove="assets\emoji_list\emoji_25.png" />
+    <None Remove="assets\emoji_list\emoji_26.png" />
+    <None Remove="assets\emoji_list\emoji_27.png" />
+    <None Remove="assets\emoji_list\emoji_28.png" />
+    <None Remove="assets\emoji_list\emoji_29.png" />
+    <None Remove="assets\emoji_list\emoji_3.png" />
+    <None Remove="assets\emoji_list\emoji_30.png" />
+    <None Remove="assets\emoji_list\emoji_31.png" />
+    <None Remove="assets\emoji_list\emoji_32.png" />
+    <None Remove="assets\emoji_list\emoji_33.png" />
+    <None Remove="assets\emoji_list\emoji_34.png" />
+    <None Remove="assets\emoji_list\emoji_35.png" />
+    <None Remove="assets\emoji_list\emoji_36.png" />
+    <None Remove="assets\emoji_list\emoji_37.png" />
+    <None Remove="assets\emoji_list\emoji_38.png" />
+    <None Remove="assets\emoji_list\emoji_39.png" />
+    <None Remove="assets\emoji_list\emoji_4.png" />
+    <None Remove="assets\emoji_list\emoji_40.png" />
+    <None Remove="assets\emoji_list\emoji_41.png" />
+    <None Remove="assets\emoji_list\emoji_42.png" />
+    <None Remove="assets\emoji_list\emoji_43.png" />
+    <None Remove="assets\emoji_list\emoji_44.png" />
+    <None Remove="assets\emoji_list\emoji_45.png" />
+    <None Remove="assets\emoji_list\emoji_46.png" />
+    <None Remove="assets\emoji_list\emoji_47.png" />
+    <None Remove="assets\emoji_list\emoji_48.png" />
+    <None Remove="assets\emoji_list\emoji_49.png" />
+    <None Remove="assets\emoji_list\emoji_5.png" />
+    <None Remove="assets\emoji_list\emoji_50.png" />
+    <None Remove="assets\emoji_list\emoji_51.png" />
+    <None Remove="assets\emoji_list\emoji_6.png" />
+    <None Remove="assets\emoji_list\emoji_7.png" />
+    <None Remove="assets\emoji_list\emoji_8.png" />
+    <None Remove="assets\emoji_list\emoji_9.png" />
+    <None Remove="assets\FullScr\pic\1.png" />
+    <None Remove="assets\FullScr\pic\2.png" />
+    <None Remove="assets\FullScr\pic\3.png" />
+    <None Remove="assets\FullScr\pic\4.png" />
+    <None Remove="assets\gifrecording.gif" />
+    <None Remove="assets\gpt_bg1.jpg" />
+    <None Remove="assets\HitGift\Audio\1.mp3" />
+    <None Remove="assets\HitGift\Pic\1.png" />
+    <None Remove="assets\live2d\0.png" />
+    <None Remove="assets\live2d\1.png" />
+    <None Remove="assets\live2d\10.png" />
+    <None Remove="assets\live2d\11.png" />
+    <None Remove="assets\live2d\2.png" />
+    <None Remove="assets\live2d\3.png" />
+    <None Remove="assets\live2d\4.png" />
+    <None Remove="assets\live2d\5.png" />
+    <None Remove="assets\live2d\6.png" />
+    <None Remove="assets\live2d\7.png" />
+    <None Remove="assets\live2d\8.png" />
+    <None Remove="assets\live2d\9.png" />
+    <None Remove="assets\logo_top.png" />
+    <None Remove="assets\Mdt\1.gif" />
+    <None Remove="assets\Mdt\2.mp4" />
+    <None Remove="assets\morechatroles.jpg" />
+    <None Remove="assets\moreroles.jpg" />
+    <None Remove="assets\musiccover.jpg" />
+    <None Remove="assets\muyu1.png" />
+    <None Remove="assets\muyu2.png" />
+    <None Remove="assets\muyu3.png" />
+    <None Remove="assets\ok.png" />
+    <None Remove="assets\online.png" />
+    <None Remove="assets\plugin_icon\activecode.png" />
+    <None Remove="assets\plugin_icon\autoraply.png" />
+    <None Remove="assets\plugin_icon\danmuapi.png" />
+    <None Remove="assets\plugin_icon\danmupage.png" />
+    <None Remove="assets\plugin_icon\danmutriger.png" />
+    <None Remove="assets\plugin_icon\danmuvote.png" />
+    <None Remove="assets\plugin_icon\fakedanmu.png" />
+    <None Remove="assets\plugin_icon\fakegift.png" />
+    <None Remove="assets\plugin_icon\fakerenqi.png" />
+    <None Remove="assets\plugin_icon\flybullet.png" />
+    <None Remove="assets\plugin_icon\fullbullet.png" />
+    <None Remove="assets\plugin_icon\giftinteraction.png" />
+    <None Remove="assets\plugin_icon\giftpk.png" />
+    <None Remove="assets\plugin_icon\gpt.png" />
+    <None Remove="assets\plugin_icon\hitgift.png" />
+    <None Remove="assets\plugin_icon\intercut.png" />
+    <None Remove="assets\plugin_icon\live2droles.png" />
+    <None Remove="assets\plugin_icon\mediatriger.png" />
+    <None Remove="assets\plugin_icon\mousekeyboardtool.png" />
+    <None Remove="assets\plugin_icon\musicbox.png" />
+    <None Remove="assets\plugin_icon\muyu.png" />
+    <None Remove="assets\plugin_icon\obs.png" />
+    <None Remove="assets\plugin_icon\overtime.png" />
+    <None Remove="assets\plugin_icon\picresource.png" />
+    <None Remove="assets\plugin_icon\printavatar.png" />
+    <None Remove="assets\plugin_icon\relaytool.png" />
+    <None Remove="assets\plugin_icon\roboteva.png" />
+    <None Remove="assets\plugin_icon\roll.png" />
+    <None Remove="assets\plugin_icon\roomcontrol.png" />
+    <None Remove="assets\plugin_icon\roomrank.png" />
+    <None Remove="assets\plugin_icon\screentext.png" />
+    <None Remove="assets\plugin_icon\senddanmu.png" />
+    <None Remove="assets\plugin_icon\soundassistant.png" />
+    <None Remove="assets\plugin_icon\textlist.png" />
+    <None Remove="assets\plugin_icon\timer.png" />
+    <None Remove="assets\plugin_icon\timernotice.png" />
+    <None Remove="assets\plugin_icon\timerspeak.png" />
+    <None Remove="assets\plugin_icon\validator.png" />
+    <None Remove="assets\plugin_icon\voice_settings.png" />
+    <None Remove="assets\plugin_icon\voice_silence.png" />
+    <None Remove="assets\plugin_icon\vrole.png" />
+    <None Remove="assets\plugin_icon\webeffects.png" />
+    <None Remove="assets\printer1.png" />
+    <None Remove="assets\qqgroup.png" />
+    <None Remove="assets\rankgb.png" />
+    <None Remove="assets\record.png" />
+    <None Remove="assets\rnd.jpg" />
+    <None Remove="assets\robotevaicon.png" />
+    <None Remove="assets\roboteva\eva.png" />
+    <None Remove="assets\roboteva\eyeleft.png" />
+    <None Remove="assets\roboteva\eyeright.png" />
+    <None Remove="assets\roboteva\heart1.png" />
+    <None Remove="assets\roboteva\heart2.png" />
+    <None Remove="assets\roboteva\heart3.png" />
+    <None Remove="assets\roboteva\heart4.png" />
+    <None Remove="assets\roboteva\heart5.png" />
+    <None Remove="assets\roboteva\heart6.png" />
+    <None Remove="assets\samplehead1.jpg" />
+    <None Remove="assets\setting.png" />
+    <None Remove="assets\shopcar.png" />
+    <None Remove="assets\singlecover.png" />
+    <None Remove="assets\soundassistant\pic\主持人笑声.jpg" />
+    <None Remove="assets\soundassistant\pic\么么哒.jpg" />
+    <None Remove="assets\soundassistant\pic\乌鸦飞过.jpg" />
+    <None Remove="assets\soundassistant\pic\信了你的邪.jpg" />
+    <None Remove="assets\soundassistant\pic\可爱唔嘛.jpg" />
+    <None Remove="assets\soundassistant\pic\哇哦.jpg" />
+    <None Remove="assets\soundassistant\pic\土拨鼠.jpg" />
+    <None Remove="assets\soundassistant\pic\奸笑.jpg" />
+    <None Remove="assets\soundassistant\pic\小丸子笑.jpg" />
+    <None Remove="assets\soundassistant\pic\尴尬.jpg" />
+    <None Remove="assets\soundassistant\pic\恐怖.jpg" />
+    <None Remove="assets\soundassistant\pic\感到悲哀.jpg" />
+    <None Remove="assets\soundassistant\pic\打耳光.jpg" />
+    <None Remove="assets\soundassistant\pic\抖音笑声.jpg" />
+    <None Remove="assets\soundassistant\pic\指定有毛病.jpg" />
+    <None Remove="assets\soundassistant\pic\接客了.jpg" />
+    <None Remove="assets\soundassistant\pic\放屁声.jpg" />
+    <None Remove="assets\soundassistant\pic\烟花.jpg" />
+    <None Remove="assets\soundassistant\pic\疑问.jpg" />
+    <None Remove="assets\soundassistant\pic\给大哥点关注.jpg" />
+    <None Remove="assets\soundassistant\pic\观众笑声.jpg" />
+    <None Remove="assets\splash.png" />
+    <None Remove="assets\style1.png" />
+    <None Remove="assets\thanksgifs\p1.gif" />
+    <None Remove="assets\thanksgifs\p2.gif" />
+    <None Remove="assets\thanksgifs\p3.gif" />
+    <None Remove="assets\thanksgifs\p4.gif" />
+    <None Remove="assets\thanksgifs\p5.gif" />
+    <None Remove="assets\thanksgifs\p6.gif" />
+    <None Remove="assets\thanksgifs\p7.gif" />
+    <None Remove="assets\tip0.png" />
+    <None Remove="assets\tip1.png" />
+    <None Remove="assets\tip2.png" />
+    <None Remove="assets\userheadpic1.jpg" />
+    <None Remove="assets\userheadpic2.jpg" />
+    <None Remove="assets\userheadpic3.jpg" />
+    <None Remove="assets\volumemusicbox.png" />
+    <None Remove="assets\web\FakeGift\index.html" />
+    <None Remove="assets\web\FakeGift\m.html" />
+    <None Remove="assets\web\FakeGift\media\3394.dll" />
+    <None Remove="assets\web\FakeGift\media\3776.dll" />
+    <None Remove="assets\web\FakeGift\media\3780.dll" />
+    <None Remove="assets\web\FakeGift\media\789.dll" />
+    <None Remove="assets\web\FakeGift\media\805.dll" />
+    <None Remove="assets\web\js\easeljs.min.js" />
+    <None Remove="assets\web\js\index.js" />
+    <None Remove="assets\web\js\jquery-1.7.2.js" />
+    <None Remove="assets\web\js\jquery-ui.js" />
+    <None Remove="assets\web\Live2DRole.html" />
+    <None Remove="assets\web\main.html" />
+    <None Remove="assets\web\Resources\jquery-ui.js" />
+    <None Remove="assets\web\Resources\jquery.js" />
+    <None Remove="assets\web\txt1.html" />
+    <None Remove="assets\web\txt2.html" />
+    <None Remove="assets\web\特效-3D绿色粒子动画.html" />
+    <None Remove="assets\web\特效-四叶草背景动画.html" />
+    <None Remove="assets\web\音效\礼物\1.wav" />
+    <None Remove="assets\web\音效\礼物\2.wav" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="3.26.1" />
+    <PackageReference Include="HandyControl" Version="3.5.1" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2420.47" />
+    <PackageReference Include="NAudio" Version="2.2.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="obs-websocket-dotnet" Version="5.0.0.3" />
+    <PackageReference Include="protobuf-net" Version="3.2.30" />
+    <PackageReference Include="SharpZipLib" Version="1.4.2" />
+    <PackageReference Include="System.Management" Version="8.0.0" />
+    <PackageReference Include="WpfAnimatedGif" Version="2.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="assets\ChatBot\" />
+    <Folder Include="Resources\" />
+    <Folder Include="Entity\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="assets\aboutbg.png" />
+    <Resource Include="assets\aboutpic.png" />
+    <Resource Include="assets\app.ico" />
+    <Resource Include="assets\bg.jpg" />
+    <Resource Include="assets\btnplay.png" />
+    <Resource Include="assets\btnplaynext.png" />
+    <Resource Include="assets\btnstop.png" />
+    <Resource Include="assets\chatbot_tip1.jpg" />
+    <Resource Include="assets\defualtsoundass.png" />
+    <Resource Include="assets\effects\-请选择各种装饰和特效-.html" />
+    <Resource Include="assets\effects\img\160989854578037_2.jpg" />
+    <Resource Include="assets\effects\img\bg.jpg" />
+    <Resource Include="assets\effects\img\owl.jpg" />
+    <Resource Include="assets\effects\js\easeljs.min.js" />
+    <Resource Include="assets\effects\js\index.js" />
+    <Resource Include="assets\effects\js\jquery-1.7.2.js" />
+    <Resource Include="assets\effects\js\jquery.min.js" />
+    <Resource Include="assets\effects\js\velocity.js" />
+    <Resource Include="assets\effects\文字-炫酷文字背景图案带聚光灯动画.html" />
+    <Resource Include="assets\effects\文字-阴影3d特效.url" />
+    <Resource Include="assets\effects\文字-阴影跳动.url" />
+    <Resource Include="assets\effects\文字-鼠标悬浮文字3d阴影特效.url" />
+    <Resource Include="assets\effects\文字霓虹灯文字发光阴影.url" />
+    <Resource Include="assets\effects\时钟-3D立体数字时钟滚动特效.url" />
+    <Resource Include="assets\effects\时钟-创意刻度尺圆形数字时钟.url" />
+    <Resource Include="assets\effects\时钟-原生js实现简单实用微秒计时器特效.url" />
+    <Resource Include="assets\effects\时钟-可暂停特效插件.url" />
+    <Resource Include="assets\effects\时钟-圆形5.html" />
+    <Resource Include="assets\effects\时钟-太空人表盘.url" />
+    <Resource Include="assets\effects\时钟-带运动轨迹的时钟.url" />
+    <Resource Include="assets\effects\时钟-效果5.com.url" />
+    <Resource Include="assets\effects\时钟-炫酷多彩实时数字时钟特效代码.url" />
+    <Resource Include="assets\effects\时钟-猫头鹰.html" />
+    <Resource Include="assets\effects\时钟-简单实用动态数字时钟特效.url" />
+    <Resource Include="assets\effects\时钟-简洁的js时钟效果.url" />
+    <Resource Include="assets\effects\时钟-粘稠状液体数字时钟.html" />
+    <Resource Include="assets\effects\时钟-精美质感圆形时钟.url" />
+    <Resource Include="assets\effects\时钟-计时器网页源码.url" />
+    <Resource Include="assets\effects\时钟0.html" />
+    <Resource Include="assets\effects\时钟1.html" />
+    <Resource Include="assets\effects\时钟2.html" />
+    <Resource Include="assets\effects\时钟3.html" />
+    <Resource Include="assets\effects\时钟4.html" />
+    <Resource Include="assets\effects\时钟5-精美时钟插件.url" />
+    <Resource Include="assets\effects\星空多彩璀璨烟花粒子特效canvas动画_在线演示_动画-背景_js特效_js代码.url" />
+    <Resource Include="assets\effects\烟花-创意璀璨烟花背景心形生日快乐.url" />
+    <Resource Include="assets\effects\烟花-多彩烟花粒.url" />
+    <Resource Include="assets\effects\爱心-炫酷爱心表白语动画j.url" />
+    <Resource Include="assets\effects\特效-3D绿色粒子动画.html" />
+    <Resource Include="assets\effects\特效-下雪花.html" />
+    <Resource Include="assets\effects\特效-动态圆形气泡.url" />
+    <Resource Include="assets\effects\特效-发光的线条爱心形状.html" />
+    <Resource Include="assets\effects\特效-发光线条动画.html" />
+    <Resource Include="assets\effects\特效-四叶草背景动画.html" />
+    <Resource Include="assets\effects\特效-奇异生物动画素.url" />
+    <Resource Include="assets\effects\特效-奔跑的马动画特效.url" />
+    <Resource Include="assets\effects\特效-放烟花1.html" />
+    <Resource Include="assets\effects\特效-放烟花2.html" />
+    <Resource Include="assets\effects\特效-模拟机场航班起落.url" />
+    <Resource Include="assets\effects\特效-流体.html" />
+    <Resource Include="assets\effects\特效-炫酷多形状动态万花筒.url" />
+    <Resource Include="assets\effects\特效-炫酷多彩抽象花瓣跟随鼠标出现.url" />
+    <Resource Include="assets\effects\特效-爱心Liked动画.html" />
+    <Resource Include="assets\effects\特效-爱心表白动画.html" />
+    <Resource Include="assets\effects\特效-粒子动画，粒子光圈特效动态.url" />
+    <Resource Include="assets\effects\特效-粒子蛇形游走.html" />
+    <Resource Include="assets\effects\特效-线条动画效果.url" />
+    <Resource Include="assets\effects\特效-线条动画素材下载.url" />
+    <Resource Include="assets\effects\特效-美化大气实用多彩加载中.url" />
+    <Resource Include="assets\effects\特效-霓虹灯效果多彩动态气泡js特效背景动画.url" />
+    <Resource Include="assets\effects\特效-鲜花绽放动画特效.html" />
+    <Resource Include="assets\effects\特效背景-多彩动态3D旋转星球.url" />
+    <Resource Include="assets\effects\特效背景-超级炫酷多彩动感水晶灯特效动画.url" />
+    <Resource Include="assets\effects\背景-17sucai - Our last dance together.url" />
+    <Resource Include="assets\effects\背景-3D艺术抽象派山洞动态变幻黑洞特效动画背景.url" />
+    <Resource Include="assets\effects\背景-全屏模糊灯光闪烁背景动画特效.url" />
+    <Resource Include="assets\effects\背景-全屏酷炫抽象粒子背景动画特效.url" />
+    <Resource Include="assets\effects\背景-全屏酷炫星光闪烁3D视差背景动画特效.url" />
+    <Resource Include="assets\effects\背景-创意炫酷圣诞雪花气泡夹杂飘落带视差特效.url" />
+    <Resource Include="assets\effects\背景-动态星空群山流星背景.url" />
+    <Resource Include="assets\effects\背景-动态水流瀑布.url" />
+    <Resource Include="assets\effects\背景-多彩3D万花筒旋转上升时空隧道特效动画.url" />
+    <Resource Include="assets\effects\背景-多彩3D立方体飞跃动态炫酷.url" />
+    <Resource Include="assets\effects\背景-多彩光影动态气泡背景.url" />
+    <Resource Include="assets\effects\背景-多彩动态菱形背景特效动画.url" />
+    <Resource Include="assets\effects\背景-多彩圆点淡入淡出js动画背景.url" />
+    <Resource Include="assets\effects\背景-多彩气泡粒子环绕星系运动.url" />
+    <Resource Include="assets\effects\背景-多彩流动油墨磁场背景.url" />
+    <Resource Include="assets\effects\背景-多彩渐变爱心canvas特效动画背景.url" />
+    <Resource Include="assets\effects\背景-多彩炫酷彩虹瀑布雨canvas特效动画代码_动画-背景_js特效_js代码.url" />
+    <Resource Include="assets\effects\背景-多彩粒子花环动态变化特效.url" />
+    <Resource Include="assets\effects\背景-多彩随机背景圆点c.url" />
+    <Resource Include="assets\effects\背景-字母代码canvas特效雨滴效果动画.url" />
+    <Resource Include="assets\effects\背景-宇宙太空模糊背景动态灰烬粒子.url" />
+    <Resource Include="assets\effects\背景-实现线条传输能量动画特效演示.url" />
+    <Resource Include="assets\effects\背景-异形科幻波浪状多彩方块.url" />
+    <Resource Include="assets\effects\背景-形形色色人来人往人潮涌动.url" />
+    <Resource Include="assets\effects\背景-彩色渐变背景动画效果.url" />
+    <Resource Include="assets\effects\背景-彩色爱心圆圈背景动画特效.url" />
+    <Resource Include="assets\effects\背景-数字粒子点阵散开聚集倒计时.url" />
+    <Resource Include="assets\effects\背景-无尽下坠弹性僵尸背景.url" />
+    <Resource Include="assets\effects\背景-树藤生成文字美化特效.url" />
+    <Resource Include="assets\effects\背景-梦幻宇宙星空璀璨粒子.url" />
+    <Resource Include="assets\effects\背景-模糊圆点粒子炫酷背景动画特效.url" />
+    <Resource Include="assets\effects\背景-火花特效素材，HTML火花背景图片.url" />
+    <Resource Include="assets\effects\背景-炫彩动态彩带动画.url" />
+    <Resource Include="assets\effects\背景-炫彩宇宙星空隧道粒子canvas动画.url" />
+    <Resource Include="assets\effects\背景-炫彩粒子时空隧道特效动画.url" />
+    <Resource Include="assets\effects\背景-炫酷3D动态背景特效.url" />
+    <Resource Include="assets\effects\背景-炫酷动态多彩气泡线条粒子.url" />
+    <Resource Include="assets\effects\背景-炫酷多彩气泡弹性粒子碰撞动画.url" />
+    <Resource Include="assets\effects\背景-炫酷多边形背景图形漂浮上升特效动画.url" />
+    <Resource Include="assets\effects\背景-炫酷文字背景图案带聚光灯动画特效.url" />
+    <Resource Include="assets\effects\背景-爱心动态生成飞散特效动画.url" />
+    <Resource Include="assets\effects\背景-碎纸屑闪烁背景动画特效.url" />
+    <Resource Include="assets\effects\背景-竖直流动线条背景动画特效.url" />
+    <Resource Include="assets\effects\背景-红色菱形动态背景.url" />
+    <Resource Include="assets\effects\背景-绘制梦幻气泡背景动画特效.url" />
+    <Resource Include="assets\effects\背景-绿色彩灯雨滴下落流动动画矩阵效果.url" />
+    <Resource Include="assets\effects\背景-绿色箭头雨背景动画特效.url" />
+    <Resource Include="assets\effects\背景-背景虚化动态霓虹灯特效动画.url" />
+    <Resource Include="assets\effects\背景-艺术抽象派多彩浓雾动态背景特效.url" />
+    <Resource Include="assets\effects\背景-西游记师徒4人西天取经特效动画背景.url" />
+    <Resource Include="assets\effects\背景-超级炫酷星空气泡雪花飘落.url" />
+    <Resource Include="assets\effects\背景-超级简单款动态视频背景.url" />
+    <Resource Include="assets\effects\背景-超级美观炫酷动画多彩线条音乐喷泉.url" />
+    <Resource Include="assets\effects\背景-非常漂亮的多彩喜庆气球放飞升空.url" />
+    <Resource Include="assets\effects\背景-黑色炫酷梦幻线条.url" />
+    <Resource Include="assets\effects\雪花- - Snow Flake Animatio.url" />
+    <Resource Include="assets\effects\雪花-2009.html.url" />
+    <Resource Include="assets\effects\雪花-55.url" />
+    <Resource Include="assets\effects\雪花-ndex.html.url" />
+    <Resource Include="assets\effects\雪花-snowing snow.url" />
+    <Resource Include="assets\effects\雪花-全屏炫酷大气漫天飞舞雪花飘落.url" />
+    <Resource Include="assets\effects\雪花-夜晚的雪花.url" />
+    <Resource Include="assets\effects\雪花-逼真的雪花飘落特效.url" />
+    <Resource Include="assets\effects\雪花-逼真的雪花飘落特效6.url" />
+    <Resource Include="assets\effects\雪花-飘落场景特效.url" />
+    <Resource Include="assets\emoji_list\emoji_1.png" />
+    <Resource Include="assets\emoji_list\emoji_10.png" />
+    <Resource Include="assets\emoji_list\emoji_11.png" />
+    <Resource Include="assets\emoji_list\emoji_12.png" />
+    <Resource Include="assets\emoji_list\emoji_13.png" />
+    <Resource Include="assets\emoji_list\emoji_14.png" />
+    <Resource Include="assets\emoji_list\emoji_15.png" />
+    <Resource Include="assets\emoji_list\emoji_16.png" />
+    <Resource Include="assets\emoji_list\emoji_17.png" />
+    <Resource Include="assets\emoji_list\emoji_18.png" />
+    <Resource Include="assets\emoji_list\emoji_19.png" />
+    <Resource Include="assets\emoji_list\emoji_2.png" />
+    <Resource Include="assets\emoji_list\emoji_20.png" />
+    <Resource Include="assets\emoji_list\emoji_21.png" />
+    <Resource Include="assets\emoji_list\emoji_22.png" />
+    <Resource Include="assets\emoji_list\emoji_23.png" />
+    <Resource Include="assets\emoji_list\emoji_24.png" />
+    <Resource Include="assets\emoji_list\emoji_25.png" />
+    <Resource Include="assets\emoji_list\emoji_26.png" />
+    <Resource Include="assets\emoji_list\emoji_27.png" />
+    <Resource Include="assets\emoji_list\emoji_28.png" />
+    <Resource Include="assets\emoji_list\emoji_29.png" />
+    <Resource Include="assets\emoji_list\emoji_3.png" />
+    <Resource Include="assets\emoji_list\emoji_30.png" />
+    <Resource Include="assets\emoji_list\emoji_31.png" />
+    <Resource Include="assets\emoji_list\emoji_32.png" />
+    <Resource Include="assets\emoji_list\emoji_33.png" />
+    <Resource Include="assets\emoji_list\emoji_34.png" />
+    <Resource Include="assets\emoji_list\emoji_35.png" />
+    <Resource Include="assets\emoji_list\emoji_36.png" />
+    <Resource Include="assets\emoji_list\emoji_37.png" />
+    <Resource Include="assets\emoji_list\emoji_38.png" />
+    <Resource Include="assets\emoji_list\emoji_39.png" />
+    <Resource Include="assets\emoji_list\emoji_4.png" />
+    <Resource Include="assets\emoji_list\emoji_40.png" />
+    <Resource Include="assets\emoji_list\emoji_41.png" />
+    <Resource Include="assets\emoji_list\emoji_42.png" />
+    <Resource Include="assets\emoji_list\emoji_43.png" />
+    <Resource Include="assets\emoji_list\emoji_44.png" />
+    <Resource Include="assets\emoji_list\emoji_45.png" />
+    <Resource Include="assets\emoji_list\emoji_46.png" />
+    <Resource Include="assets\emoji_list\emoji_47.png" />
+    <Resource Include="assets\emoji_list\emoji_48.png" />
+    <Resource Include="assets\emoji_list\emoji_49.png" />
+    <Resource Include="assets\emoji_list\emoji_5.png" />
+    <Resource Include="assets\emoji_list\emoji_50.png" />
+    <Resource Include="assets\emoji_list\emoji_51.png" />
+    <Resource Include="assets\emoji_list\emoji_6.png" />
+    <Resource Include="assets\emoji_list\emoji_7.png" />
+    <Resource Include="assets\emoji_list\emoji_8.png" />
+    <Resource Include="assets\emoji_list\emoji_9.png" />
+    <Resource Include="assets\FullScr\pic\1.png" />
+    <Resource Include="assets\FullScr\pic\2.png" />
+    <Resource Include="assets\FullScr\pic\3.png" />
+    <Resource Include="assets\FullScr\pic\4.png" />
+    <Resource Include="assets\gifrecording.gif" />
+    <Resource Include="assets\gpt_bg1.jpg" />
+    <Resource Include="assets\HitGift\Audio\1.mp3" />
+    <Resource Include="assets\HitGift\Pic\1.png" />
+    <Resource Include="assets\live2d\0.png" />
+    <Resource Include="assets\live2d\1.png" />
+    <Resource Include="assets\live2d\10.png" />
+    <Resource Include="assets\live2d\11.png" />
+    <Resource Include="assets\live2d\2.png" />
+    <Resource Include="assets\live2d\3.png" />
+    <Resource Include="assets\live2d\4.png" />
+    <Resource Include="assets\live2d\5.png" />
+    <Resource Include="assets\live2d\6.png" />
+    <Resource Include="assets\live2d\7.png" />
+    <Resource Include="assets\live2d\8.png" />
+    <Resource Include="assets\live2d\9.png" />
+    <Resource Include="assets\logo_top.png" />
+    <Resource Include="assets\Mdt\1.gif" />
+    <Resource Include="assets\Mdt\2.mp4" />
+    <Resource Include="assets\morechatroles.jpg" />
+    <Resource Include="assets\moreroles.jpg" />
+    <Resource Include="assets\musiccover.jpg" />
+    <Resource Include="assets\muyu1.png" />
+    <Resource Include="assets\muyu2.png" />
+    <Resource Include="assets\muyu3.png" />
+    <Resource Include="assets\ok.png" />
+    <Resource Include="assets\online.png" />
+    <Resource Include="assets\plugin_icon\activecode.png" />
+    <Resource Include="assets\plugin_icon\autoraply.png" />
+    <Resource Include="assets\plugin_icon\danmuapi.png" />
+    <Resource Include="assets\plugin_icon\danmupage.png" />
+    <Resource Include="assets\plugin_icon\danmutriger.png" />
+    <Resource Include="assets\plugin_icon\danmuvote.png" />
+    <Resource Include="assets\plugin_icon\fakedanmu.png" />
+    <Resource Include="assets\plugin_icon\fakegift.png" />
+    <Resource Include="assets\plugin_icon\fakerenqi.png" />
+    <Resource Include="assets\plugin_icon\flybullet.png" />
+    <Resource Include="assets\plugin_icon\fullbullet.png" />
+    <Resource Include="assets\plugin_icon\giftinteraction.png" />
+    <Resource Include="assets\plugin_icon\giftpk.png" />
+    <Resource Include="assets\plugin_icon\gpt.png" />
+    <Resource Include="assets\plugin_icon\hitgift.png" />
+    <Resource Include="assets\plugin_icon\intercut.png" />
+    <Resource Include="assets\plugin_icon\live2droles.png" />
+    <Resource Include="assets\plugin_icon\mediatriger.png" />
+    <Resource Include="assets\plugin_icon\mousekeyboardtool.png" />
+    <Resource Include="assets\plugin_icon\musicbox.png" />
+    <Resource Include="assets\plugin_icon\muyu.png" />
+    <Resource Include="assets\plugin_icon\obs.png" />
+    <Resource Include="assets\plugin_icon\overtime.png" />
+    <Resource Include="assets\plugin_icon\picresource.png" />
+    <Resource Include="assets\plugin_icon\printavatar.png" />
+    <Resource Include="assets\plugin_icon\relaytool.png" />
+    <Resource Include="assets\plugin_icon\roboteva.png" />
+    <Resource Include="assets\plugin_icon\roll.png" />
+    <Resource Include="assets\plugin_icon\roomcontrol.png" />
+    <Resource Include="assets\plugin_icon\roomrank.png" />
+    <Resource Include="assets\plugin_icon\screentext.png" />
+    <Resource Include="assets\plugin_icon\senddanmu.png" />
+    <Resource Include="assets\plugin_icon\soundassistant.png" />
+    <Resource Include="assets\plugin_icon\textlist.png" />
+    <Resource Include="assets\plugin_icon\timer.png" />
+    <Resource Include="assets\plugin_icon\timernotice.png" />
+    <Resource Include="assets\plugin_icon\timerspeak.png" />
+    <Resource Include="assets\plugin_icon\validator.png" />
+    <Resource Include="assets\plugin_icon\voice_settings.png" />
+    <Resource Include="assets\plugin_icon\voice_silence.png" />
+    <Resource Include="assets\plugin_icon\vrole.png" />
+    <Resource Include="assets\plugin_icon\webeffects.png" />
+    <Resource Include="assets\printer1.png" />
+    <Resource Include="assets\qqgroup.png" />
+    <Resource Include="assets\rankgb.png" />
+    <Resource Include="assets\record.png" />
+    <Resource Include="assets\rnd.jpg" />
+    <Resource Include="assets\robotevaicon.png" />
+    <Resource Include="assets\roboteva\eva.png" />
+    <Resource Include="assets\roboteva\eyeleft.png" />
+    <Resource Include="assets\roboteva\eyeright.png" />
+    <Resource Include="assets\roboteva\heart1.png" />
+    <Resource Include="assets\roboteva\heart2.png" />
+    <Resource Include="assets\roboteva\heart3.png" />
+    <Resource Include="assets\roboteva\heart4.png" />
+    <Resource Include="assets\roboteva\heart5.png" />
+    <Resource Include="assets\roboteva\heart6.png" />
+    <Resource Include="assets\samplehead1.jpg" />
+    <Resource Include="assets\setting.png" />
+    <Resource Include="assets\shopcar.png" />
+    <Resource Include="assets\singlecover.png" />
+    <Resource Include="assets\soundassistant\pic\主持人笑声.jpg" />
+    <Resource Include="assets\soundassistant\pic\么么哒.jpg" />
+    <Resource Include="assets\soundassistant\pic\乌鸦飞过.jpg" />
+    <Resource Include="assets\soundassistant\pic\信了你的邪.jpg" />
+    <Resource Include="assets\soundassistant\pic\可爱唔嘛.jpg" />
+    <Resource Include="assets\soundassistant\pic\哇哦.jpg" />
+    <Resource Include="assets\soundassistant\pic\土拨鼠.jpg" />
+    <Resource Include="assets\soundassistant\pic\奸笑.jpg" />
+    <Resource Include="assets\soundassistant\pic\小丸子笑.jpg" />
+    <Resource Include="assets\soundassistant\pic\尴尬.jpg" />
+    <Resource Include="assets\soundassistant\pic\恐怖.jpg" />
+    <Resource Include="assets\soundassistant\pic\感到悲哀.jpg" />
+    <Resource Include="assets\soundassistant\pic\打耳光.jpg" />
+    <Resource Include="assets\soundassistant\pic\抖音笑声.jpg" />
+    <Resource Include="assets\soundassistant\pic\指定有毛病.jpg" />
+    <Resource Include="assets\soundassistant\pic\接客了.jpg" />
+    <Resource Include="assets\soundassistant\pic\放屁声.jpg" />
+    <Resource Include="assets\soundassistant\pic\烟花.jpg" />
+    <Resource Include="assets\soundassistant\pic\疑问.jpg" />
+    <Resource Include="assets\soundassistant\pic\给大哥点关注.jpg" />
+    <Resource Include="assets\soundassistant\pic\观众笑声.jpg" />
+    <Resource Include="assets\splash.png" />
+    <Resource Include="assets\style1.png" />
+    <Resource Include="assets\thanksgifs\p1.gif" />
+    <Resource Include="assets\thanksgifs\p2.gif" />
+    <Resource Include="assets\thanksgifs\p3.gif" />
+    <Resource Include="assets\thanksgifs\p4.gif" />
+    <Resource Include="assets\thanksgifs\p5.gif" />
+    <Resource Include="assets\thanksgifs\p6.gif" />
+    <Resource Include="assets\thanksgifs\p7.gif" />
+    <Resource Include="assets\tip0.png" />
+    <Resource Include="assets\tip1.png" />
+    <Resource Include="assets\tip2.png" />
+    <Resource Include="assets\userheadpic1.jpg" />
+    <Resource Include="assets\userheadpic2.jpg" />
+    <Resource Include="assets\userheadpic3.jpg" />
+    <Resource Include="assets\volumemusicbox.png" />
+    <Resource Include="assets\web\FakeGift\index.html" />
+    <Resource Include="assets\web\FakeGift\m.html" />
+    <Resource Include="assets\web\FakeGift\media\3394.dll" />
+    <Resource Include="assets\web\FakeGift\media\3776.dll" />
+    <Resource Include="assets\web\FakeGift\media\3780.dll" />
+    <Resource Include="assets\web\FakeGift\media\789.dll" />
+    <Resource Include="assets\web\FakeGift\media\805.dll" />
+    <Resource Include="assets\web\js\easeljs.min.js" />
+    <Resource Include="assets\web\js\index.js" />
+    <Resource Include="assets\web\js\jquery-1.7.2.js" />
+    <Resource Include="assets\web\js\jquery-ui.js" />
+    <Resource Include="assets\web\Live2DRole.html" />
+    <Resource Include="assets\web\main.html" />
+    <Resource Include="assets\web\Resources\jquery-ui.js" />
+    <Resource Include="assets\web\Resources\jquery.js" />
+    <Resource Include="assets\web\txt1.html" />
+    <Resource Include="assets\web\txt2.html" />
+    <Resource Include="assets\web\特效-3D绿色粒子动画.html" />
+    <Resource Include="assets\web\特效-四叶草背景动画.html" />
+    <Resource Include="assets\web\音效\礼物\1.wav" />
+    <Resource Include="assets\web\音效\礼物\2.wav" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="assets\Mdt\muyu.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\soundassistant\sound\主持人笑声.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\soundassistant\sound\么么哒.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\soundassistant\sound\乌鸦飞过.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\soundassistant\sound\信了你的邪.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\soundassistant\sound\可爱唔嘛.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\soundassistant\sound\哇哦.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\soundassistant\sound\土拨鼠.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\soundassistant\sound\奸笑.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\soundassistant\sound\小丸子笑.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\soundassistant\sound\尴尬.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\soundassistant\sound\恐怖.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\soundassistant\sound\感到悲哀.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\soundassistant\sound\打耳光.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\soundassistant\sound\抖音笑声.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\soundassistant\sound\指定有毛病.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\soundassistant\sound\接客了.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\soundassistant\sound\放屁声.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\soundassistant\sound\烟花.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\soundassistant\sound\疑问.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\soundassistant\sound\给大哥点关注.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\soundassistant\sound\观众笑声.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

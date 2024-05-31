@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="Iebcn.Live.Controls.TimerSpeakWind" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Iebcn.Live.Controls" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Title="定时播报" Width="775" Height="465" BorderBrush="#FFFDF9FD" BorderThickness="1" FontFamily="Microsoft YaHei" FontSize="12" Icon="/Assets/app.ico" ShowInTaskbar="False" Style="{StaticResource NoResize_window}" WindowStartupLocation="CenterScreen" MouseLeftButtonDown="RgG">
+    <Control.Background>
+        <ImageBrush ImageSource="/Assets/bg.jpg" />
+    </Control.Background>
+    <Border CornerRadius="6">
+        <Grid>
+            <Grid Name="gridBar" VerticalAlignment="Top" Background="#3A000000">
+                <Label Margin="0,2,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#00FFFFFF" BorderThickness="0" FontSize="16" FontWeight="Bold" Foreground="#FFF5F5F5">定时播报</Label>
+                <Button Name="x" Width="36" Height="26" Margin="0" HorizontalAlignment="Right" VerticalAlignment="Top" Content="x" Style="{StaticResource ButtonDanger}" ToolTip="关闭" Click="Fgv" />
+            </Grid>
+            <Grid Margin="0,35,0,0" Background="#EBffffff">
+                <Grid Visibility="Visible">
+                    <StackPanel Margin="18,8,0,0" VerticalAlignment="Top" Orientation="Horizontal">
+                        <CheckBox HorizontalAlignment="Left" BorderBrush="#FF827C81" BorderThickness="1" Content="开启定时播报" FontSize="14" FontWeight="Bold" Foreground="{StaticResource Vip1ColorBrush}" IsChecked="{Binding RangeTimeEnabled}" Click="ugo" />
+                        <Label Margin="1,0,0,0" Background="#00FFFFFF" BorderThickness="0" Content="每隔:" />
+                        <hc:NumericUpDown Increment="1" Maximum="120" Minimum="1" ToolTip="最小1分钟" Value="{Binding RangeTimeIntervalMinMinutes}" />
+                        <Label Margin="0" Background="#00FFFFFF" BorderThickness="0" Content="-" />
+                        <hc:NumericUpDown Increment="1" Maximum="120" Minimum="1" ToolTip="最大120分钟" Value="{Binding RangeTimeIntervalMaxMinutes}" />
+                        <Label Margin="0" Padding="5" Background="#00FFFFFF" BorderThickness="0" Content="分钟播报以下内容(一行一条)" />
+                        <CheckBox HorizontalAlignment="Left" BorderBrush="#FF000000" BorderThickness="1" Content="随机播报" ToolTip="默认顺序播报" IsChecked="{Binding RangeTimeRndSpeak}" />
+                        <Button Margin="5,0,0,0" Background="#FF5491CE" BorderBrush="#FFF0F8FF" Foreground="#FFFFFFFF" Click="FgX">测试</Button>
+                    </StackPanel>
+                    <TextBox Height="130" Margin="71,48,58,0" VerticalAlignment="Top" VerticalContentAlignment="Top" AcceptsReturn="True" Background="#ffFFFFFF" BorderBrush="#FF000000" BorderThickness="1" ToolTip="内容(一行一条)，如：现在是北京时间{当前时间}，感谢直播间{直播间人数}位家人的支持！十分感谢！" VerticalScrollBarVisibility="Auto" Text="{Binding RangeTimeContent}" />
+                    <StackPanel Margin="18,190,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
+                        <CheckBox HorizontalAlignment="Left" BorderBrush="#FF827C81" BorderThickness="1" Content="开启整点播报" FontSize="14" FontWeight="Bold" Foreground="{StaticResource Vip1ColorBrush}" ToolTip="如：整点时间的时候播报内容，如现在是北京时间{当前时间}，感谢直播间{直播间人数}位家人的支持！十分感谢!" IsChecked="{Binding HourTimeEnabled}" Click="ugo" />
+                        <Label Name="lbSoundCound" Background="#00FFFFFF" BorderBrush="#FF59495B" BorderThickness="0" Content="以下内容(一行一条)" />
+                        <CheckBox HorizontalAlignment="Left" BorderBrush="#FF000000" BorderThickness="1" Content="随机播报" ToolTip="默认顺序播报" IsChecked="{Binding HourTimeRndSpeak}" />
+                        <Button Margin="35,0,0,0" Background="#FF5494CC" BorderBrush="#FFF0F8FF" Foreground="#FFFFFFFF" Click="Pgy">测试</Button>
+                    </StackPanel>
+                    <TextBox Height="130" Margin="71,225,58,0" VerticalAlignment="Top" VerticalContentAlignment="Top" AcceptsReturn="True" Background="#ffFFFFFF" BorderBrush="#FF000000" BorderThickness="1" ToolTip="内容(一行一条)，如：现在是北京时间{当前时间}，感谢直播间{直播间人数}位家人的支持！十分感谢！" VerticalScrollBarVisibility="Auto" Text="{Binding HourTimeContent}" />
+                    <Label Margin="10,363,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#00FFFFFF" BorderBrush="#FF59495B" BorderThickness="0" Content="注：符号{}及里面的内容的是变量，运行时会填充实际值！可插入{当前时间}、{直播间人数}、{榜1昵称}、{榜2昵称}、{榜3昵称}" Foreground="#FF777700" />
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

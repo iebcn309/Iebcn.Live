@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>粘稠状液体数字时钟动画代码</title>
+
+<script type="text/javascript" src="./js/jquery.min.js"></script>
+
+<style>
+html, body {
+	margin: 0;
+	padding: 0;
+	height: 100%;	
+}
+
+.wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+	flex-direction: column;
+  justify-content: center; 
+  align-items: center;  
+}
+body {
+	
+	height: 100%;
+	background-color: #313F50;
+
+}
+
+.numbers-wrap {
+	height: 180px;
+	display: inline-block;
+	filter:url('#goo');
+}
+
+.colon {
+	width: 20px;
+	float: left;
+	height: 100%;
+	position: relative;
+	margin: 0 15px;
+
+
+	.colon-dot-1 {
+		width: 30px;
+		height: 30px;
+		top: 28.571428572%;
+	}
+	.colon-dot-2 {
+		width: 30px;
+		height: 30px;
+		top: 57.142857144%;
+	}
+
+}
+
+.box {
+	position:relative;
+	width: 80px;
+	height: 100%;
+	box-sizing: border-box;
+	padding: 20px;
+	float: left;
+	margin: 0 15px;
+}
+
+.dot {
+	left: 20%;
+	position: absolute;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	background-color: #F62B4E;
+}
+
+
+</style>
+</head>
+<body style="">
+<style type="text/css">
+.schmenu{height:33px; line-height:33px; background:#636871; width:100%; margin:0 auto; overflow:hidden;}
+.schmenu ul{width:1180px; margin:0 auto; overflow:hidden;}
+.schmenu ul li{float:left;list-style:none;}
+.schmenu ul li a{height:33px; line-height:33px; display:block;color:#fff; font-size: 13px; padding: 0 10px;text-decoration: none;}
+.schmenu ul li a:hover{color:#fff; background:#000; text-decoration:none;-moz-transition:all 0.2s ease;-webkit-transition:all 0.2s ease;-o-transition:all 0.2s ease;-moz-transition:all 0.2s ease;transition:all 0.2s ease;}
+</style>
+<script src="./js/velocity.js"></script>
+
+<div class="wrap">
+  <div class="numbers-wrap">
+	<div id="hours-1" class="box"><div id="dot-0-0" class="dot" style="left: calc(0px + 40%); top: 0%; transform: translateX(1.84345px) translateY(0.314995px);"></div><div id="dot-0-1" class="dot" style="left: calc(0px + 40%); top: calc(0px + 71.4286%); transform: translateX(0.268972px) translateY(-2.99425px);"></div><div id="dot-0-2" class="dot" style="left: calc(0px + 40%); top: calc(0px + 85.7143%); transform: translateX(3.11064px) translateY(-2.83461px);"></div><div id="dot-0-3" class="dot" style="left: calc(0px + 20%); top: calc(0px + 85.7143%); transform: translateX(-0.648534px) translateY(0.344906px);"></div><div id="dot-0-4" class="dot" style="left: calc(0px + 0%); top: calc(0px + 28.5714%); transform: translateX(-2.8157px) translateY(-1.14795px);"></div><div id="dot-0-5" class="dot" style="left: calc(0px + 60%); top: calc(0px + 85.7143%); transform: translateX(0.802515px) translateY(3.76477px);"></div><div id="dot-0-6" class="dot" style="left: calc(0px + 40%); top: calc(0px + 28.5714%); transform: translateX(-0.321121px) translateY(4.99933px);"></div><div id="dot-0-7" class="dot" style="left: calc(0px + 20%); top: calc(0px + 85.7143%); transform: translateX(3.14884px) translateY(4.62098px);"></div><div id="dot-0-8" class="dot" style="left: calc(0px + 40%); top: calc(0px + 42.8571%); transform: translateX(3.93548px) translateY(-2.58282px);"></div><div id="dot-0-9" class="dot" style="left: calc(0px + 20%); top: calc(0px + 14.2857%); transform: translateX(-2.02237px) translateY(1.15438px);"></div><div id="dot-0-10" class="dot" style="left: calc(0px + 40%); top: calc(0px + 14.2857%); transform: translateX(-1.82349px) translateY(4.72268px);"></div><div id="dot-0-11" class="dot" style="left: calc(0px + 40%); top: calc(0px + 57.1429%); transform: translateX(4.95852px) translateY(4.21892px);"></div><div id="dot-0-12" class="dot" style="left: 0%; top: calc(0px + 85.7143%); transform: translateX(3.31589px) translateY(4.98977px);"></div><div id="dot-0-13" class="dot" style="left: calc(0px + 80%); top: calc(0px + 85.7143%); transform: translateX(-0.0309803px) translateY(2.38662px);"></div><div id="dot-0-14" class="dot" style="left: calc(0px + 0%); top: calc(0px + 28.5714%); transform: translateX(-1.11067px) translateY(4.44722px);"></div><div id="dot-0-15" class="dot" style="left: calc(0px + 20%); top: calc(0px + 85.7143%); transform: translateX(2.42174px) translateY(0.393071px);"></div><div id="dot-0-16" class="dot" style="left: calc(0px + 40%); top: calc(0px + 28.5714%); transform: translateX(-2.19346px) translateY(4.57119px);"></div></div>
+
+<div id="hours-2" class="box"><div id="dot-1-0" class="dot" style="left: calc(0px + 80%); top: calc(0px + 85.7143%); transform: translateX(3.9479px) translateY(-2.9305px);"></div><div id="dot-1-1" class="dot" style="left: calc(0px + 60%); top: calc(0px + 85.7143%); transform: translateX(4.098px) translateY(2.00617px);"></div><div id="dot-1-2" class="dot" style="left: calc(0px + 20%); top: calc(0px + 85.7143%); transform: translateX(-1.43378px) translateY(0.540021px);"></div><div id="dot-1-3" class="dot" style="left: calc(0px + 60%); top: calc(0px + 42.8571%); transform: translateX(0.014493px) translateY(4.99628px);"></div><div id="dot-1-4" class="dot" style="left: calc(0px + 40%); top: calc(0px + 85.7143%); transform: translateX(4.88213px) translateY(4.59997px);"></div><div id="dot-1-5" class="dot" style="left: calc(0px + 20%); top: calc(0px + 57.1429%); transform: translateX(4.154px) translateY(2.48715px);"></div><div id="dot-1-6" class="dot" style="left: calc(0px + 0%); top: calc(0px + 14.2857%); transform: translateX(4.53729px) translateY(4.44269px);"></div><div id="dot-1-7" class="dot" style="left: calc(0px + 0%); top: calc(0px + 85.7143%); transform: translateX(-2.82759px) translateY(-2.81981px);"></div><div id="dot-1-8" class="dot" style="left: calc(0px + 60%); top: calc(0px + 0%); transform: translateX(3.84794px) translateY(-2.86789px);"></div><div id="dot-1-9" class="dot" style="left: calc(0px + 80%); top: calc(0px + 14.2857%); transform: translateX(-0.483507px) translateY(-1.58157px);"></div><div id="dot-1-10" class="dot" style="left: calc(0px + 80%); top: calc(0px + 28.5714%); transform: translateX(-1.34003px) translateY(0.559426px);"></div><div id="dot-1-11" class="dot" style="left: calc(0px + 20%); top: calc(0px + 0%); transform: translateX(4.96424px) translateY(3.00947px);"></div><div id="dot-1-12" class="dot" style="left: calc(0px + 40%); top: calc(0px + 0%); transform: translateX(2.82711px) translateY(-2.36801px);"></div><div id="dot-1-13" class="dot" style="left: calc(0px + 0%); top: calc(0px + 71.4286%); transform: translateX(-2.38929px) translateY(2.21457px);"></div><div id="dot-1-14" class="dot" style="left: calc(0px + 40%); top: calc(0px + 42.8571%); transform: translateX(-1.07967px) translateY(-0.645667px);"></div><div id="dot-1-15" class="dot" style="left: calc(0px + 40%); top: calc(0px + 0%); transform: translateX(-2.77784px) translateY(-2.21037px);"></div><div id="dot-1-16" class="dot" style="left: calc(0px + 20%); top: calc(0px + 0%); transform: translateX(3.38879px) translateY(4.89651px);"></div></div>
+
+<div class="colon"><div class="dot colon-dot-1"></div><div class="dot colon-dot-2"></div></div>
+
+<div id="minutes-1" class="box"><div id="dot-2-0" class="dot" style="left: calc(0px + 60%); top: calc(0px + 71.4286%); transform: translateX(-2.8299px) translateY(-2.86678px);"></div><div id="dot-2-1" class="dot" style="left: calc(0px + 40%); top: calc(0px + 57.1429%); transform: translateX(-2.89227px) translateY(-2.39691px);"></div><div id="dot-2-2" class="dot" style="left: calc(0px + 60%); top: calc(0px + 14.2857%); transform: translateX(-2.71631px) translateY(4.43722px);"></div><div id="dot-2-3" class="dot" style="left: 0%; top: calc(0px + 57.1429%); transform: translateX(-1.30652px) translateY(4.90604px);"></div><div id="dot-2-4" class="dot" style="left: calc(0px + 20%); top: calc(0px + 28.5714%); transform: translateX(3.17315px) translateY(2.55695px);"></div><div id="dot-2-5" class="dot" style="left: calc(0px + 60%); top: calc(0px + 0%); transform: translateX(3.66557px) translateY(4.13868px);"></div><div id="dot-2-6" class="dot" style="left: calc(0px + 60%); top: calc(0px + 57.1429%); transform: translateX(3.6081px) translateY(1.98715px);"></div><div id="dot-2-7" class="dot" style="left: calc(0px + 20%); top: calc(0px + 57.1429%); transform: translateX(-2.29865px) translateY(4.96305px);"></div><div id="dot-2-8" class="dot" style="left: calc(0px + 0%); top: calc(0px + 42.8571%); transform: translateX(3.23652px) translateY(1.62606px);"></div><div id="dot-2-9" class="dot" style="left: calc(0px + 60%); top: calc(0px + 85.7143%); transform: translateX(3.33399px) translateY(4.55651px);"></div><div id="dot-2-10" class="dot" style="left: calc(0px + 60%); top: calc(0px + 42.8571%); transform: translateX(4.74797px) translateY(-0.725709px);"></div><div id="dot-2-11" class="dot" style="left: calc(0px + 80%); top: calc(0px + 57.1429%); transform: translateX(4.68665px) translateY(-2.69679px);"></div><div id="dot-2-12" class="dot" style="left: calc(0px + 40%); top: calc(0px + 14.2857%); transform: translateX(-2.04135px) translateY(4.09314px);"></div><div id="dot-2-13" class="dot" style="left: calc(0px + 60%); top: calc(0px + 28.5714%); transform: translateX(4.36904px) translateY(4.99971px);"></div><div id="dot-2-14" class="dot" style="left: calc(0px + 60%); top: calc(0px + 85.7143%); transform: translateX(4.81334px) translateY(2.45445px);"></div><div id="dot-2-15" class="dot" style="left: calc(0px + 80%); top: calc(0px + 57.1429%); transform: translateX(0.809746px) translateY(-2.60752px);"></div><div id="dot-2-16" class="dot" style="left: calc(0px + 60%); top: calc(0px + 71.4286%); transform: translateX(-2.91359px) translateY(4.91947px);"></div></div>
+
+<div id="minutes-2" class="box"><div id="dot-3-0" class="dot" style="left: calc(0px + 0%); top: calc(0px + 0%); transform: translateX(-0.267168px) translateY(3.01453px);"></div><div id="dot-3-1" class="dot" style="left: calc(0px + 20%); top: calc(0px + 57.1429%); transform: translateX(-1.76629px) translateY(-0.603571px);"></div><div id="dot-3-2" class="dot" style="left: calc(0px + 60%); top: calc(0px + 28.5714%); transform: translateX(-2.24693px) translateY(-2.98156px);"></div><div id="dot-3-3" class="dot" style="left: calc(0px + 60%); top: calc(0px + 0%); transform: translateX(-2.14583px) translateY(1.81789px);"></div><div id="dot-3-4" class="dot" style="left: calc(0px + 20%); top: calc(0px + 71.4286%); transform: translateX(-1.94796px) translateY(1.87943px);"></div><div id="dot-3-5" class="dot" style="left: calc(0px + 40%); top: calc(0px + 42.8571%); transform: translateX(4.34906px) translateY(0.415776px);"></div><div id="dot-3-6" class="dot" style="left: calc(0px + 20%); top: calc(0px + 0%); transform: translateX(2.95163px) translateY(2.024px);"></div><div id="dot-3-7" class="dot" style="left: calc(0px + 40%); top: calc(0px + 0%); transform: translateX(4.73113px) translateY(1.69732px);"></div><div id="dot-3-8" class="dot" style="left: calc(0px + 80%); top: 0%; transform: translateX(2.75103px) translateY(3.79743px);"></div><div id="dot-3-9" class="dot" style="left: calc(0px + 80%); top: calc(0px + 14.2857%); transform: translateX(4.95429px) translateY(-0.977858px);"></div><div id="dot-3-10" class="dot" style="left: calc(0px + 20%); top: calc(0px + 85.7143%); transform: translateX(-2.34081px) translateY(4.99645px);"></div><div id="dot-3-11" class="dot" style="left: calc(0px + 20%); top: calc(0px + 71.4286%); transform: translateX(1.16434px) translateY(4.99969px);"></div><div id="dot-3-12" class="dot" style="left: 0%; top: calc(0px + 0%); transform: translateX(-2.53379px) translateY(-1.57098px);"></div><div id="dot-3-13" class="dot" style="left: calc(0px + 80%); top: calc(0px + 14.2857%); transform: translateX(0.620163px) translateY(-1.59614px);"></div><div id="dot-3-14" class="dot" style="left: calc(0px + 40%); top: calc(0px + 0%); transform: translateX(-2.12778px) translateY(3.63927px);"></div><div id="dot-3-15" class="dot" style="left: calc(0px + 20%); top: calc(0px + 71.4286%); transform: translateX(4.84586px) translateY(-2.7515px);"></div><div id="dot-3-16" class="dot" style="left: calc(0px + 60%); top: calc(0px + 0%); transform: translateX(3.63119px) translateY(1.86183px);"></div></div>
+
+<div class="colon"><div class="dot colon-dot-1"></div><div class="dot colon-dot-2"></div></div>
+
+<div id="seconds-1" class="box"><div id="dot-4-0" class="dot" style="left: calc(0px + 0%); top: calc(0px + 85.7143%); transform: translateX(-2.99996px) translateY(-2.98089px);"></div><div id="dot-4-1" class="dot" style="left: calc(0px + 0%); top: calc(0px + 71.4286%); transform: translateX(-0.381877px) translateY(1.2223px);"></div><div id="dot-4-2" class="dot" style="left: calc(0px + 40%); top: calc(0px + 0%); transform: translateX(-2.99164px) translateY(1.59221px);"></div><div id="dot-4-3" class="dot" style="left: calc(0px + 60%); top: calc(0px + 42.8571%); transform: translateX(-2.76701px) translateY(-2.62494px);"></div><div id="dot-4-4" class="dot" style="left: calc(0px + 0%); top: calc(0px + 14.2857%); transform: translateX(4.83163px) translateY(-1.66775px);"></div><div id="dot-4-5" class="dot" style="left: calc(0px + 20%); top: calc(0px + 85.7143%); transform: translateX(-2.47422px) translateY(-2.65158px);"></div><div id="dot-4-6" class="dot" style="left: calc(0px + 60%); top: 0%; transform: translateX(-1.9715px) translateY(-0.482656px);"></div><div id="dot-4-7" class="dot" style="left: calc(0px + 40%); top: calc(0px + 85.7143%); transform: translateX(-1.92554px) translateY(4.85841px);"></div><div id="dot-4-8" class="dot" style="left: calc(0px + 60%); top: calc(0px + 85.7143%); transform: translateX(1.16859px) translateY(-2.81479px);"></div><div id="dot-4-9" class="dot" style="left: calc(0px + 80%); top: calc(0px + 14.2857%); transform: translateX(-1.18287px) translateY(-0.847804px);"></div><div id="dot-4-10" class="dot" style="left: calc(0px + 20%); top: calc(0px + 57.1429%); transform: translateX(4.93604px) translateY(0.361778px);"></div><div id="dot-4-11" class="dot" style="left: calc(0px + 80%); top: calc(0px + 28.5714%); transform: translateX(-2.39567px) translateY(0.225055px);"></div><div id="dot-4-12" class="dot" style="left: calc(0px + 80%); top: calc(0px + 85.7143%); transform: translateX(4.50554px) translateY(4.55048px);"></div><div id="dot-4-13" class="dot" style="left: calc(0px + 40%); top: calc(0px + 42.8571%); transform: translateX(1.15639px) translateY(-2.88892px);"></div><div id="dot-4-14" class="dot" style="left: calc(0px + 20%); top: calc(0px + 0%); transform: translateX(3.16547px) translateY(-2.99982px);"></div><div id="dot-4-15" class="dot" style="left: calc(0px + 60%); top: calc(0px + 42.8571%); transform: translateX(4.96817px) translateY(-1.07402px);"></div><div id="dot-4-16" class="dot" style="left: calc(0px + 80%); top: calc(0px + 85.7143%); transform: translateX(-2.73781px) translateY(-2.34472px);"></div></div>
+
+<div id="seconds-2" class="box"><div id="dot-5-0" class="dot" style="left: calc(0px + 60%); top: calc(0px + 85.7143%); transform: translateX(3.33394px) translateY(4.68557px);"></div><div id="dot-5-1" class="dot" style="left: calc(0px + 0%); top: calc(0px + 14.2857%); transform: translateX(2.92546px) translateY(2.90802px);"></div><div id="dot-5-2" class="dot" style="left: calc(0px + 20%); top: calc(0px + 85.7143%); transform: translateX(-0.574221px) translateY(-1.64725px);"></div><div id="dot-5-3" class="dot" style="left: calc(0px + 20%); top: calc(0px + 57.1429%); transform: translateX(-2.9747px) translateY(-0.441455px);"></div><div id="dot-5-4" class="dot" style="left: calc(0px + 0%); top: calc(0px + 85.7143%); transform: translateX(-1.71489px) translateY(4.60192px);"></div><div id="dot-5-5" class="dot velocity-animating" style="left: calc(0.00523544px + 79.9869%); top: calc(0.0210337px + 85.7003%); transform: translateX(-2.66143px) translateY(4.5149px);"></div><div id="dot-5-6" class="dot velocity-animating" style="left: calc(0.00783893px + 79.9804%); top: calc(0.0125966px + 14.2822%); transform: translateX(4.73604px) translateY(3.73242px);"></div><div id="dot-5-7" class="dot velocity-animating" style="left: calc(0px + 19.9951%); top: calc(0.0125966px + 0%); transform: translateX(-2.96902px) translateY(2.8913px);"></div><div id="dot-5-8" class="dot velocity-animating" style="left: calc(0.0146787px + 39.9817%); top: calc(0.0471756px + 42.8375%); transform: translateX(-2.75594px) translateY(-0.534601px);"></div><div id="dot-5-9" class="dot velocity-animating" style="left: calc(0.00733937px + 0%); top: calc(0.0707703px + 71.3958%); transform: translateX(4.90103px) translateY(3.59329px);"></div><div id="dot-5-10" class="dot velocity-animating" style="left: calc(0.00944497px + 39.9764%); top: calc(0.0151728px + 85.6637%); transform: translateX(-0.601994px) translateY(4.13634px);"></div><div id="dot-5-11" class="dot velocity-animating" style="left: calc(0.0235379px + 59.9559%); top: calc(0px + 42.8256%); transform: translateX(1.15463px) translateY(-1.85155px);"></div><div id="dot-5-12" class="dot velocity-animating" style="left: calc(0.0235379px + 59.9559%); top: calc(0.0189062px + 0%); transform: translateX(-2.22828px) translateY(-2.99972px);"></div><div id="dot-5-13" class="dot velocity-animating" style="left: calc(0px + 79.9288%); top: calc(0.137297px + 28.546%); transform: translateX(4.65911px) translateY(-0.827161px);"></div><div id="dot-5-14" class="dot velocity-animating" style="left: calc(0.0334805px + 39.9581%); top: calc(0.0807095px + 0%); transform: translateX(0.974548px) translateY(-1.96566px);"></div><div id="dot-5-15" class="dot velocity-animating" style="left: calc(0.0334805px + 19.9791%); top: calc(0.13451px + 85.6246%); transform: translateX(2.19856px) translateY(-0.231694px);"></div><div id="dot-5-16" class="dot velocity-animating" style="left: calc(0.0573294px + 19.9761%); top: calc(0.184267px + 85.6119%); transform: translateX(1.26381px) translateY(3.45949px);"></div></div>
+</div>
+  </div>
+
+
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <defs>
+    <filter id="goo">
+      <fegaussianblur in="SourceGraphic" stdDeviation="10" result="blur"></fegaussianblur>
+      <fecolormatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo"></fecolormatrix>
+      <feblend in="SourceGraphic" in2="goo"></feblend>
+    </filter>
+  </defs>
+</svg>
+
+
+<script>
+$(document).ready(function(){
+	var seven = 100/7;
+	var numberData = [];
+
+	numberData[0] = '1,2&1,3&1,4&2,1&2,5&3,1&3,5&4,1&4,5&5,1&5,5&6,1&6,5&7,2&7,3&7,4';
+	numberData[1] = '1,3&2,2&2,3&3,1&3,3&4,3&5,3&6,3&7,1&7,2&7,2&7,3&7,4&7,5';
+	numberData[2] = '1,2&1,3&1,4&2,1&2,5&3,5&4,3&4,4&5,2&6,1&7,1&7,2&7,3&7,4&7,5';
+	numberData[3] = '1,2&1,3&1,4&2,1&2,5&3,5&4,3&4,4&5,5&6,1&6,5&7,2&7,3&7,4';
+	numberData[4] = '1,4&2,3&2,4&3,2&3,4&4,1&4,4&5,1&5,2&5,3&5,4&5,5&6,4&7,4';
+	numberData[5] = '1,1&1,2&1,3&1,4&1,5&2,1&3,1&3,2&3,3&3,4&4,5&5,5&6,1&6,5&7,2&7,3&7,4';
+	numberData[6] = '1,3&1,4&2,2&3,1&4,1&4,2&4,3&4,4&5,1&5,5&6,1&6,5&7,2&7,3&7,4';
+	numberData[7] = '1,1&1,2&1,3&1,4&1,5&2,5&3,4&4,3&5,2&6,2&7,2';
+	numberData[8] = '1,2&1,3&1,4&2,1&2,5&3,1&3,5&4,2&4,3&4,4&5,1&5,5&6,1&6,5&7,2&7,3&7,4';
+	numberData[9] = '1,2&1,3&1,4&2,1&2,5&3,1&3,5&4,2&4,3&4,4&4,5&5,5&6,4&7,2&7,3';
+
+	function shuffle(array) {
+	  var currentIndex = array.length, temporaryValue, randomIndex;
+
+	  while (0 !== currentIndex) {
+
+	    randomIndex = Math.floor(Math.random() * currentIndex);
+	    currentIndex -= 1;
+
+	    temporaryValue = array[currentIndex];
+	    array[currentIndex] = array[randomIndex];
+	    array[randomIndex] = temporaryValue;
+	  }
+
+	  return array;
+	}
+
+	function getRandom(min, max) {
+    	return Math.floor(Math.random() * (max - min + 1)) + min;
+	}
+
+	function makeDots() {
+		$('.box').each(function(box){
+			var thisBox = $(this);
+			var numberSplit = numberData[8].split('&');
+			for (var i = 0; i <= numberSplit.length-1; i++) {
+				var axisSplit = numberSplit[i].split(',');
+				thisBox.append('<div id="dot-'+box+'-'+i+'" class="dot" style="left:'+(axisSplit[1]-1)*20+'%; top:'+(axisSplit[0]-1)*seven+'%;"></div>');
+				dotAnimate($('#dot-'+box+'-'+i));
+			}
+		});
+	}
+
+	function newNumber(a,b) {
+		var boxDots = b.find('.dot');
+		var numberSplit = numberData[a].split('&');
+		numberSplit = shuffle(numberSplit);
+
+		boxDots.each(function(i){
+			var newNo = i;
+			if (i >= numberSplit.length) {
+				newNo = getRandom(0, numberSplit.length-1);
+			}
+			var axisSplit = numberSplit[newNo].split(',');
+			var leftVal = (axisSplit[1]-1)*20+'%';
+			var topVal = (axisSplit[0]-1)*seven+'%';
+			$(this).velocity('stop').velocity({left: leftVal, top:topVal}, {duration: 800, easing:[300,25], delay:10*i});
+		});
+	}
+
+	function dotAnimate(a) {
+		var translateX = Math.random()*10;
+		var translateY = Math.random()*10;
+		var count = 1;
+		setInterval(function(){		
+				$.Velocity.hook(a, 'translateX', 1+(Math.cos(count*translateX/100)*4)+'px');
+				$.Velocity.hook(a, 'translateY', 1+(Math.cos(count*translateY/100)*4)+'px');
+				count++;		
+		},30); 
+	}
+
+
+
+
+		var secondsFirstDigit, secondsSecondDigit, prevSecondsFirstDigit;
+		var minutesFirstDigit, minutesSecondDigit, prevMinutesFirstDigit, prevMinutesSecondDigit;
+		var hoursFirstDigit, hoursSecondDigit, prevHoursFirstDigit, prevHoursSecondDigit;
+
+		function getDates() {
+			var seconds = new Date();
+			seconds = seconds.getSeconds();
+			var secondsString = seconds.toString(); 
+
+			if (secondsString.length === 1) {
+				secondsFirstDigit = 0;
+				secondsSecondDigit = secondsString;
+			} else {
+				secondsFirstDigit = secondsString.charAt(0);
+				secondsSecondDigit = secondsString.charAt(1);
+			}
+
+			var minutes = new Date();
+			minutes = minutes.getMinutes();
+			var minutesString = minutes.toString(); 
+
+			if (minutesString.length === 1) {
+				minutesFirstDigit = 0;
+				minutesSecondDigit = minutesString;
+			} else {
+				minutesFirstDigit = minutesString.charAt(0);
+				minutesSecondDigit = minutesString.charAt(1);
+			}
+
+			var hours = new Date();
+			hours = hours.getHours();
+
+			if (hours > 12) {
+				hours = hours-12;
+			}
+
+			var hoursString = hours.toString();
+
+			if (hoursString.length === 1) {
+				hoursFirstDigit = 0;
+				hoursSecondDigit = hoursString;
+			} else {
+				hoursFirstDigit = hoursString.charAt(0);
+				hoursSecondDigit = hoursString.charAt(1);
+			}
+
+			if (secondsFirstDigit !== prevSecondsFirstDigit) {
+				newNumber(secondsFirstDigit, $('#seconds-1'));
+			}
+			newNumber(secondsSecondDigit, $('#seconds-2'));
+
+			if (minutesFirstDigit !== prevMinutesFirstDigit) {
+				newNumber(minutesFirstDigit, $('#minutes-1'));
+			}
+			if (minutesSecondDigit !== prevMinutesSecondDigit) {
+				newNumber(minutesSecondDigit, $('#minutes-2'));
+			}
+
+			if (hoursFirstDigit !== prevHoursFirstDigit) {
+				newNumber(hoursFirstDigit, $('#hours-1'));
+			}
+			if (hoursSecondDigit !== prevHoursSecondDigit) {
+				newNumber(hoursSecondDigit, $('#hours-2'));
+			}
+
+			prevSecondsFirstDigit = secondsFirstDigit;
+
+			prevMinutesFirstDigit = minutesFirstDigit;
+			prevMinutesSecondDigit = minutesSecondDigit;
+
+			prevHoursFirstDigit = hoursFirstDigit;
+			prevHoursSecondDigit = hoursSecondDigit;
+			
+		}
+
+		setInterval(function(){
+			getDates();	
+		},1000);
+
+		
+	makeDots();
+	getDates();
+});
+
+</script>
+
+
+</body></html>

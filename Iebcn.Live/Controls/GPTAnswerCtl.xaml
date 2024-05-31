@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UserControl x:Class="Iebcn.Live.Controls.GPTAnswerCtl" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Iebcn.Live.Controls" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Margin="0">
+    <Grid>
+        <Ellipse Width="78" Height="78" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="#FFEEEEEE" Stroke="#FFFFFFFF" StrokeThickness="4" />
+        <Label Height="55" Margin="2,15,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#00FFFFFF" BorderThickness="0" FontSize="12" FontWeight="Bold" Foreground="#FF666666">ChatGPT</Label>
+        <Border Margin="88,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#EFEEEEEE" CornerRadius="8" MouseEnter="sZm" MouseLeave="JZr" MouseLeftButtonDown="hZA">
+            <Grid>
+                <TextBlock Name="txt1" Margin="12" HorizontalAlignment="Stretch" Foreground="#FF222222" TextWrapping="Wrap" ToolTip="单击可复制内容哦" Text="{Binding txt}" />
+                <Button Name="btnCopy" Width="66" Margin="0,-28,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" Visibility="Collapsed" Click="PZ1">复制</Button>
+            </Grid>
+        </Border>
+        <Border Name="loading" Margin="178,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#1Fffffff" CornerRadius="38">
+            <hc:LoadingCircle Width="66" Height="66" Margin="2" VerticalAlignment="Center" />
+        </Border>
+    </Grid>
+</UserControl>

@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+   <meta charset="UTF-8">
+    <title>gift</title>
+    <style>
+     html, body {
+	   ::-webkit-scrollbar {
+          display: none;
+         };
+		padding:0px;
+        margin: 0px;
+        background:rgba(0,0,0, 0); 
+		
+      }   
+
+      div {
+        padding:0px;
+        margin: 0px;
+      }
+	  
+	  #c1 {
+	    opacity: 0.001; 
+		position:absolute;
+		left:0;
+		top:0;
+		z-index:0;
+      }
+     #c2 {
+	    opacity: 1;
+		position:absolute;
+		left:0;
+		top:0;
+		z-index:3;
+		
+      }
+    </style>
+  </head>
+ <body>
+ 
+ <div   style="position:absolute;top:80px;left:0px;z-index:0;opacity:0.001">
+ <video width="555" height="777"
+    id="video" 
+    src="media/789.dll"
+    controls="true"
+    crossorigin="anonymous"   autoplay muted/>
+</div> 
+<canvas id="c1" width="1440" height="1280"></canvas>
+<canvas id="c2" width="720"  height="1280"></canvas>
+
+ <script>
+  var playcount = 0;
+  var stoped = 0;
+  var vid= 789;
+  function playVideo(id,count){ 
+    vid = id;
+    playcount = count;
+	play();
+  }
+  
+  function play(){ 
+    playcount--;
+    stoped=0;
+    var video = document.getElementById("video");
+    video.src='media/'+vid+'.dll?'+new Date().getTime();
+    processor.c2.style.opacity=1;
+
+  }
+  function hideLayer(){
+  
+	 processor.c2.style.opacity=0;
+	
+  }
+function greenBg(flag){
+    if(flag){
+	 document.body.style.backgroundColor="#00ff00";
+	}
+	else{
+	document.body.style.backgroundColor="rgba(0,0,0,0)";
+	}
+  }
+
+  let processor = {
+    timerCallback: function() {
+      if (this.video.paused || this.video.ended) {
+	    console.log("video.ended");
+		 this.c2.style.opacity=0;
+		 if(playcount<=0){
+		   stoped = 1;
+		 }
+		 else{
+		   play()
+		 }
+        return;
+      }
+      this.computeFrame();
+      let self = this;
+      setTimeout(function () {
+          self.timerCallback();
+        }, 0);
+    },
+  
+    doLoad: function() {
+      this.video = document.getElementById("video");
+      this.c1 = document.getElementById("c1");
+      this.ctx1 = this.c1.getContext("2d", { willReadFrequently: true });
+      this.c2 = document.getElementById("c2");
+      this.ctx2 = this.c2.getContext("2d", { willReadFrequently: true });
+      let self = this;
+      this.video.addEventListener("play", function() {
+	      stoped=0;
+          self.width = self.video.videoWidth ;
+          self.height = self.video.videoHeight;
+		  self.c2.width= self.width / 2;
+		  self.c1.width= self.width;
+		  self.c2.height= self.height
+		  self.c1.height= self.height;
+		  
+		  
+		  console.log("w=" + self.video.videoWidth + ",h=" +self.video.videoHeight );
+		  
+          self.timerCallback();
+        }, false);
+    },
+  
+    computeFrame: function() {
+	  if(this.width<=0){
+	    console.log("width:"+this.width);
+	   return;
+	  }
+      this.ctx1.drawImage(this.video, 0, 0, this.width, this.height);
+      let  frameOpcity= this.ctx1.getImageData(this.width / 2, 0, this.width / 2, this.height);
+	  let frame = this.ctx1.getImageData(0, 0, this.width / 2, this.height);
+      let l = frame.data.length / 4;
+      for (let i = 0; i < l; i++) {
+       let r = frame.data[i * 4 + 0];
+       let g = frame.data[i * 4 + 1];
+       let b = frame.data[i * 4 + 2];
+	   let a= (r+ g+ b) / 3;
+	   //frameOpcity.data[i * 4 + 3] = a; 
+	   frameOpcity.data[i * 4 + 3] = a;
+	 }
+		
+      this.ctx2.putImageData(frameOpcity, 0, 0);
+      return;
+    
+  }
+}
+  
+document.addEventListener("DOMContentLoaded", () => {
+  processor.doLoad();
+});
+
+
+
+  
+  </script>
+
+  </body>
+</html>

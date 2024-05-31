@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="Iebcn.Live.Controls.WebEffectsWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:Iebcn.Live.Controls" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf" Title="装饰" Width="1000" Height="800" AllowsTransparency="True" ShowInTaskbar="False" WindowStyle="None" MouseLeftButtonDown="W6Z">
+    <Control.Background>
+        <SolidColorBrush Opacity="0" />
+    </Control.Background>
+    <Grid Name="gridMain" Background="#55000000" MouseEnter="l6D" MouseLeave="Q6c">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="36" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <wv2:WebView2 Name="webView" Grid.Row="2" Margin="0" />
+        <Grid Name="cmdBarPanel" Background="#9f000000" Visibility="Visible" MouseEnter="l6D" MouseMove="l6D">
+            <Button Width="88" Height="33" Margin="0,1,44,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#8C5757DA" Content="+ 窗口" Foreground="#FFFFFFFF" Style="{StaticResource ButtonCustom}" ToolTip="再打开一个窗口" Click="U6i" />
+            <ComboBox Name="comboxLinks" Width="288" DisplayMemberPath="Name" SelectionChanged="Q6k" />
+            <Button Name="btnSetting" Width="173" Height="26" Margin="0,1,44,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#8C5757DA" Content="更多去看-&gt;设置教程" Foreground="#FFFFFFFF" Style="{StaticResource ButtonCustom}" ToolTip="更多去看-&gt;设置教程" Click="E6M" />
+            <Button Name="x" Width="36" Height="26" Margin="0,1,2,0" HorizontalAlignment="Right" VerticalAlignment="Top" Content="x" Style="{StaticResource ButtonDanger}" ToolTip="关闭" Click="W6t" />
+        </Grid>
+    </Grid>
+</Window>

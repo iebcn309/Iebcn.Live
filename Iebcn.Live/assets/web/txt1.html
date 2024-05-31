@@ -1,0 +1,234 @@
+<html>
+  <head>
+  <title>文本1</title>
+  <meta charset="UTF-8">
+  <style>
+    html,
+body {
+  background-color: transparent;
+  font-family: "Microsoft YaHei","黑体","宋体";
+  overflow-y: hidden;
+  overflow-x: hidden;
+  font-weight: 800;
+  font-size:44px;  
+  color: #00FFFF;
+}
+html, body {
+  height: 100%;
+}
+
+body {
+ 
+  margin:0 10px;
+}
+
+h1{
+  -webkit-transform: translate3d(0, 0, 0);
+}
+
+.splitdiv{
+  display: inline-block;
+  position: relative;
+}
+
+.box div{
+	-webkit-transform: translate3d(0, 0, 0);
+  -webkit-font-smoothing: antialiased;
+	-moz-font-smoothing:antialiased;
+}
+ .alerttext {
+    padding: 6px;
+    font-weight: 800;
+    text-shadow: 0 0 1px #000, 0 0 2px #000, 0 0 3px #000, 0 0 4px #000, 0 0 5px #000;
+    width:100%;
+    box-sizing: border-box;
+}
+.hightlight {
+	color: #ffffff;
+  display:inline-block;
+}
+.text {
+	color: #00FFFF;
+  display:inline-block;
+}
+
+.algintype1 .text{
+  width:50%;
+  text-align: right;
+}
+
+.algintype1 .hightlight{
+  width:50%;
+  text-align: left;
+}
+
+.algintype2 div{
+  text-align: left !important;
+}
+
+.algintype3 div{
+  text-align: right !important;
+}
+  </style>
+   
+  </head>
+  <body>
+    <script src="js/jquery-1.7.2.js"></script>
+<div class="box alerttext algintype1">
+	<span class="text" id="main1"></span><span class="hightlight" id="highlite1"></span>
+</div>
+<div class="box alerttext algintype1">
+	<span class="text" id="main2"></span><span class="hightlight" id="highlite2"></span>
+</div>
+<div class="box alerttext algintype1">
+	<span class="text" id="main3"></span><span class="hightlight" id="highlite3"></span>
+</div>
+     
+<script>
+    //[-script-]
+    var line1 = '点歌;格式：点歌 爱你一万年';
+    var line2 = '加关注;高亮颜色文字2';
+    var line3 = 'xxx;高亮颜色文字3';
+    var aligntype = 1;//对齐方式
+    var fontSize = 44;//字体大小
+    var delay = 3;//隐藏时间
+    var showtime = 6;//显示时间
+    var highcolor = '#FFFFFF';//高亮颜色
+    var fontcolor = '#00FFFF';//字体颜色
+$(".text").css("color",fontcolor);
+$(".hightlight").css("color",highcolor);
+
+clearTimeout(window.mysetTimeout1);
+clearTimeout(window.mysetTimeout2);
+var splitText2Div=function($box){
+  var text=$box.text();
+  console.log(text);
+  var texts=text.split('');
+  var str='';
+  for (var i = 0; i < texts.length; i++) {
+    str+='<div class="splitdiv">'+texts[i]+'</div>';
+  }
+  $box.html(str);
+}
+//;分
+function changetext() {
+    console.log("changetext");
+    var text1;
+    var text2;
+    var text3;  
+
+    text1 = line1;
+    text2 = line2;
+    text3 = line3;
+
+    var arr1 = text1.split(";");
+    console.log(arr1[0]);
+    $("#main1").text(arr1[0]);
+    if (arr1.length >= 2)
+        $("#highlite1").text(arr1[1]);
+    else
+        $("#highlite1").empty();
+
+    var arr2 = text2.split(";");
+    $("#main2").text(arr2[0]);
+    if (arr2.length >= 2)
+        $("#highlite2").text(arr2[1]);
+    else
+        $("#highlite2").empty();
+
+    var arr3 = text3.split(";");
+    $("#main3").text(arr3[0]);
+    if (arr3.length >= 2)
+        $("#highlite3").text(arr3[1]);
+    else
+        $("#highlite3").empty();
+    splitText2Div($("#main1"));
+    splitText2Div($("#highlite1"));
+    splitText2Div($("#main2"));
+    splitText2Div($("#highlite2"));
+    splitText2Div($("#main3"));
+    splitText2Div($("#highlite3"));
+};
+
+if (aligntype == 4) {
+    var w1 = $("#main1").width();
+    var w2 = $("#main2").width();
+    var w3 = $("#main3").width();
+    var wm = w1;
+    if (w1 < w2) {
+        wm = w2;
+    }
+    if (wm < w3) {
+        wm = w3;
+    }
+    $('.text').width(1.35 * wm);
+}
+
+changetext();
+var $line=[];
+var speed=400;
+$line[0]=$('#main1 div,#highlite1 div');
+$line[1]=$('#main2 div,#highlite2 div');
+$line[2]=$('#main3 div,#highlite3 div');
+var addnum=50;
+var animateIn=function(){
+    console.log('animateIn');
+    var ml=0;
+    var wait=0;
+    for (var i = 0; i < 3; i++) {
+        $line[i].css('opacity',0);
+        for (var j = 0; j < $line[i].length; j++) {
+            (function(i,j){
+                setTimeout(function(){
+                    console.log(i,j);
+                    $line[i].eq(j).css({'top':fontSize/2+'px',opacity:0}).animate({'top':'0px',opacity:1}, speed);
+                },wait);
+            })(i,j);
+            wait+=addnum;
+        }
+        if($line[i].length>ml)
+            ml=$line[i].length;
+    }
+
+    window.mysetTimeout2=setTimeout(function(){
+        animateOut();
+    },ml*addnum+showtime*1000);
+}
+
+var animateOut=function(){
+    console.log('animateOut');
+    var ml=0;
+    var wait=0;
+    for (var i = 2; i >=0; i--) {
+        for (var j = $line[i].length-1; j >= 0; j--) {
+            (function(i,j){
+                setTimeout(function(){
+                    console.log(i,j);
+                    $line[i].eq(j).animate({'top':fontSize/2+'px',opacity:0}, speed);
+                },wait);
+            })(i,j);
+            wait+=addnum;
+        }
+        if($line[i].length>ml)
+            ml=$line[i].length;
+    }
+    window.mysetTimeout1=setTimeout(function(){
+        animateIn();
+    },ml*addnum+delay*1000)
+}
+
+    animateIn();
+    </script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

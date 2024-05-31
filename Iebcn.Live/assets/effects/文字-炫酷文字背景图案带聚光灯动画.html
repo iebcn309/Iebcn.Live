@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!-- saved from url=(0045)https://jsdaima.hu-cheng.net/js/2021/09/4344/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,user-scalable=no,minimal-ui">
+    <title>纯CSS实现炫酷文字背景图案带聚光灯动画特效代码</title>
+  <style>
+  body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #222;
+    min-height: 100vh;
+}
+
+h2 {
+    font-size: 3rem;
+    color:#333;
+    position: relative;
+}
+
+h2::after {
+    content: attr(light);
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: transparent;
+    clip-path: ellipse(100px 100px at 0% 50%);
+    animation: SpotLight 5s infinite;
+    background-image: url("./img/160989854578037_2.jpg");
+    background-size: 150%;
+    background-position: center center;
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+@keyframes SpotLight {
+    0% {
+        clip-path: ellipse(100px 100px at 0% 50%);
+    }
+
+    50% {
+        clip-path: ellipse(100px 100px at 100% 50%);
+    }
+
+    100% {
+        clip-path: ellipse(100px 100px at 0% 50%);
+    }
+}
+  </style>
+  
+  
+  
+</head>
+
+<body>
+
+    <h2 light="众里寻他千百度，蓦然回首。。。">众里寻他千百度，蓦然回首。。。</h2>
+	
+
+
+</body></html>

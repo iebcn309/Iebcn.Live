@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UserControl x:Class="Iebcn.Live.Controls.OvertimeGiftItemCtl" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:Iebcn.Live.Controls" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Width="200" Height="88" Background="#01000000" FontSize="24" MouseEnter="hT0" MouseLeave="VTh">
+    <Grid>
+        <Image Name="img" Width="64" Height="64" HorizontalAlignment="Left" Source="/Assets/plugin_icon/DanmuApi.png" />
+        <StackPanel Margin="64,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Vertical">
+            <Label Name="lbGiftName" Background="#00FFFFFF" BorderThickness="0" Content="小心心" Foreground="{Binding GiftNameForeground}" />
+            <Label Width="102" Height="1" Margin="0" Padding="0" Background="#DF999999" BorderThickness="0" />
+            <Label Name="lbGiftDesc" Background="#00FFFFFF" BorderThickness="0" Content="+20分钟" Foreground="{Binding GiftDescForeground}" />
+        </StackPanel>
+        <Grid Name="gridDel" Visibility="Collapsed" Background="#9D668866">
+            <Button Width="122" Height="44" Background="#FF333333" Foreground="#FFF5F5F5" Click="eTg">删除</Button>
+        </Grid>
+    </Grid>
+</UserControl>

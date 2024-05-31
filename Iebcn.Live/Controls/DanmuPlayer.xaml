@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- 弹幕播放器窗口 -->
+<Window x:Class="Iebcn.Live.Controls.DanmuPlayer" 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:hc="https://handyorg.github.io/handycontrol" 
+        xmlns:local="clr-namespace:Iebcn.Live.Controls" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        Title="弹幕页" 
+        ShowInTaskbar="False"
+        AllowsTransparency="True" 
+        Background="#00FFFFFF" 
+        IsHitTestVisible="True" 
+        WindowStartupLocation="CenterScreen" 
+        WindowStyle="None" 
+        Width="{Binding Config.PageWidth, Mode=TwoWay}" 
+        Height="{Binding Config.PageHeight, Mode=TwoWay}" 
+        Topmost="{Binding Config.Topmost}" 
+        PreviewMouseLeftButtonDown="Window_PreviewMouseLeftButtonDown"
+        PreviewMouseMove="Window_PreviewMouseMove"
+        PreviewMouseLeftButtonUp="Window_PreviewMouseLeftButtonUp">
+    <!-- 资源字典 -->
+    <FrameworkElement.Resources>
+        <ResourceDictionary>
+            <!-- 弹幕模板1 -->
+            <DataTemplate x:Key="t1">
+                <Border Background="#A41A1B1B" CornerRadius="12">
+                    <TextBlock Margin="0" Padding="2,0,6,0" VerticalAlignment="Center" FontWeight="Bold" TextWrapping="Wrap" MaxWidth="{Binding Path=ActualWidth, ElementName=listDanmu}">
+                        <InlineUIContainer>
+                            <Image VerticalAlignment="Center" Stretch="Uniform" MaxHeight="{Binding Path=FontSize, ElementName=listDanmu}" Source="{Binding NewImIconWithLevel}" />
+                        </InlineUIContainer> 
+                        <InlineUIContainer>
+                            <Border>
+                                <UIElement.RenderTransform>
+                                    <TranslateTransform Y="-0" />
+                                </UIElement.RenderTransform>
+                                <TextBlock VerticalAlignment="Center" Foreground="{Binding Path=Foreground, ElementName=lbNickForeground}" Text="{Binding UserNickWithSymbol}" />
+                            </Border>
+                        </InlineUIContainer> 
+                        <InlineUIContainer>
+                            <Border>
+                                <UIElement.RenderTransform>
+                                    <TranslateTransform Y="-0" />
+                                </UIElement.RenderTransform>
+                                <TextBlock TextWrapping="Wrap" Text="{Binding PureMsg}" />
+                            </Border>
+                        </InlineUIContainer> 
+                        <InlineUIContainer>
+                            <Image MaxWidth="30" Stretch="Uniform" Source="{Binding GiftUrl}" />
+                        </InlineUIContainer>
+                    </TextBlock>
+                </Border>
+            </DataTemplate>
+            <!-- 弹幕模板2 -->
+            <DataTemplate x:Key="t2">
+                <StackPanel Name="dataItem" Background="#00FFFFFF" Opacity="1" Orientation="Horizontal">
+                    <UIElement.RenderTransform>
+                        <ScaleTransform x:Name="trans" />
+                    </UIElement.RenderTransform>
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Background="#00FFFFFF" TextWrapping="Wrap" MaxWidth="{Binding ElementName=listDanmu, Path=ActualWidth}" Foreground="{Binding ElementName=listDanmu, Path=Foreground}">
+                        <InlineUIContainer>
+                            <TextBlock VerticalAlignment="Center" Foreground="{Binding Path=Foreground, ElementName=lbNickForeground}" Text="{Binding UserNickWithSymbol}" />
+                        </InlineUIContainer> 
+                        <InlineUIContainer>
+                            <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding PureMsg}" />
+                        </InlineUIContainer>
+                    </TextBlock>
+                    <Image Width="33" Height="33" Source="{Binding GiftUrl}" />
+                </StackPanel>
+            </DataTemplate>
+            <!-- 弹幕模板3 -->
+            <DataTemplate x:Key="t3">
+                <Grid>
+                    <Rectangle Width="38" Height="38" HorizontalAlignment="Left" VerticalAlignment="Top" RadiusX="8" RadiusY="8">
+                        <Shape.Fill>
+                            <ImageBrush ImageSource="{Binding UserHeadPic}" />
+                        </Shape.Fill>
+                    </Rectangle>
+                    <Border Margin="40,0,0,0" Background="#A41A1B1B" CornerRadius="12">
+                        <TextBlock Margin="0" Padding="2,0,6,0" VerticalAlignment="Top" FontWeight="Bold" TextWrapping="Wrap" MaxWidth="{Binding Path=ActualWidth, ElementName=listDanmu}">
+                            <InlineUIContainer>
+                                <Image VerticalAlignment="Center" Stretch="Uniform" MaxHeight="{Binding Path=FontSize, ElementName=listDanmu}" Source="{Binding NewImIconWithLevel}" />
+                            </InlineUIContainer> 
+                            <InlineUIContainer>
+                                <Border>
+                                    <UIElement.RenderTransform>
+                                        <TranslateTransform Y="-0" />
+                                    </UIElement.RenderTransform>
+                                    <TextBlock VerticalAlignment="Center" Foreground="#FF33BEF9" Text="{Binding UserNickWithSymbol}" />
+                                </Border>
+                            </InlineUIContainer>
+                            <LineBreak />
+                            <InlineUIContainer>
+                                <Border>
+                                    <UIElement.RenderTransform>
+                                        <TranslateTransform Y="-0" />
+                                    </UIElement.RenderTransform>
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding PureMsg}" />
+                                </Border>
+                            </InlineUIContainer> 
+                            <InlineUIContainer>
+                                <Image MaxWidth="30" Stretch="Uniform" Source="{Binding GiftUrl}" />
+                            </InlineUIContainer>
+                        </TextBlock>
+                    </Border>
+                </Grid>
+            </DataTemplate>
+        </ResourceDictionary>
+    </FrameworkElement.Resources>
+    <!-- 主要布局 -->
+    <Grid>
+        <Grid Name="bgGrid" Background="#01000000" MouseEnter="AIa" MouseLeave="NIE" MouseRightButtonDown="bgGrid_MouseRightButtonDown" >
+            <Rectangle Fill="{Binding PageBackground}" Opacity="{Binding Config.PageBackgroundOpacity}" />
+            <Label Name="lbNickForeground" Opacity="0" Foreground="{Binding NickForeground}" />
+            <ListBox Name="listDanmu" 
+                     Margin="0,32,0,24" 
+                     Background="#00FFFFFF" 
+                     BorderBrush="#02ffffff" 
+                     IsHitTestVisible="False" 
+                     ItemTemplate="{StaticResource t1}" 
+                     ScrollViewer.HorizontalScrollBarVisibility="Hidden" 
+                     ScrollViewer.VerticalScrollBarVisibility="Hidden" 
+                     Style="{StaticResource BaseStyle}" 
+                     VirtualizingPanel.IsContainerVirtualizable="True" 
+                     VirtualizingPanel.IsVirtualizing="True" 
+                     VirtualizingPanel.VirtualizationMode="Recycling" 
+                     FontSize="{Binding Config.DanmuFontSize}" 
+                     Foreground="{Binding DanmuForeground}" />                                                       
+            <!-- 房间信息面板 -->
+            <StackPanel Name="roomInfoPanel" 
+                        Height="30" 
+                        Margin="0,0,0,0" 
+                        VerticalAlignment="Top" 
+                        Background="#99000000" 
+                        Orientation="Horizontal" 
+                        Visibility="Collapsed">
+                <Label Padding="4" 
+                       HorizontalAlignment="Left" 
+                       Background="#00FFFFFF" 
+                       BorderThickness="0" 
+                       Content="本场点赞:" 
+                       Foreground="#FFF5F5F5" />
+                <Label HorizontalAlignment="Left" 
+                       Background="#00FFFFFF" 
+                       BorderThickness="0" 
+                       Foreground="#FFF5F5F5" 
+                       ToolTip="本场点赞数" 
+                       Content="{Binding TotalLike}" />
+                <Image Margin="6" 
+                       HorizontalAlignment="Left" 
+                       Opacity="0.8" 
+                       Source="pack://application:,,,/Assets/online.png" 
+                       Stretch="Uniform" 
+                       ToolTip="在线用户" />
+                <Label Padding="4" 
+                       HorizontalAlignment="Left" 
+                       Background="#00FFFFFF" 
+                       BorderThickness="0" 
+                       Foreground="#FFF5F5F5" 
+                       ToolTip="在线用户" 
+                       Content="{Binding OnlineUser}" />
+            </StackPanel>
+            <!-- 命令栏面板 -->
+            <Grid Name="cmdBarPanel" 
+                  VerticalAlignment="Top" 
+                  Background="#9f000000" 
+                  Visibility="Visible">
+                <Button Name="btnFix" 
+	                    Width="38" 
+	                    Height="26" 
+	                    Margin="0,1,4,0" 
+	                    HorizontalAlignment="Left" 
+	                    VerticalAlignment="Top" 
+	                    Background="#8C00008B" 
+	                    Content="锁定" 
+	                    Foreground="#FFFFFFFF" 
+	                    Style="{StaticResource ButtonCustom}" 
+	                    ToolTip="锁定后具有鼠标穿透效果，注：锁定后只能在任务栏右键关闭" 
+	                    Click="btnFix_Click" />
+                <Button Width="65" 
+	                    Height="26" 
+	                    Margin="41,0,0,0" 
+	                    HorizontalAlignment="Left" 
+	                    VerticalAlignment="Center" 
+	                    Background="#8C00008B" 
+	                    Content="+ 弹幕页"
+	                    Foreground="#FFFFFFFF" 
+	                    Style="{StaticResource ButtonCustom}" 
+	                    ToolTip="增加新的弹幕页" 
+	                    Click="xZT" />
+                <Button Width="50" 
+                        Height="26" 
+                        Margin="120,1,4,0" 
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Top" 
+                        Background="#8C5353EC" 
+                        Content="预设1" 
+                        Foreground="#FFFFFFFF" 
+                        Style="{StaticResource ButtonCustom}" 
+                        Tag="t1" 
+                        ToolTip="预设1" 
+                        Click="LID" />
+                <Button Width="50" 
+                        Height="26" 
+                        Margin="172,1,4,0" 
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Top" 
+                        Background="#8C5353EC" 
+                        Content="预设2" 
+                        Foreground="#FFFFFFFF" 
+                        Style="{StaticResource ButtonCustom}" 
+                        Tag="t2" 
+                        ToolTip="预设2" 
+                        Click="LID" />
+                <Button Width="50" 
+                        Height="26" 
+                        Margin="226,1,4,0" 
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Top" 
+                        Background="#8C5353EC" 
+                        Content="预设3" 
+                        Foreground="#FFFFFFFF" 
+                        Style="{StaticResource ButtonCustom}" 
+                        Tag="t3" 
+                        ToolTip="预设3" 
+                        Click="LID" />
+                <Button Width="55" 
+	                    Height="26" 
+	                    Margin="0,1,94,0" 
+	                    HorizontalAlignment="Right" 
+	                    VerticalAlignment="Top" 
+	                    Background="#9F0A9A1A" 
+	                    Content="直播间" 
+	                    Foreground="#FFFFFFFF" 
+	                    Style="{StaticResource ButtonCustom}" 
+	                    ToolTip="如无法获取弹幕，可进直播间查看是什么情况！" 
+	                    Click="bZo" />
+                <Button Name="btnSetting" 
+	                    Width="55" Height="26" 
+	                    Margin="0,1,44,0" 
+	                    HorizontalAlignment="Right" 
+	                    VerticalAlignment="Top"
+	                     Background="#8C00008B" 
+	                    Content="设置" 
+	                    Foreground="#FFFFFFFF" 
+	                    Style="{StaticResource ButtonCustom}"
+	                     ToolTip="设置"
+	                     Click="btnSetting_Click" />
+                <Button Name="btnMiniWindowMode" 
+                        Width="36" 
+                        Height="26" 
+                        Margin="132,1,2,0" 
+                        HorizontalAlignment="Right" 
+                        VerticalAlignment="Top" 
+                        VerticalContentAlignment="Top" 
+                        Content="-" 
+                        FontSize="23" 
+                        Foreground="#FFFFFFFF" 
+                        Style="{StaticResource ButtonCustom}" 
+                        ToolTip="最小化" 
+                        Click="IIS" />
+                <Button Name="x" 
+                        Width="36" 
+                        Height="26" 
+                        Margin="0,1,2,0" 
+                        HorizontalAlignment="Right" 
+                        VerticalAlignment="Top" 
+                        Content="x" 
+                        Style="{StaticResource ButtonDanger}" 
+                        ToolTip="关闭" 
+                        Click="GIW" />
+            </Grid>
+            <Grid Name="gridFooterAd" Height="25" VerticalAlignment="Bottom" IsHitTestVisible="False" Visibility="Collapsed">
+                <TextBlock Padding="6" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#99CA5F04" FontSize="14" Foreground="#FFF9F6D3">by 抖音弹幕助手: www.iebcn.com</TextBlock>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

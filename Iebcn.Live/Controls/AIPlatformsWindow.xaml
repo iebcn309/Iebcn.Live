@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="Iebcn.Live.Controls.AIPlatformsWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Iebcn.Live.Controls" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf" Title="AI大模型平台" Width="1200" Height="1000" ShowInTaskbar="True" Closing="SqD" MouseLeftButtonDown="rqk">
+    <Grid Background="#FFEEEEEE">
+        <Grid Height="70" VerticalAlignment="Top" Background="#FFF5F5F5">
+            <Grid VerticalAlignment="Top" Background="#FFDADADA">
+                <TextBlock Margin="10,6,0,0" VerticalAlignment="Top" IsHitTestVisible="False" TextWrapping="Wrap">注：需要在页面里登录自己平台账号才能与模型对话交互，不能同时选择多个平台交互！</TextBlock>
+                <Label Margin="0,0,100,0" HorizontalAlignment="Right" Background="#00FFFFFF">请求间隔(秒):</Label>
+                <hc:NumericUpDown Height="24" Margin="0,0,40,0" HorizontalAlignment="Right" Background="#FFFFFFFF" BorderBrush="#FF000000" BorderThickness="1" Increment="1" Maximum="8880" Minimum="0" ToolTip="例如文心一言不能请求过快" Value="{Binding AIPlatformRequestIntervalSeconds}" />
+            </Grid>
+            <StackPanel Margin="10,30,10,0" Orientation="Horizontal">
+                <Button Content="文心一言" Tag="https://yiyan.baidu.com" Click="vqM" />
+                <Button Margin="6,0,0,0" Content="豆包" Tag="https://www.doubao.com/chat" Click="vqM" />
+                <Button Margin="6,0,0,0" Content="阿里通义" Tag="https://tongyi.aliyun.com/qianwen" Click="vqM" />
+                <Button Margin="6,0,0,0" Content="讯飞星火" Tag="https://xinghuo.xfyun.cn/desk" Visibility="Visible" Click="vqM" />
+                <Button Margin="6,0,0,0" Content="360智脑" Tag="https://chat.360.com" Visibility="Collapsed" Click="vqM" />
+                <Button Margin="6,0,0,0" Content="智谱清言" Tag="https://www.chatglm.cn/main/detail" Click="vqM" />
+                <Grid Name="testGrid" Visibility="Collapsed">
+                    <TextBox Name="txt" Width="444" Height="88" VerticalContentAlignment="Top" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" />
+                    <Button Margin="6,0,0,0" Content="TEST" Tag="https://www.chatglm.cn/main/detail" Click="Tqi" />
+                </Grid>
+            </StackPanel>
+        </Grid>
+        <wv2:WebView2 Name="webView" Height="NaN" Margin="0,75,0,0" />
+    </Grid>
+</Window>

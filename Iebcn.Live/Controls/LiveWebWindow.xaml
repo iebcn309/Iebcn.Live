@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="Iebcn.Live.Controls.LiveWebWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Iebcn.Live.Controls" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf" Title="Webview2Window" Width="1200" Height="1000" AllowsTransparency="True" Left="60" ShowInTaskbar="False" Top="60" Topmost="True" WindowStyle="None" Closing="Window_Closing" MouseLeftButtonDown="Window_MouseLeftButtonDown">
+    <Grid Background="#FFEEEEEE">
+        <Grid Height="66" VerticalAlignment="Top" Background="#FFF5F5F5">
+            <TextBlock Margin="10,11,360,0" VerticalAlignment="Top" FontSize="14" IsHitTestVisible="False" TextWrapping="Wrap">仔细阅读：部分直播间需要【登录】才能获取弹幕，<Span FontWeight="Bold" Foreground="#FFFF0000">在本窗口页面里扫码登录下</Span> ，然后可关闭本窗口。如果你的直播间不稳定（经常断连），可尝试<Span FontWeight="Bold" Foreground="#FF088608">先连接别人人气高的直播间</Span> 然后再连接自己直播间(这叫借势-很重要^_^！)。</TextBlock>
+            <StackPanel Margin="10,25,110,0" HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal">
+                <Label BorderBrush="#FF000000" BorderThickness="0" FontSize="14" Foreground="#FF006400" ToolTip="如果你的直播间弹幕经常断开可设置多少分钟重新加载直播间，以达到重新连接接的目的">刷新直播间(分钟):</Label>
+                <hc:NumericUpDown Width="89" Increment="1" Maximum="9960" Minimum="2" ToolTip="如果你的直播间弹幕经常断开可设置多少分钟重新加载直播间，以达到重新连接接的目的" Value="{Binding ReloadMinutes}" />
+            </StackPanel>
+            <Button Name="btnMinWindow" Width="36" Height="26" Margin="0,1,40,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#A86496C5" Content="-" FontSize="16" Foreground="#FFFFFFFF" Style="{StaticResource ButtonCustom}" ToolTip="最小化" Click="btnMinWindow_Click" />
+            <Button Name="x" Width="36" Height="26" Margin="0,1,2,0" HorizontalAlignment="Right" VerticalAlignment="Top" Content="x" Style="{StaticResource ButtonDanger}" ToolTip="关闭" Click="x_Click" />
+        </Grid>
+        <wv2:WebView2 Name="webView" Height="NaN" Margin="0,68,0,0" />
+    </Grid>
+</Window>

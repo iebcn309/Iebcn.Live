@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UserControl x:Class="Iebcn.Live.Controls.MsgTipCtl" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:Iebcn.Live.Controls" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
+    <FrameworkElement.Resources>
+        <ResourceDictionary>
+            <Storyboard x:Key="sb1">
+                <DoubleAnimation Storyboard.TargetName="gridMain" Storyboard.TargetProperty="Opacity" From="0.1" To="1" Duration="0:0:0.6" />
+            </Storyboard>
+        </ResourceDictionary>
+    </FrameworkElement.Resources>
+    <Grid Name="gridMain" Margin="0" Background="#FFFF0000" RenderTransformOrigin="0.5,0.5">
+        <UIElement.RenderTransform>
+            <TransformGroup>
+                <ScaleTransform />
+                <SkewTransform />
+                <TranslateTransform x:Name="t1" Y="0" />
+            </TransformGroup>
+        </UIElement.RenderTransform>
+        <TextBlock Name="txtMsg" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#00FFFFFF" Foreground="#FFFFFFFF" Text="通知哦哦ii 哦哦iiii哦i哦i 哦i 哦哦iiii哦i哦i 哦i 哦哦iiii哦i哦i 哦i 哦哦iiii" TextWrapping="Wrap" />
+    </Grid>
+</UserControl>

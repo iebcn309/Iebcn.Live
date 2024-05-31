@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="Iebcn.Live.Controls.FakeDanmuWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:gif="http://wpfanimatedgif.codeplex.com" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Iebcn.Live.Controls" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" Title="虚拟弹幕" Width="822" Height="500" BorderBrush="#FFFDF9FD" BorderThickness="1" FontFamily="Arial" FontSize="12" Icon="/Assets/app.ico" ShowInTaskbar="False" Style="{StaticResource NoResize_window}" WindowStartupLocation="CenterScreen" MouseLeftButtonDown="TtD">
+    <Control.Background>
+        <ImageBrush ImageSource="/Assets/bg.jpg" />
+    </Control.Background>
+    <Border Background="#E0EDECEC" CornerRadius="6">
+        <Grid>
+            <Grid VerticalAlignment="Top" Background="#FF1572BB">
+                <Label Margin="0,2,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Left" Background="#EF1C58C8" BorderThickness="0" FontSize="16" FontWeight="Bold" Foreground="#FFFFFFFF">虚拟弹幕</Label>
+                <Button Name="x" Width="36" Height="26" Margin="0" HorizontalAlignment="Right" VerticalAlignment="Top" Content="x" Style="{StaticResource ButtonDanger}" ToolTip="关闭" Click="QtM" />
+            </Grid>
+            <Grid Margin="22,47,22,22" Background="#A2FFFFFF">
+                <TextBlock Grid.Row="0" Margin="10,8,10,10" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#38FFFFFF" Foreground="#ff666666" LineHeight="16" TextWrapping="Wrap">虚拟弹幕就是模拟弹幕，可以用于直播带货，活跃直播间气氛等场景，可以自定义自己的话术，一行一条。 注：不发到直播间服务器，只在本程序【弹幕页】或【全屏弹幕页】【触发器】显示给直播间观众，不受抖音官方约束。如需要语音播报，需要在【语音播报】里开启语音播报。</TextBlock>
+                <Grid Margin="0,54,0,0">
+                    <CheckBox Name="ckFakeDanmu" Margin="23,2,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" BorderBrush="#FF827C81" BorderThickness="1" Content="开启自动发送虚拟弹幕" FontSize="14" FontWeight="Bold" Foreground="{StaticResource Vip1ColorBrush}" IsChecked="{Binding ChatEnabled}" Click="ptc" />
+                    <Grid Margin="10,24,0,4" Background="#22ffffff">
+                        <StackPanel Height="30" Margin="44,6,0,0" VerticalAlignment="Top" Orientation="Horizontal">
+                            <Label Margin="0,0,0,0" HorizontalAlignment="Left" Background="#38FFFFFF" BorderThickness="0" Content="最发送间隔(秒)：" />
+                            <hc:NumericUpDown Maximum="860" Minimum="1" Value="{Binding MinIntrevalSecondsChat}" />
+                            <Label Margin="0,0,0,0" HorizontalAlignment="Left" Background="#38FFFFFF" BorderThickness="0" Content="至" />
+                            <hc:NumericUpDown Maximum="860" Minimum="1" Value="{Binding MaxIntrevalSecondsChat}" />
+                            <CheckBox Margin="8,0,0,0" HorizontalAlignment="Left" BorderBrush="#FF827C81" BorderThickness="1" Content="语音播报时忽略用户昵称" Foreground="#FF0F1123" ToolTip="勾选忽略昵称相当于播报主播自定义话术" IsChecked="{Binding VoiceIgnoreUserNickEnabled}" />
+                        </StackPanel>
+                        <Label Margin="45,44,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#38FFFFFF" BorderThickness="0" Content="内容一条一行：（例如:这个产品是真的好用！）" />
+                        <TextBox Width="684" Height="110" Margin="0,86,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" VerticalContentAlignment="Top" AcceptsReturn="True" Background="#ffFFFFFF" BorderBrush="#FF000000" BorderThickness="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" Text="{Binding Content}" />
+                        <Button Name="btnSaveContent" Width="112" Margin="0,41,77,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#FF3A3ABD" Content="保存刷新" Foreground="#FFFFFFFF" ToolTip="更新内容后需要点一下【保存刷新】应用设置的内容" Click="Vti" />
+                        <StackPanel Margin="23,208,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox BorderBrush="#FF808080" BorderThickness="1" FontSize="14" FontWeight="Bold" Foreground="{StaticResource Vip1ColorBrush}" IsChecked="{Binding GiftEnabled}" Click="ptc">开启虚拟送礼</CheckBox>
+                                <Label Margin="0,0,0,0" HorizontalAlignment="Left" Background="#38FFFFFF" BorderThickness="0" Content="发送间隔:" />
+                                <hc:NumericUpDown Maximum="860" Minimum="1" Value="{Binding MinIntrevalSecondsGift}" />
+                                <Label Margin="0,0,0,0" HorizontalAlignment="Left" Background="#38FFFFFF" BorderThickness="0" Content="至" />
+                                <hc:NumericUpDown Maximum="860" Minimum="1" Value="{Binding MaxIntrevalSecondsGift}" />
+                                <CheckBox Margin="12,0,0,0" BorderBrush="#FF808080" BorderThickness="1" FontSize="14" FontWeight="Bold" Foreground="{StaticResource Vip1ColorBrush}" IsChecked="{Binding EnterRoomEnabled}" Click="ptc">开启虚拟进场</CheckBox>
+                                <Label Margin="0,0,0,0" HorizontalAlignment="Left" Background="#38FFFFFF" BorderThickness="0" Content="发送间隔:" />
+                                <hc:NumericUpDown Maximum="860" Minimum="1" Value="{Binding MinIntrevalSecondsEnterRoom}" />
+                                <Label Margin="0,0,0,0" HorizontalAlignment="Left" Background="#38FFFFFF" BorderThickness="0" Content="至" />
+                                <hc:NumericUpDown Maximum="860" Minimum="1" Value="{Binding MaxIntrevalSecondsEnterRoom}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox BorderBrush="#FF808080" BorderThickness="1" FontSize="14" FontWeight="Bold" Foreground="{StaticResource Vip1ColorBrush}" IsChecked="{Binding LikeEnabled}" Click="ptc">开启虚拟点赞</CheckBox>
+                                <Label Margin="0,0,0,0" HorizontalAlignment="Left" Background="#38FFFFFF" BorderThickness="0" Content="发送间隔:" />
+                                <hc:NumericUpDown Maximum="860" Minimum="1" Value="{Binding MinIntrevalSecondsLike}" />
+                                <Label Margin="0,0,0,0" HorizontalAlignment="Left" Background="#38FFFFFF" BorderThickness="0" Content="至" />
+                                <hc:NumericUpDown Maximum="860" Minimum="1" Value="{Binding MaxIntrevalSecondsLike}" />
+                                <CheckBox Margin="12,0,0,0" BorderBrush="#FF808080" BorderThickness="1" FontSize="14" FontWeight="Bold" Foreground="{StaticResource Vip1ColorBrush}" IsChecked="{Binding FollowEnabled}" Click="ptc">开启虚拟关注</CheckBox>
+                                <Label Margin="0,0,0,0" HorizontalAlignment="Left" Background="#38FFFFFF" BorderThickness="0" Content="发送间隔:" />
+                                <hc:NumericUpDown Maximum="860" Minimum="1" Value="{Binding MinIntrevalSecondsFollow}" />
+                                <Label Margin="0,0,0,0" HorizontalAlignment="Left" Background="#38FFFFFF" BorderThickness="0" Content="至" />
+                                <hc:NumericUpDown Maximum="860" Minimum="1" Value="{Binding MaxIntrevalSecondsFollow}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Margin="0,0,0,0" Padding="0" HorizontalAlignment="Left" Background="#38FFFFFF" BorderThickness="0" Content="单次虚拟送礼数量最大值:1到" />
+                                <hc:NumericUpDown Maximum="100" Minimum="1" Value="{Binding GiftCountMax}" />
+                                <Label Margin="0,0,0,0" Padding="0" HorizontalAlignment="Left" Background="#38FFFFFF" BorderThickness="0" Content="个" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

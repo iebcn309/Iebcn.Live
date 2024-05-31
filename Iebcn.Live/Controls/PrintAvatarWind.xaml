@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="Iebcn.Live.Controls.PrintAvatarWind" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Iebcn.Live.Controls" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Title="头像打印" Width="560" AllowsTransparency="True" Background="#00FFFFFF" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" WindowStyle="None" Height="{Binding WindowHeight, Mode=TwoWay}" MinHeight="{Binding WindowHeight, Mode=TwoWay}" MouseEnter="nRC" MouseLeave="cR3" MouseLeftButtonDown="KRw">
+    <FrameworkElement.Resources>
+        <ResourceDictionary />
+    </FrameworkElement.Resources>
+    <Grid Name="gridMain" Background="#01000000">
+        <Rectangle Name="bgRect" Fill="{StaticResource GreenbackColorBrush}" Visibility="{Binding GreenBackground, Converter={StaticResource Boolean2VisibilityConverter}}" />
+        <Rectangle Width="344" Margin="0,0,0,198" HorizontalAlignment="Center" Fill="#FFFFFFFF" Visibility="{Binding Path=HasBorder, Converter={StaticResource Boolean2VisibilityConverter}}" />
+        <ScrollViewer Name="scrollview" Margin="0,0,0,198" HorizontalAlignment="Center" VerticalScrollBarVisibility="Auto">
+            <StackPanel Name="myStackPanel" Background="#00FFFFFF" IsHitTestVisible="False" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" VirtualizingPanel.IsContainerVirtualizable="True" VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling">
+                <Image Width="333" Height="333" RenderTransformOrigin="0.5,0.5" Source="/Assets/sampleHead1.jpg" Stretch="UniformToFill" />
+                <Image Width="333" Height="333" Source="/Assets/sampleHead1.jpg" Stretch="UniformToFill" />
+            </StackPanel>
+        </ScrollViewer>
+        <Image Width="465" Height="185" Margin="0,0,0,11" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5" Source="/Assets/printer1.png" Stretch="UniformToFill" ToolTip="这是打印机图片，如觉得不合适，可在OBS或直播伴侣添加自己的打印机图片覆盖这里" />
+        <Grid Name="gridBar" Height="102" VerticalAlignment="Top" Background="#EE555555">
+            <Grid VerticalAlignment="Top" Background="#CC424242">
+                <Label HorizontalAlignment="Left" Background="#00FFFFFF" BorderThickness="0" FontSize="14" FontWeight="Bold" Foreground="#FFF5F5F5" ToolTip="互动直播玩法，你懂的！">头像打印 （互动直播玩法）</Label>
+                <Button Width="48" Height="26" Margin="0,1,40,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#8C589A0D" BorderThickness="0" Content="锁定" Foreground="#FFFFFFFF" ToolTip="锁定后不能再次更改，锁定后具有鼠标穿透效果。可在任务栏选择本窗口关闭。" Click="DRW" />
+                <Button Name="x" Width="36" Height="26" Margin="0,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" Content="x" Style="{StaticResource ButtonDanger}" ToolTip="关闭" Click="qRN" />
+            </Grid>
+            <StackPanel Margin="6,36,0,0" VerticalAlignment="Top" Orientation="Horizontal">
+                <CheckBox Name="ckEnabled" Content="开启" FontWeight="Bold" Foreground="{StaticResource Vip2ColorBrush}" ToolTip="开启才生效" IsChecked="{Binding Enabled}" Click="LRO" />
+                <Label Background="#00FFFFFF" BorderThickness="0" Content="窗口高:" Foreground="#FFDDDDDD" />
+                <Slider Width="88" VerticalAlignment="Center" Background="#FF808080" Foreground="#FFF5F5F5" Maximum="2000" Minimum="200" SmallChange="1" ToolTip="调节需要的高度后添可将本窗口加到OBS或直播伴侣" Value="{Binding WindowHeight}" />
+                <CheckBox Margin="12,0,0,0" BorderBrush="#FF827C81" BorderThickness="1" Content="绿幕背景" Foreground="#FFF5F5F5" ToolTip="绿幕背景好抠图" IsChecked="{Binding GreenBackground}" />
+                <CheckBox Margin="5,0,0,0" Background="#dddddddd" BorderThickness="0" Content="边框" Foreground="#FFDDDDDD" ToolTip="头像的边框" IsChecked="{Binding HasBorder}" />
+                <CheckBox Margin="12,0,0,0" Background="#dddddddd" BorderThickness="0" Content="声音" Foreground="#FFDDDDDD" ToolTip="模拟打印机的声音" IsChecked="{Binding SoundEnabled}" />
+                <CheckBox Margin="12,0,0,0" Background="#dddddddd" BorderThickness="0" Content="是否显示文本" Foreground="#FFDDDDDD" ToolTip="头像上方是否显示文本例如：感谢XXX赠送的3个小心心" IsChecked="{Binding ShowTextEnabled}" />
+            </StackPanel>
+            <StackPanel Width="NaN" Margin="53,66,12,0" VerticalAlignment="Top" Orientation="Horizontal">
+                <Label Margin="2,0,0,0" Background="#00FFFFFF" BorderThickness="0" Content="打印类型:" Foreground="#FFDDDDDD" />
+                <CheckBox Background="#dddddddd" BorderThickness="0" Content="送礼" Foreground="#FFDDDDDD" ToolTip="打印送礼的用户头像" IsChecked="{Binding OptTypes.GiftEnabled}" />
+                <CheckBox Margin="4,0,0,0" Background="#dddddddd" BorderThickness="0" Content="进场" Foreground="#FFDDDDDD" ToolTip="打印进入直播间的用户头像" IsChecked="{Binding OptTypes.EnterRoomEnabled}" />
+                <CheckBox Margin="4,0,0,0" Background="#dddddddd" BorderThickness="0" Content="点赞" Foreground="#FFDDDDDD" ToolTip="打印点赞的用户头像" IsChecked="{Binding OptTypes.LikeEnabled}" />
+                <CheckBox Margin="4,0,0,0" Background="#dddddddd" BorderThickness="0" Content="关注" Foreground="#FFDDDDDD" ToolTip="打印关注直播的用户头像" IsChecked="{Binding OptTypes.FollowEnabled}" />
+                <Button Margin="14,0,0,0" Background="#CE444546" BorderThickness="0" Content="测试打印" Foreground="#FFDEEAF3" ToolTip="测试" Click="pRa" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

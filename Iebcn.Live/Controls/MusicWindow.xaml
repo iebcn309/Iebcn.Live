@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="Iebcn.Live.Controls.MusicWindow" 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:hc="https://handyorg.github.io/handycontrol" 
+        xmlns:local="clr-namespace:Iebcn.Live.Controls" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase" 
+        xmlns:sys="clr-namespace:System;assembly=mscorlib" 
+        Title="点歌窗口" 
+        Width="487" 
+        Height="450" 
+        AllowsTransparency="True" 
+        FontFamily="Microsoft YaHei" 
+        FontSize="14" 
+        Icon="/Assets/app.ico" 
+        ShowInTaskbar="False" 
+        WindowStartupLocation="CenterScreen" 
+        WindowStyle="None" 
+        Background="{x:Null}"  
+        PreviewMouseLeftButtonDown="Window_PreviewMouseLeftButtonDown"
+        PreviewMouseMove="Window_PreviewMouseMove"
+        PreviewMouseLeftButtonUp="Window_PreviewMouseLeftButtonUp">
+    <FrameworkElement.Resources>
+        <ResourceDictionary>
+            <CollectionViewSource x:Key="MusicResource" Source="{Binding Common.UserMusicList}">
+                <CollectionViewSource.SortDescriptions>
+                    <scm:SortDescription Direction="Descending" PropertyName="Vote" />
+                    <scm:SortDescription Direction="Ascending" PropertyName="AddTime" />
+                </CollectionViewSource.SortDescriptions>
+            </CollectionViewSource>
+        </ResourceDictionary>
+    </FrameworkElement.Resources>
+    <Grid Background="#01000000" ToolTip="支持弹幕切歌，例如：切歌,下一首,下首, 下首歌,下一曲,下一首歌,下首歌曲" MouseEnter="TbK" MouseLeave="kbQ">
+        <FrameworkElement.ContextMenu>
+            <ContextMenu>
+                <MenuItem Background="#E0000000" Foreground="#FFFFFFFF" Header="清空列表" Click="ClearMenuItem_Click" />
+                <MenuItem Background="#E0000000" Foreground="#FFFFFFFF" Header="播放下一首" ToolTip="支持弹幕切歌，例如：切歌,下一首,下首, 下首歌,下一曲,下一首歌,下首歌曲" Click="PlayNextMusicMenuItem_Click" />
+            </ContextMenu>
+        </FrameworkElement.ContextMenu>
+        <Grid Margin="0,30,0,0" RenderTransformOrigin="0.5,0.5">
+            <Rectangle Fill="#FF0B1021" Opacity="{Binding Path=Value, ElementName=slierOpacity}" />
+            <StackPanel>
+                <Border BorderBrush="#A8F5F5F5" BorderThickness="0,2">
+                    <TextBlock Padding="5" FontSize="14" Foreground="#FFF7CEF9" TextWrapping="Wrap" ToolTip="支持弹幕切歌，例如：切歌（或下一首）,置顶（弹幕输入：置顶），右键菜单可清空列表和切歌">弹幕点歌格式：点歌 歌曲名， 例如：点歌 爱你一万年</TextBlock>
+                </Border>
+                <Grid Height="138">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="133" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <MediaElement Name="md" LoadedBehavior="Manual" Volume="{Binding Volume}" />
+                    <local:MusicCover x:Name="musicCover" Width="126" Height="126" Margin="4" HorizontalAlignment="Center" VerticalAlignment="Top" />
+                    <Label Name="lbMusicTitle" Grid.Column="1" Height="32" Margin="0,6,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#00FFFFFF" BorderThickness="0,0,0,1" Content="欢迎点歌欢点歌欢迎" FontSize="14" Foreground="#FFDDEEF7" />
+                    <local:LrcControl x:Name="lrcControl" Grid.Column="1" Width="338" Height="56" Margin="0,33,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Background="#00FFFFFF" BorderThickness="0" FontSize="16" Foreground="#FFFCFD60" />
+                    <Label Name="lbMediaTime" Grid.Column="1" Margin="202,0,0,7" Padding="4" HorizontalAlignment="Left" VerticalAlignment="Bottom" Background="#26666666" BorderThickness="0" Content="0:0:0" FontSize="11" Foreground="#66ffffff" RenderTransformOrigin="0.5,0.5" />
+                    <Button Name="btnMinbox" Grid.Column="1" Width="38" Height="26" Margin="0,106,8,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#8C555555" BorderThickness="0" Content="〓" Foreground="#A2ffffff" ToolTip="收起点歌列表" Click="btnMinbox_Click" />
+                    <Button Name="btnVolume" Grid.Column="1" Width="20" Height="18" Margin="0,110,58,0" HorizontalAlignment="Right" VerticalAlignment="Top" hc:IconElement.Geometry="{StaticResource UpGeometry}" Content="h" Foreground="#FFFFFFFF" Opacity="0.8" Style="{StaticResource ButtonIcon}" ToolTip="音量" Click="btnVolume_Click">
+                        <Control.Background>
+                            <ImageBrush ImageSource="/Assets/VolumeMusicBox.png" />
+                        </Control.Background>
+                    </Button>
+                    <Slider Name="slider" Grid.Column="1" Width="100" Height="25" Margin="6,0,0,4" HorizontalAlignment="Left" VerticalAlignment="Bottom" Background="#FF808080" Maximum="111" Opacity="0.5" Value="55" PreviewMouseLeftButtonDown="slider_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="slider_PreviewMouseLeftButtonUp" />
+                    <Button Name="btnPlay" Grid.Column="1" Width="31" Height="26" Margin="100,106,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#f2ffffff" Opacity="0.5" Style="{StaticResource ButtonIcon}" ToolTip="播放(快捷键ctrl+p)" Click="btnPlay_Click">
+                        <Control.Background>
+                            <ImageBrush ImageSource="/Assets/btnPlay.png" />
+                        </Control.Background>
+                    </Button>
+                    <Button Name="btnStop" Grid.Column="1" Width="31" Height="26" Margin="133,106,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#f2ffffff" Opacity="0.5" Style="{StaticResource ButtonIcon}" ToolTip="停止播放(快捷键ctrl+s)" Click="btnStop_Click">
+                        <Control.Background>
+                            <ImageBrush ImageSource="/Assets/btnStop.png" />
+                        </Control.Background>
+                    </Button>
+                    <Button Name="btnPlayNext" Grid.Column="1" Width="31" Height="26" Margin="167,106,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#f2ffffff" Opacity="0.5" Style="{StaticResource ButtonIcon}" ToolTip="下一首(快捷键ctrl+n)" Click="btnPlayNext_Click">
+                        <Control.Background>
+                            <ImageBrush ImageSource="/Assets/btnPlayNext.png" />
+                        </Control.Background>
+                    </Button>
+                    <Slider Name="sliderVolume" Grid.Column="1" Height="100" Margin="281,1,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Maximum="1" Minimum="0" Opacity="0.5" Orientation="Vertical" Visibility="Collapsed" Value="{Binding Volume}" />
+                    <hc:LoadingCircle Name="loadingCircle" Grid.Column="0" Margin="0" VerticalAlignment="Center" Visibility="Collapsed" />
+                    <Grid ColumnSpan="5">
+                        <local:MessageTip x:Name="messageTip" VerticalAlignment="Stretch" IsHitTestVisible="False" Visibility="Collapsed" />
+                    </Grid>
+                </Grid>
+            </StackPanel>
+            <Grid Margin="0,174,0,0">
+                <ListBox Name="listSong" Margin="0" Background="#00FFFFFF" BorderBrush="#02ffffff" FontSize="14" Foreground="#FFFFFFFF" IsHitTestVisible="False" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" Style="{StaticResource BaseStyle}" VirtualizingPanel.IsContainerVirtualizable="True" VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling" ItemsSource="{Binding Source={StaticResource MusicResource}}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Padding="5" VerticalAlignment="Center" Background="#00FFFFFF" Foreground="#FFFFFFFF" TextWrapping="Wrap" Text="{Binding Title}">
+                  <UIElement.Effect>
+                    <DropShadowEffect ShadowDepth="1" />
+                  </UIElement.Effect>
+                                </TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ListBox>
+            </Grid>
+        </Grid>
+        <Grid Name="cmdBarPanel" VerticalAlignment="Top">
+            <StackPanel Width="487" HorizontalAlignment="Center" Background="#9f000000" Orientation="Horizontal">
+                <Button Name="btnLock" Width="38" Height="26" Margin="0,1,4,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#8C0A04CC" Content="锁定" Foreground="#FFFFFFFF" Style="{StaticResource ButtonCustom}" ToolTip="锁定可以鼠标穿透，不能再更改。可在任务栏选择【点歌窗口】关闭" Click="btnLock_Click" />
+                <Label Margin="1,0,0,0" Background="#00FFFFFF" BorderThickness="0" Foreground="#FFFFFFFF">背景透明:</Label>
+                <Slider Name="slierOpacity" Width="86" Margin="9,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Maximum="1" Minimum="0" Opacity="0.5" Value="{Binding BgOpacity}" />
+                <Button Name="btnSetting" Width="55" Height="26" Margin="0,1,4,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#8C00008B" Content="设置" Foreground="#FFFFFFFF" Style="{StaticResource ButtonCustom}" ToolTip="设置" Click="btnSetting_Click" />
+            </StackPanel>
+            <Button Name="x" Width="36" Height="26" Margin="1,1,2,0" HorizontalAlignment="Right" VerticalAlignment="Top" Content="x" Style="{StaticResource ButtonDanger}" ToolTip="关闭" Click="tbd" />
+        </Grid>
+        <Grid Name="settingGrid" Margin="0,0,0,0" Background="#FF24253A" Visibility="Collapsed">
+            <Label Grid.Column="1" Height="30" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="#FF525367" BorderThickness="0,1,0,0" Content="设置:" FontSize="11" Foreground="#66ffffff" />
+            <Button Width="36" Height="26" Margin="0,2,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" Content="x" Style="{StaticResource ButtonDanger}" ToolTip="关闭" Click="Button_Click" />
+            <CheckBox Margin="12,38,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#f6666666" BorderBrush="#FF827C81" BorderThickness="0" Content="开启弹幕点歌" FontSize="14" FontWeight="Bold" Foreground="{StaticResource Vip1ColorBrush}" IsChecked="{Binding Enabled}" Click="ubf" />
+            <CheckBox Height="36" Margin="27,72,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#f6666666" BorderThickness="0" Content="送礼/消费多的点歌排队靠前" Foreground="#66ffffff" IsChecked="{Binding RankConsumeEnabled}" />
+            <Label Height="32" Margin="27,112,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#26666666" BorderThickness="0" Content="队列歌曲最大数量:" FontSize="11" Foreground="#66ffffff" />
+            <hc:NumericUpDown Margin="138,112,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Maximum="100" Minimum="1" Opacity="0.5" Value="{Binding MusicMaxCount}" />
+            <CheckBox Margin="227,118,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#f6666666" BorderThickness="0" Content="语音播报点歌人和点的歌曲名" Foreground="#66ffffff" IsChecked="{Binding SpeakUserPickSong}" />
+            <Label Height="32" Margin="217,73,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#26666666" BorderThickness="0" Content="歌曲试听:" FontSize="11" Foreground="#66ffffff" />
+            <TextBox Name="txt" Width="103" Margin="284,73,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FF929292" Text="冰雨" TextWrapping="Wrap" />
+            <Button Name="btnTest" Width="53" Height="33" Margin="391,73,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FF6E6E6F" BorderBrush="#FF9C9A99" Content="试听" Click="btnTest_Click" />
+            <Label Margin="12,148,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#00FFFFFF" BorderThickness="0" Foreground="#FF808080">点歌限制粉丝团等级&gt;=</Label>
+            <hc:NumericUpDown Margin="178,148,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Maximum="100" Minimum="0" Value="{Binding FansMiniLevel}" />
+            <CheckBox Height="36" Margin="248,148,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#f6666666" BorderThickness="0" Content="有消费的用户才能置顶歌曲(如送礼等)" Foreground="#66ffffff" ToolTip="发弹幕'置顶'可将自己最后点播的歌曲置顶" IsChecked="{Binding OnlyConsumerCanSetTopmostEnabled}" />
+            <Grid Margin="16,191,16,8" Background="#33999999">
+                <RadioButton Name="rdFreeUseNetwork" Margin="15,6,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" BorderThickness="0" Content="网络空闲歌单(一行一首自己输入):" FontSize="11" Foreground="#66ffffff" GroupName="rdFree" IsChecked="True" />
+                <RadioButton Name="rdFreeUseLocal" Margin="222,7,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" BorderThickness="0" Content="本地空闲歌单:" FontSize="11" Foreground="#66ffffff" GroupName="rdFree" ToolTip="本地空闲歌单在程序目录'Music'文件夹里，&#xD;可将本地歌曲文件添加进来(建议歌曲文件命名格式:歌曲名-歌手.mp3)" />
+                <Button Width="53" Height="28" Margin="329,2,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FF6E6E6F" BorderBrush="#FF9C9A99" Content="刷新" ToolTip="本地空闲歌单在程序目录'Music'文件夹里，&#xD;可将本地歌曲文件添加进来(建议歌曲文件命名格式:歌曲名-歌手)" Click="lbC" />
+                <Button Width="41" Height="29" Margin="388,1,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FF6E6E6F" BorderBrush="#FF9C9A99" Content="o" ToolTip="打开本地空闲歌单程序目录'Music'文件夹" Click="Ib3" />
+                <TextBox Width="203" Height="206" Margin="10,34,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Top" AcceptsReturn="True" Background="#26908D8D" BorderThickness="1" FontSize="11" Foreground="#66ffffff" ToolTip="网络空闲歌单如:&#xD;往后余生——马良&#xD;出山——王胜男&#xD;多年以后——大欢&#xD;再也——李智&#xD;生僻字——陈柯宇" Text="{Binding FreeSongList}" />
+                <TextBox Name="txtLocalMusic" Width="215" Height="206" Margin="221,34,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Top" AcceptsReturn="True" Background="#26908D8D" BorderThickness="1" FontSize="11" Foreground="#66ffffff" IsReadOnly="True" Text="" ToolTip="本地空闲歌单在程序目录'Music'文件夹里，&#xD;可将本地歌曲文件添加进来(建议歌曲文件命名:歌曲名-歌手.mp3)如:&#xD;往后余生-马良.mp3&#xD;出山-王胜男.mp3&#xD;多年以后-大欢.mp3&#xD;再也-李智.mp3&#xD;生僻字-陈柯宇.mp3" />
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

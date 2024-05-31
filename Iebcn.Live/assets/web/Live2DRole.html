@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html class="android mobile landscape" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="referrer" content="always" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="renderer" content="webkit" />
+  <meta name="keywords" content="抖灵，看板娘" />
+  <meta name="description" content="抖灵|看板娘" />
+  <title>抖灵-人偶</title>
+  <style type="text/css">
+  html,body{
+  margin:0px;
+  width:100%;
+  height:100%; 
+  overflow:hiden;
+  background:rgba(0,0,0,0);
+  }
+  #msgcontainer{
+        text-align:center;
+        border:4px solid #fff;<!-- 边框样式-->
+        padding:10px 10px; 
+        background:#000000;
+        border-radius:25px; <!--调节圆周程度-->
+        -moz-border-radius:25px; /* 老的 Firefox */
+        filter:alpha(Opacity=80);-moz-opacity:0.5;opacity: 0.5;
+  }
+  #setting{
+    height:280px;
+        text-align:center;
+        border:4px solid #fff;<!-- 边框样式-->
+        padding:10px 10px; 
+        background:#000000;
+        border-radius:25px; <!--调节圆周程度-->
+        -moz-border-radius:25px; /* 老的 Firefox */
+        filter:alpha(Opacity=80);-moz-opacity:0.5;opacity: 0.5;
+  }
+
+
+  </style>
+  <script src="https://l2dwidget.js.org/lib/L2Dwidget.min.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+  <div>
+    <div id="msgcontainer" style="position:fixed;left:40px;bottom:160px;z-index:999990;text-align:left;">
+      <div id="incomming" style="text-align:left;color:#fff; padding:12px;">
+        ..准备就绪
+      </div>
+    </div>
+    <div id="setting" style="display:block; position:fixed;left:260px;bottom:160px;z-index:999991;text-align:left;">
+      <div id="setPanel" style="text-align:left;color:#fff; padding-left:12px;">
+        <p>人偶设置：</p>宽: <input id="roleW" type="text" value="300" style="width:80px;height:22px;" /> 高: <input id="roleH" type="text" value="550" style="width:80px;height:22px;" /><br />
+        距底边距: <input id="roleBottom" type="text" value="-20" style="width:80px;height:22px;" />
+        <hr />
+        <p>话术框设置：</p>距离左边: <input id="chatboxLeft" type="text" value="40" style="width:40px;height:22px;" /> 距离底部: <input id="chatboxBottom" type="text" value="160" style="width:40px;height:22px;" />
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+  var w=333;
+  var h=555;
+  var bObj=document.getElementById("setting");
+  var sett=document.getElementById("setting");
+  var chat=document.getElementById("msgcontainer");
+  //var bObj=document.getElementById("bu");
+  bObj.addEventListener("mousemove",mouseMoveHandler);
+  bObj.addEventListener("mouseleave",mouseLeaveHandler);
+
+  var roleW= document.getElementById("roleW");
+  var roleH=document.getElementById("roleH");
+  var roleBottom=document.getElementById("roleBottom");
+  var chatboxLeft=document.getElementById("chatboxLeft");
+  var chatboxBottom=document.getElementById("chatboxBottom");
+
+  roleW.onchange= applySet;
+  roleH.onchange= applySet;
+  roleBottom.onchange= applySet;
+
+  chatboxLeft.onchange= applySet;
+  chatboxBottom.onchange= applySet;
+
+
+  function mouseMoveHandler(e) {sett.style.opacity=1;};
+  function mouseLeaveHandler(e) {sett.style.opacity=0.001;};
+                
+  function applySet(){
+
+         w= roleW.value;
+         h=roleH.value;
+         var roleTop=roleBottom.value;
+         var tLeft=chatboxLeft.value;
+         var tTop=chatboxBottom.value;
+         
+        chat.style.left = "" + tLeft + "px";
+        chat.style.bottom = "" + tTop + "px";;
+        L2Dwidget.init({ "model": { jsonPath:
+                　　jsonPath,
+                　　"scale": 1 }, "display": { "position": "left", "width": w, "height": h,
+                　　"hOffset": 0, "vOffset": roleTop }, "mobile": { "show": true, "scale": 0.9 },
+                　　"react": { "opacityDefault": 1, "opacityOnHover": 0.2 } });
+  };
+
+  
+  //定义一个函数，接受一个参数名作为参数
+function getQueryVariable(variable) {
+  //获取当前URL中的查询字符串部分（即问号后面的部分）
+  var query = window.location.search.substring(1);
+  //把查询字符串按照&符号分割成数组
+  var vars = query.split("&");
+  //遍历数组中的每个元素
+  for (var i = 0; i < vars.length; i++) {
+    //把当前元素按照=符号分割成键和值
+    var pair = vars[i].split("=");
+    //如果当前元素的键等于参数名，则返回对应的值
+    if (pair[0] == variable) {
+      return pair[1];
+    }
+  }
+  //如果没有找到匹配的参数名，则返回false
+  return false;
+}
+
+
+
+
+  var modId= getQueryVariable("id"); 
+  var mods=["https://unpkg.com/live2d-widget-model-izumi@1.0.5/assets/izumi.model.json",
+  "https://unpkg.com/live2d-widget-model-hijiki@1.0.5/assets/hijiki.model.json",
+  "https://unpkg.com/live2d-widget-model-z16@1.0.5/assets/z16.model.json",
+  "https://unpkg.com/live2d-widget-model-tsumiki@1.0.5/assets/tsumiki.model.json",
+  "https://unpkg.com/live2d-widget-model-shizuku@1.0.5/assets/shizuku.model.json",
+  "https://unpkg.com/live2d-widget-model-unitychan@1.0.5/assets/unitychan.model.json",
+  "https://unpkg.com/live2d-widget-model-tororo@1.0.5/assets/tororo.model.json",
+  "https://unpkg.com/live2d-widget-model-nipsilon@1.0.5/assets/nipsilon.model.json",
+  "https://unpkg.com/live2d-widget-model-koharu@1.0.5/assets/koharu.model.json",
+  "https://unpkg.com/live2d-widget-model-haruto@1.0.5/assets/haruto.model.json",
+  "https://unpkg.com/live2d-widget-model-hibiki@1.0.5/assets/hibiki.model.json",
+  "https://unpkg.com/live2d-widget-model-wanko@1.0.5/assets/wanko.model.json"];
+  
+    var jsonPath=mods[modId];
+    L2Dwidget.init(
+	{ 
+	"model":{ jsonPath: jsonPath, "scale": 1 },
+   	"display":{ "position": "left", "width": w, "height": h,"hOffset": 0, "vOffset": -10 },
+	"mobile":{ "show": true, "scale": 0.9 },
+  　"react":{ "opacityDefault": 1, "opacityOnHover": 0.2 }
+     });
+  
+  </script> 
+  
+  
+  
+  <script type="text/javascript">
+  //<![CDATA[
+
+
+     //document.getElementById("msgcontainer").style.display = "block";
+     //document.getElementById('incomming').innerHTML = msg;
+
+  //]]>
+  
+
+  
+  </script>
+  <div id="live2d-widget">
+    <canvas id="live2dcanvas" width="300" height="600" style="position: fixed; opacity: 1; left: 0px; bottom: -10px; z-index: 99999; pointer-events: none;"></canvas>
+  </div>
+</body>
+</html>

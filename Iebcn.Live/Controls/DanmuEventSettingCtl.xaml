@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UserControl x:Class="Iebcn.Live.Controls.DanmuEventSettingCtl" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:gif="http://wpfanimatedgif.codeplex.com" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Iebcn.Live.Controls" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Background="#FFF5F5F5">
+    <Grid>
+        <Rectangle Name="rectEnabledBg" Width="104" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Fill="#4F82C1FB" />
+        <CheckBox Width="83" Margin="13,6,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" BorderBrush="#FF008000" FontSize="14" Foreground="#FF008000" IsChecked="{Binding Enabled}" Click="i7b">开启</CheckBox>
+        <TextBlock Margin="120,11,8,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF808080">说明：动图和声音素材可自定义，打开所在文件夹，将自己的素材丢进去，下次程序启动后生效</TextBlock>
+        <Border Margin="8,41,2,2" Background="#FFF1EFEF" BorderBrush="#FFEAEFF7" BorderThickness="6" CornerRadius="6">
+            <Grid>
+                <StackPanel Margin="8" VerticalAlignment="Top" Orientation="Horizontal">
+                    <Label BorderThickness="0">动画样式:</Label>
+                    <ComboBox Name="comboxAniTypes" Width="101" Height="28" SelectionChanged="r7k" />
+                    <CheckBox Height="34" Margin="4,0,0,0" BorderBrush="#FF008000" Foreground="#FF008000" IsChecked="{Binding SoundEnabled}">开启自定义声音:</CheckBox>
+                    <ComboBox Name="comboxSounds" Width="153" Height="28" Margin="5,0,0,0" SelectionChanged="H78" />
+                    <Button Width="65" Margin="0" HorizontalAlignment="Left" Background="#FFF0F8FF" Click="p72">试听</Button>
+                    <Button Width="91" Margin="0" Click="W7p">声音文件夹</Button>
+                </StackPanel>
+                <StackPanel Margin="8,44,8,8" VerticalAlignment="Top" Orientation="Horizontal">
+                    <Label BorderThickness="0" ToolTip="画面停留多少秒后消失">停留时间(秒):</Label>
+                    <hc:NumericUpDown Width="68" Height="28" Maximum="800" Minimum="1" ToolTip="画面停留多少秒后消失" Value="{Binding StaySeconds}" />
+                    <Label BorderThickness="0" ToolTip="画面消失后多少秒可再次触发">触发间隔时间(秒):</Label>
+                    <hc:NumericUpDown Width="68" Height="28" Maximum="800" Minimum="0" ToolTip="画面消失后多少秒可再次触发" Value="{Binding IntervalSeconds}" />
+                    <Label BorderThickness="0">文字信息:</Label>
+                    <TextBox Width="182" VerticalContentAlignment="Center" Text="{Binding Words}" />
+                </StackPanel>
+                <Label Margin="10,78,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" BorderThickness="0">昵称字体大小:</Label>
+                <hc:NumericUpDown Width="68" Height="28" Margin="110,78,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Maximum="290" Minimum="11" Value="{Binding NickFontSize}" />
+                <Grid Name="gridIgnoreGift" Width="381" Height="33" Margin="220,78,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Label Width="93" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" BorderThickness="0">不触发礼物:</Label>
+                    <TextBox Height="6" Margin="98,0,0,0" VerticalAlignment="Top" ToolTip="多个礼物关键词用|隔开，如：小心心|啤酒" Text="{Binding GiftIgnoreList}" />
+                </Grid>
+                <CheckBox Height="34" Margin="10,114,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" BorderBrush="#FF008000" Foreground="#FF008000" IsChecked="{Binding PicEnabled}">开启动图:</CheckBox>
+                <Image Name="img" Width="85" Height="104" Margin="28,153,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" gif:ImageBehavior.AutoStart="True" gif:ImageBehavior.RepeatBehavior="Forever" MouseLeftButtonDown="c7R" />
+                <Button Name="btnSelectGif" Grid.Row="0" Width="78" Height="33" Margin="131,153,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FF476CC5" BorderBrush="#FFC5D1F5" BorderThickness="1" Content="选择动图" Foreground="#FFFFFFFF" Click="D7M" />
+                <Label Height="28" Margin="91,117,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="动图最大高度:" />
+                <hc:NumericUpDown Width="68" Height="28" Margin="200,117,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Maximum="800" Minimum="0" ToolTip="动图最大高度" Value="{Binding PicMaxHeight}" />
+                <Button Width="145" Height="43" Margin="238,200,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FF2E59E0" Foreground="#FFFFFFFF" Click="K7c">测试下</Button>
+                <TextBlock Margin="28,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="#FF808080">注: 触发器也能配合[虚拟弹幕]营造火爆人气效果。</TextBlock>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

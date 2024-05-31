@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="Iebcn.Live.Controls.VoiceSettingsWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:gif="http://wpfanimatedgif.codeplex.com" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Iebcn.Live.Controls" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" Title="语音播报" Width="800" Height="580" BorderBrush="#FFFDF9FD" BorderThickness="1" FontSize="12" Icon="/Assets/app.ico" ShowInTaskbar="False" Style="{StaticResource NoResize_window}" WindowStartupLocation="CenterScreen" MouseLeftButtonDown="U94">
+    <Control.Background>
+        <ImageBrush ImageSource="/Assets/bg.jpg" />
+    </Control.Background>
+    <Border Background="#E0EDECEC" CornerRadius="6">
+        <Grid>
+            <Grid VerticalAlignment="Top">
+                <Label HorizontalAlignment="Stretch" VerticalAlignment="Top" HorizontalContentAlignment="Left" hc:BorderElement.CornerRadius="6,6,0,0" Background="#AF144196" BorderThickness="0" FontSize="16" FontWeight="Bold" Foreground="#FFFFFFFF">语音播报设置</Label>
+                <Button Name="x" Width="36" Height="26" HorizontalAlignment="Right" VerticalAlignment="Top" Content="x" Style="{StaticResource ButtonDanger}" ToolTip="关闭" Click="z9f" />
+            </Grid>
+            <Grid Margin="22,47,22,22" Background="#8feeeeee">
+                <Border Height="38" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="#FFEEEEEE" BorderBrush="#FF7E8FBA" BorderThickness="0,0,0,2" />
+                <CheckBox Height="36" Margin="14,4,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" BorderBrush="#FF63054F" BorderThickness="1" Content="开启语音报幕" FontSize="14" FontWeight="Bold" Foreground="#FF222223" ToolTip="开启和关闭语音播报" IsChecked="{Binding VoiceDanmu.Enabled}" Checked="X9u" />
+                <ScrollViewer Margin="20,45,0,0" VerticalScrollBarVisibility="Auto">
+                    <StackPanel Background="#8feeeeee">
+                        <StackPanel Margin="0,9,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
+                            <Label HorizontalContentAlignment="Right" Background="#38FFFFFF" BorderThickness="0" Content="发音人：" />
+                            <ComboBox Name="combSpeakers" Width="162" BorderBrush="#FF808080" DisplayMemberPath="SpeakerName" ToolTip="注：阿里语音和自定义音色暂不支持调节语速和音调" SelectionChanged="M9F" />
+                            <Button Name="btnTrySpeek" Width="60" Margin="8,0,0,0" Background="#FF3A70D6" BorderBrush="#FFC5D1F5" BorderThickness="1" Content="试听" Foreground="#FFFFFFFF" Click="O9w" />
+                            <Button Margin="33,0,0,0" Background="#FF368276" BorderBrush="#FFC5D1F5" BorderThickness="1" Content="自定义音色" Foreground="#FFFFFFFF" Click="r91" />
+                        </StackPanel>
+                        <StackPanel Width="NaN" Margin="0,10,0,0" VerticalAlignment="Top" Orientation="Horizontal">
+                            <Label HorizontalAlignment="Left" Background="#38FFFFFF" BorderThickness="0" Content="音量:" />
+                            <Label Grid.Row="0" Width="36" Margin="0,0,0,0" Padding="0" Background="#38FFFFFF" BorderThickness="0" Content="{Binding Path=Value, ElementName=sldVolume}" />
+                            <Slider Name="sldVolume" Width="100" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#FF000000" Maximum="100" Minimum="1" Value="{Binding VoiceDanmu.Voice.Volume}" />
+                            <Label Grid.Row="0" Margin="0" HorizontalAlignment="Left" Background="#38FFFFFF" BorderThickness="0" Content="语速:" />
+                            <Label Grid.Row="0" Width="36" Margin="0,0,0,0" Padding="0" HorizontalAlignment="Left" Background="#38FFFFFF" BorderThickness="0" Content="{Binding Path=Value, ElementName=sldSpeed}" />
+                            <Slider Name="sldSpeed" Width="100" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#FF000000" Maximum="100" Minimum="1" Value="{Binding VoiceDanmu.Voice.Speed}" />
+                            <Label Grid.Row="0" Margin="0" HorizontalAlignment="Left" Background="#38FFFFFF" BorderThickness="0" Content="音调:" />
+                            <Label Grid.Row="0" Width="36" Margin="0,0,0,0" Padding="0" HorizontalAlignment="Left" Background="#38FFFFFF" BorderThickness="0" Content="{Binding Path=Value, ElementName=sldPitch}" />
+                            <Slider Name="sldPitch" Width="100" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#FF000000" Maximum="100" Minimum="1" Value="{Binding VoiceDanmu.Voice.Pitch}" />
+                        </StackPanel>
+                        <StackPanel Height="30" Margin="0,10,0,0" VerticalAlignment="Top" Orientation="Horizontal">
+                            <Label Margin="0,0,0,0" HorizontalAlignment="Left" Background="#38FFFFFF" BorderThickness="0" Content="最小间隔(秒)：" />
+                            <hc:NumericUpDown Maximum="60" Minimum="0" Value="{Binding VoiceDanmu.IntrevalSeconds}" />
+                            <CheckBox Margin="20,0,0,0" BorderBrush="#FF827C81" Content="弹幕发言" IsChecked="{Binding VoiceDanmu.OptTypes.ChatEnabled}" />
+                            <CheckBox Margin="10,0,0,0" BorderBrush="#FF827C81" Content="礼物" IsChecked="{Binding VoiceDanmu.OptTypes.GiftEnabled}" />
+                            <CheckBox Margin="10,0,0,0" BorderBrush="#FF827C81" Content="进场" IsChecked="{Binding VoiceDanmu.OptTypes.EnterRoomEnabled}" />
+                            <CheckBox Margin="10,0,0,0" BorderBrush="#FF827C81" Content="关注" IsChecked="{Binding VoiceDanmu.OptTypes.FollowEnabled}" />
+                            <CheckBox Margin="10,0,0,0" BorderBrush="#FF827C81" Content="点赞" IsChecked="{Binding VoiceDanmu.OptTypes.LikeEnabled}" />
+                            <CheckBox Margin="23,0,0,0" BorderBrush="#FF8E7D7D" Content="优先播报礼物" Foreground="{StaticResource Vip1ColorBrush}" ToolTip="同时间有其它类型弹幕和送礼弹幕则优先播报礼物" IsChecked="{Binding VoiceDanmu.GiftFirstEnabled}" Click="I9U" />
+                        </StackPanel>
+                        <StackPanel Margin="0,8,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
+                            <CheckBox Name="ckFForbiddenWords" Height="33" BorderBrush="#FF827C81" Content="开启违禁词过滤" Foreground="{StaticResource Vip1ColorBrush}" ToolTip="暖场避免冷场！" IsChecked="{Binding VoiceDanmu.ForbiddenWordsEnabled}" Click="I9U" />
+                            <Button Name="btnForbiddenWordsSet" Width="80" Margin="22,0,0,0" Background="#FF3A70D6" BorderBrush="#FFC5D1F5" BorderThickness="1" Content="设置违禁词" Foreground="#FFFFFFFF" ToolTip="启用过滤违禁词/敏感词过滤 可以有效的避免违规和封号风险！" Click="r93" />
+                            <Button Width="80" Margin="12,0,0,0" Background="#FF3A70D6" BorderBrush="#FFC5D1F5" BorderThickness="1" Content="冷场播报" Foreground="#FFFFFFFF" ToolTip="冷场互动播报设置！" Click="R9O" />
+                        </StackPanel>
+                        <StackPanel Margin="0,10,0,0" VerticalAlignment="Top" Orientation="Horizontal">
+                            <Label Margin="1,0,0,0" Background="#38FFFFFF" BorderThickness="0" Content="粉丝团等级 &gt;=" Foreground="{StaticResource Vip1ColorBrush}" />
+                            <hc:NumericUpDown Name="numFansMini" BorderBrush="#FF8E7D7D" Foreground="{StaticResource Vip1ColorBrush}" Maximum="60" Minimum="0" ToolTip="只播报粉丝团等级大于等于设置的值(注:高级版可用)" Value="{Binding VoiceDanmu.FansClubLevelMini}" MouseLeftButtonDown="D9N" />
+                            <CheckBox Margin="13,0,0,0" BorderBrush="#FF8E7D7D" Content="弹幕字数长度超过" Foreground="{StaticResource Vip1ColorBrush}" ToolTip="避免播报过长的弹幕" IsChecked="{Binding VoiceDanmu.CutEnabled}" Click="I9U" />
+                            <hc:NumericUpDown Margin="6,0,0,0" BorderBrush="#FF8E7D7D" Foreground="{StaticResource Vip1ColorBrush}" Maximum="250" Minimum="10" ToolTip="例如50" IsEnabled="{Binding VoiceDanmu.CutEnabled}" Value="{Binding VoiceDanmu.CutCount}" />
+                            <Label Margin="7,0,0,0" Padding="0" Background="#38FFFFFF" BorderThickness="0" Content="截断后播报" Foreground="{StaticResource Vip1ColorBrush}" />
+                        </StackPanel>
+                        <Label Height="32" Margin="0,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Left" Background="#00FFFFFF" BorderThickness="0" Content="语音播报格式(一行一条)：支持变量{用户}，{礼物名称}，{礼物数量}，{当前时间}" />
+                        <Label Margin="0,0,0,0" HorizontalAlignment="Left" Background="#38FFFFFF" BorderThickness="0" Content="进场：" Foreground="#FF0000FF" />
+                        <TextBox Height="85" Margin="0,0,100,0" VerticalAlignment="Center" VerticalContentAlignment="Top" AcceptsReturn="True" ToolTip="例如： 欢迎{用户}进入直播间，么么哒！" VerticalScrollBarVisibility="Auto" Text="{Binding VoiceDanmu.OptContent.EnterRoomFormat}" />
+                        <Label Margin="0,0,0,0" HorizontalAlignment="Left" Background="#38FFFFFF" BorderThickness="0" Content="点赞：" Foreground="#FF0000FF" />
+                        <TextBox Height="85" Margin="0,0,100,0" VerticalAlignment="Center" VerticalContentAlignment="Top" AcceptsReturn="True" ToolTip="例如： 感谢{用户}点赞！" VerticalScrollBarVisibility="Auto" Text="{Binding VoiceDanmu.OptContent.LikeFormat}" />
+                        <Label Margin="0,0,0,0" HorizontalAlignment="Left" Background="#38FFFFFF" BorderThickness="0" Content="关注：" Foreground="#FF0000FF" />
+                        <TextBox Height="85" Margin="0,0,100,0" VerticalAlignment="Center" VerticalContentAlignment="Top" AcceptsReturn="True" ToolTip="例如： {当前时间}感谢{用户}关注！" VerticalScrollBarVisibility="Auto" Text="{Binding VoiceDanmu.OptContent.FollowFormat}" />
+                        <Label Margin="0,0,0,0" HorizontalAlignment="Left" Background="#38FFFFFF" BorderThickness="0" Content="礼物：" Foreground="#FF0000FF" />
+                        <TextBox Height="85" Margin="0,0,100,0" VerticalAlignment="Center" VerticalContentAlignment="Top" AcceptsReturn="True" ToolTip="例如： 感谢{用户}赠送的{礼物个数}个{礼物名称}，爱你！" VerticalScrollBarVisibility="Auto" Text="{Binding VoiceDanmu.OptContent.GiftFormat}" />
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+            <Grid Name="gridCust" Background="#FFEEEEEE" Visibility="Collapsed">
+                <StackPanel Height="30" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="#FF4E70C9" Orientation="Horizontal">
+                    <Label HorizontalAlignment="Left" Background="#00FFFFFF" BorderThickness="0" FontSize="16" FontWeight="Bold" Foreground="#FFFFFFFF">自定义音色</Label>
+                </StackPanel>
+                <Button Width="46" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#0FEEEEEE" BorderBrush="#FFDDDDDD" BorderThickness="0" Content="x" Foreground="#FFFFFFFF" Style="{StaticResource ButtonDanger}" ToolTip="关闭" Click="G9m" />
+                <TextBlock Height="36" Margin="160,70,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#00FFFFFF">重要<Span FontSize="20">{text}</Span> 为程序传入文本变量,程序只支持读取接口返回mp3格式的音频字节流数据</TextBlock>
+                <TextBlock Name="linkHelp" Margin="0,76,40,0" HorizontalAlignment="Right" VerticalAlignment="Top">
+          <Hyperlink Click="D9A">教程</Hyperlink>
+                </TextBlock>
+                <Label Margin="4,33,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#00FFFFFF" BorderThickness="0">自定义音色 (通常是将克隆自己或他人声音用于语音播报)</Label>
+                <Label Margin="334,33,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#00FFFFFF" BorderThickness="0">（注：设置好后可在语音播报【发言人】里最下边选择自定义的音色）</Label>
+                <Grid Margin="22,100,22,108" Background="#FFE8E8E8">
+                    <StackPanel Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <StackPanel Margin="4" Orientation="Horizontal">
+                            <Label Background="#00FFFFFF">自定义音色1:</Label>
+                            <TextBox Width="522" ToolTip="自定义音色请求地址" Text="{Binding VoiceDanmu.CustVoiceUrl1}" />
+                            <Button Margin="6,0,0,0" Tag="1" ToolTip="如果没有声音轻检查配置是否正确！可以看教程！" Click="R9r">试听测试</Button>
+                        </StackPanel>
+                        <StackPanel Margin="4" Orientation="Horizontal">
+                            <Label Background="#00FFFFFF">自定义音色2:</Label>
+                            <TextBox Width="522" ToolTip="自定义音色请求地址" Text="{Binding VoiceDanmu.CustVoiceUrl2}" />
+                            <Button Margin="6,0,0,0" Tag="2" ToolTip="如果没有声音轻检查配置是否正确！可以看教程！" Click="R9r">试听测试</Button>
+                        </StackPanel>
+                        <StackPanel Margin="4" Orientation="Horizontal">
+                            <Label Background="#00FFFFFF">自定义音色3:</Label>
+                            <TextBox Width="522" ToolTip="自定义音色请求地址" Text="{Binding VoiceDanmu.CustVoiceUrl3}" />
+                            <Button Margin="6,0,0,0" Tag="3" ToolTip="如果没有声音轻检查配置是否正确！可以看教程！" Click="R9r">试听测试</Button>
+                        </StackPanel>
+                        <StackPanel Margin="4" Orientation="Horizontal">
+                            <Label Background="#00FFFFFF">自定义音色4:</Label>
+                            <TextBox Width="522" ToolTip="自定义音色请求地址" Text="{Binding VoiceDanmu.CustVoiceUrl4}" />
+                            <Button Margin="6,0,0,0" Tag="4" ToolTip="如果没有声音轻检查配置是否正确！可以看教程！" Click="R9r">试听测试</Button>
+                        </StackPanel>
+                        <StackPanel Margin="4" Orientation="Horizontal">
+                            <Label Background="#00FFFFFF">自定义音色5:</Label>
+                            <TextBox Width="522" ToolTip="自定义音色请求地址" Text="{Binding VoiceDanmu.CustVoiceUrl5}" />
+                            <Button Margin="6,0,0,0" Tag="5" ToolTip="如果没有声音轻检查配置是否正确！可以看教程！" Click="R9r">试听测试</Button>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+                <Button Width="122" Margin="0,0,0,62" HorizontalAlignment="Center" VerticalAlignment="Bottom" Background="#FF4E70C9" Foreground="#FFFFFFFF" Click="G9m">OK</Button>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

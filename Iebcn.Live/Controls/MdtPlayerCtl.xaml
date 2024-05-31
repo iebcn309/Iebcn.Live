@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UserControl x:Class="Iebcn.Live.Controls.MdtPlayerCtl" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:gif="http://wpfanimatedgif.codeplex.com" xmlns:local="clr-namespace:Iebcn.Live.Controls">
+    <Grid>
+        <Image Name="imgGif" gif:ImageBehavior.RepeatBehavior="Forever" RenderTransformOrigin="0.5,0.5" />
+        <MediaElement Name="md" LoadedBehavior="Play" />
+    </Grid>
+</UserControl>

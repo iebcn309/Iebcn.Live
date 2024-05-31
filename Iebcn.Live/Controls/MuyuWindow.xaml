@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="Iebcn.Live.Controls.MuyuWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:gif="http://wpfanimatedgif.codeplex.com" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Iebcn.Live.Controls" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" Title="电子木鱼" Width="822" Height="500" ShowInTaskbar="False" FontFamily="Arial" FontSize="12" Icon="/Assets/app.ico" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen" Background="#01000000" MouseLeftButtonDown="Gb2" MouseEnter="mS7" MouseLeave="BST">
+    <FrameworkElement.Resources>
+        <ResourceDictionary>
+            <Storyboard x:Key="sb1">
+                <DoubleAnimation AutoReverse="True" Storyboard.TargetName="img_scale" Storyboard.TargetProperty="ScaleX" From="1" To="0.97" Duration="0:0:0.2" />
+                <DoubleAnimation AutoReverse="True" Storyboard.TargetName="img_scale" Storyboard.TargetProperty="ScaleY" From="1" To="0.97" Duration="0:0:0.2" />
+            </Storyboard>
+        </ResourceDictionary>
+    </FrameworkElement.Resources>
+    <Border CornerRadius="6">
+        <Grid>
+            <Grid VerticalAlignment="Top"  Name="gridBar"  Background="#FF1572BB">
+                <Label Margin="0,2,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Left" Background="#EF1C58C8" BorderThickness="0" FontSize="16" FontWeight="Bold" Foreground="#FFFFFFFF">电子木鱼</Label>
+                <Button Width="46" Margin="0,0,38,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#FF408ACE" BorderThickness="0" Content="设置" Foreground="#FFF5F5F5" ToolTip="设置" Click="Sbb" />
+                <Button Name="x" Width="36" Margin="0" HorizontalAlignment="Right" VerticalAlignment="Top" Content="x" Style="{StaticResource ButtonDanger}" ToolTip="关闭" Click="Abi" />
+            </Grid>
+            <Grid Width="390" Margin="0,32,0,0"  HorizontalAlignment="Left">
+                <Rectangle Fill="{StaticResource GreenbackColorBrush}" Visibility="{Binding GreenBackground, Converter={StaticResource Boolean2VisibilityConverter}}" />
+                <Grid Margin="0,82,0,0">
+                    <Grid Name="gridFlyUserPoints" MinWidth="122" MinHeight="44" Margin="0,0,10,0" HorizontalAlignment="Center" VerticalAlignment="Top" />
+                    <Image Name="imgMuyu" Width="170" Height="170" Margin="0,88,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Source="/Assets/muyu1.png" ToolTip="点击换图" MouseLeftButtonDown="bb0">
+                        <UIElement.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform x:Name="img_scale" ScaleX="1" ScaleY="1" />
+                                <SkewTransform />
+                                <TranslateTransform />
+                            </TransformGroup>
+                        </UIElement.RenderTransform>
+                    </Image>
+                    <StackPanel Margin="0,248,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal">
+                        <Label Padding="4" Background="#00FFFFFF" BorderThickness="0" FontSize="34" Foreground="#FFFFFFFF" Content="{Binding DescText}" Height="50">
+                            <Label.Effect>
+                                <DropShadowEffect Opacity="0.8" ShadowDepth="2" Color="#FF4444FF" />
+                            </Label.Effect>
+                        </Label>
+                        <Label x:Name="lbTotalPoints" Background="#00FFFFFF" BorderThickness="0" Content="9999" FontSize="34" Foreground="#FFFFFFFF" Height="50">
+                            <Label.Effect>
+                                <DropShadowEffect Opacity="0.8" ShadowDepth="2" Color="#FF4444FF" />
+                            </Label.Effect>
+                        </Label>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+            <Grid Margin="396,32,0,0" Background="#FFEEEEEE">
+                <CheckBox Margin="22,12,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" BorderBrush="#FF827C81" BorderThickness="1" Content="绿幕背景" ToolTip="绿幕背景好抠图" IsChecked="{Binding GreenBackground}" />
+                <CheckBox Margin="111,12,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" BorderBrush="#FF827C81" BorderThickness="1" Content="木鱼声音" ToolTip="是否开启声音" IsChecked="{Binding SoundEnabled}" />
+                <Label Margin="190,6,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#00FFFFFF" BorderThickness="0" Content="描述文本:" />
+                <TextBox Width="133" Margin="256,4,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" BorderBrush="#FF827C81" BorderThickness="1" ToolTip="例如：功德" Text="{Binding DescText}" />
+                <Grid Width="NaN" Height="NaN" Margin="0,33,0,4" Background="#22ffffff">
+                    <StackPanel Height="30" Margin="14,6,0,0" VerticalAlignment="Top" Orientation="Horizontal">
+                        <CheckBox Margin="8,0,0,0" HorizontalAlignment="Left" BorderBrush="#FF827C81" BorderThickness="1" Content="进场+" Foreground="#FF0F1123" ToolTip="进场+" IsChecked="{Binding EnterRoomEnabled}" Click="Db8" />
+                        <hc:NumericUpDown Maximum="9999" Minimum="1" IsEnabled="{Binding EnterRoomEnabled}" Value="{Binding EnterRoomPoint}" />
+                        <CheckBox Margin="8,0,0,0" HorizontalAlignment="Left" BorderBrush="#FF827C81" BorderThickness="1" Content="点赞+" Foreground="#FF0F1123" ToolTip="点赞+功德" IsChecked="{Binding LikeEnabled}" Click="Db8" />
+                        <hc:NumericUpDown Maximum="860" Minimum="1" IsEnabled="{Binding LikeEnabled}" Value="{Binding LikePoint}" />
+                        <CheckBox Margin="8,0,0,0" HorizontalAlignment="Left" BorderBrush="#FF827C81" BorderThickness="1" Content="关注+" Foreground="#FF0F1123" ToolTip="关注+功德" IsChecked="{Binding FollowEnabled}" Click="Db8" />
+                        <hc:NumericUpDown Maximum="860" Minimum="1" IsEnabled="{Binding FollowEnabled}" Value="{Binding FollowPoint}" />
+                    </StackPanel>
+                    <Grid Margin="22,56,36,0" VerticalAlignment="Top">
+                        <CheckBox HorizontalAlignment="Left" VerticalAlignment="Top" BorderBrush="#FF827C81" BorderThickness="1" Content="礼物+功德：" Foreground="#FF0F1123" ToolTip="礼物+功德" IsChecked="{Binding GiftEnabled}" Click="cbp" />
+                        <TextBlock Margin="120,0,0,0" VerticalAlignment="Top" Background="#38FFFFFF" LineHeight="16" TextWrapping="Wrap">格式一条一行： 例如:<Span Foreground="#FF008000">小心心=1</Span></TextBlock>
+                        <Button Margin="0,-12,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#FFB4CEF1" BorderBrush="#FF2965B5" Click="PbR">示例</Button>
+                        <TextBox Height="111" Margin="2,22,0,0" VerticalAlignment="Top" VerticalContentAlignment="Top" AcceptsReturn="True" Background="#ffFFFFFF" BorderBrush="#FF000000" BorderThickness="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" ToolTip="一行一条，如果不会请点击查看【示例】,如下:&#xA;小心心=1&#xA;玫瑰花=2&#xA;飞机=10&#xA;嘉年华=5000&#xA;其他=1" IsEnabled="{Binding GiftEnabled}" Text="{Binding GiftContent}" />
+                    </Grid>
+                    <Grid Margin="22,207,36,0" VerticalAlignment="Top">
+                        <CheckBox HorizontalAlignment="Left" VerticalAlignment="Top" BorderBrush="#FF827C81" BorderThickness="1" Content="弹幕+功德：" Foreground="#FF0F1123" ToolTip="发弹幕+功德" IsChecked="{Binding ChatEnabled}" Click="cbp" />
+                        <TextBlock Margin="102,2,0,0" VerticalAlignment="Top" Background="#38FFFFFF" LineHeight="16" TextWrapping="Wrap">格式一条一行： 例如:<Span Foreground="#FF008000">666=1</Span></TextBlock>
+                        <Button Margin="0,-12,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#FFB4CEF1" BorderBrush="#FF2965B5" Click="JbY">示例</Button>
+                        <TextBox Height="111" Margin="0,25,0,0" VerticalAlignment="Top" VerticalContentAlignment="Top" AcceptsReturn="True" Background="#ffFFFFFF" BorderBrush="#FF000000" BorderThickness="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" ToolTip="一行一条，如果不会请点击查看【示例】,如下:&#xA;666=1&#xA;加油=2&#xA;777=3&#xA;其他=1" IsEnabled="{Binding ChatEnabled}" Text="{Binding ChatContent}" />
+                    </Grid>
+                    <Button Width="122" Margin="0,0,0,20" VerticalAlignment="Bottom" Background="#FF3A3ABD" Content="OK" Foreground="#FFFFFFFF" Click="gbJ" />
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

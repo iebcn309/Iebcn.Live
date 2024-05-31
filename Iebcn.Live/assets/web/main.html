@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+
+<style>
+html, body {
+  background: rgba(0,0,0,0);
+  width: 100%;
+  height: 100%;
+}
+ *{
+    margin: 0;
+    padding: 0;
+    }
+  .container{
+     width: 100%;
+     height: 100%;
+   }
+		
+</style>
+
+</head>
+<body>
+
+<button onclick='Play("wgscd556565","音效/礼物/1.wav","恭喜哈哈哈天堂")' style="position:fixed;z-index:9988;">tttttt</button>
+
+
+
+
+<div id='userHead' style="position:fixed;z-index:9988;width:400px; height:94px; padding-left:10px; padding-top:10px; background:#0000ff8c;border-radius:49px 0px 49px 0px ;">
+    <div style="width: 74px; height: 74px; float:left; border-radius: 50%; border: 6px solid #eee; overflow: hidden;">
+        <img  src="https://img2.woyaogexing.com/2022/11/09/70b0e0811b8e24ac!400x400.jpg" width="80" height="80" />
+    </div>
+	  <div style="float:left; margin-left:10px; margin-top:23px; vertical-align:center; color:white;overflow: hidden;
+          max-width: 267px; max-height: 60px;">
+        <span id="nick" style="text-wrap:unrestricted">CSS3圆形头像</span>
+    </div>
+</div>
+
+<div id='extWords' style="position:fixed;z-index:9998;left:45%; top:37%; max-width:400px;font-size:44px;color:#ff0000; max-height:94px; background:#0000ff08;">
+   感谢热烈欢迎！！
+</div>
+
+
+<img id='gif' style=" position:fixed;left:4%;top:150px;max-height:144px;z-index:9989;opacity:0.1" 
+src="https://img.soogif.com/6FtiEQd3GszSHpHC37mG6eqvHbNHdRIL.gif"  />
+  
+<audio id="audio" src="audio/1.mp3" ></audio>
+
+<script src="js/jquery-1.7.2.js" type='text/javascript'></script>
+<script>
+ function sleep(milliSeconds){
+    var startTime = new Date().getTime(); // get the current time    
+    while (new Date().getTime() < startTime + milliSeconds);
+}
+ 
+$(document).ready(function(){
+	
+//Play();
+
+});	
+
+
+function Play(nick,audioFile,extWords){
+  document.getElementById('nick').innerHTML=nick;
+  document.getElementById('extWords').innerHTML=extWords;
+  document.getElementById('audio').src=audioFile
+ 
+  
+ //用户信息部分样式设置
+  $("#userHead").css("background", "rgba(0, 255, 255, 0.55)");//背景色：(红,绿,蓝,透明度)
+  $("#userHead").css("box-shadow", "rgba(20, 20, 20 ,0.8) 1px 2px 5px");//投影：
+  $("#userHead").css("border", "solid #efefef 4px");//边框颜色：
+  $("#userHead").css("border-radius", "49px 0px");//边框圆角造型：
+  $("#userHead").css("left", "40%");//用户初始x坐标标
+  $("#userHead").css("top", "-70%");//用户初始y坐标标  
+  $("#userHead").fadeIn();//0.1秒淡入
+  $("#userHead").delay(10).animate({//0.01秒后运行动画
+      left:'45%',//滑到左边坐标，可以是百分百或数字
+	  top:'45%',//滑到上边坐标，可以是百分百或数字
+      opacity:'1.0',//透明度，0到1
+    });
+
+//用户昵称部分样式设置
+  $("#nick").css("background", "rgba(0, 255, 255, 0.0)");//背景色：(红,绿,蓝,透明度) 
+  $("#nick").css("font-size", "22px");//字体大小
+  $("#nick").css("text-shadow", "rgb(58 55 55) 0px 2px 2px");//投影：(红,绿,蓝,透明度) 
+
+
+  //动图样式设置
+  $("#gif").css("max-height", "144px");//动图最大高度，默认"144px"
+  $("#gif").css("opacity", "0.0");//动图初始透明度，默认"0.0"
+  $("#gif").css("left", "-40%");//动图初始x坐标，默认"-40%"
+  $("#gif").css("top", "-200px");//动图初始y坐标，默认"-200px"
+  $("#gif").delay(10).animate({//0.01秒后运行动画
+      left:'46%',//滑到左边坐标，可以是百分百或数字
+	  top:'150px',//滑到上边坐标，可以是百分百或数字
+      opacity:'1.0',//透明度，0到1
+    });
+
+//欢迎感谢词语样式设置
+   $("#extWords").css("left", "100%");//初始x坐标，默认"100%"
+   $("#extWords").css("top", "37%");//初始y坐标，默认"37%"
+   $("#extWords").css("max-width", "400px");//最大宽度，默认"400px"
+   $("#extWords").css("max-height", "94px");//最大高度，默认"94px"
+   $("#extWords").css("font-size", "22px");//字体大小,默认"22px"
+   $("#extWords").css("color", "#ff0000");//字体颜色,默认"#ff0000"
+   $("#extWords").css("background", "#0000ff00");//背景色,默认"#0000ff00"
+   $("#extWords").delay(1000).animate({//1秒后运行动画
+      left:'45%',//滑到左边坐标，可以是百分百或数字
+	  top:'40%',//滑到上边坐标，可以是百分百或数字
+      opacity:'1.0',//透明度，0到1
+    });
+  $("body").delay(3000).fadeOut();//持续1秒后消失
+//播放声音
+   $("#audio").trigger("play");//如果不需要播放请在本行前加双斜杠//注释掉代码
+
+}
+
+function changeBgPage(link)
+{
+    document.getElementById('bgPage').src=link;
+}
+
+//$("#audio").attr("src",audioFile);
+</script>
+	
+<iframe id='bgPage' src='特效-3D绿色粒子动画.html' scrolling="no"  style="width:100%;height:100%;border:0;position:fixed;left:0;top:0;z-index:33" />
+
+
+</body>
+</html>

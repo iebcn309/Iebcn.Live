@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="Iebcn.Live.Controls.OBSCmdWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:gif="http://wpfanimatedgif.codeplex.com" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Iebcn.Live.Controls" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" Title="OBS控制器" Width="980" Height="680" BorderBrush="#FFFDF9FD" BorderThickness="1" FontSize="12" Icon="/Assets/app.ico" Style="{StaticResource NoResize_window}" WindowStartupLocation="CenterScreen" MouseLeftButtonDown="ubE">
+    <Control.Background>
+        <ImageBrush ImageSource="/Assets/bg.jpg" />
+    </Control.Background>
+    <Border Background="#F0EDECEC" CornerRadius="6">
+        <Grid>
+            <Grid VerticalAlignment="Top">
+                <Label Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Top" HorizontalContentAlignment="Left" hc:BorderElement.CornerRadius="6,6,0,0" Background="#AF144196" BorderThickness="0" FontSize="16" FontWeight="Bold" Foreground="#FFFFFFFF">OBS控制器</Label>
+                <Button Name="x" Width="36" Height="26" HorizontalAlignment="Right" VerticalAlignment="Top" Content="x" Style="{StaticResource ButtonDanger}" ToolTip="关闭" Click="sbl" />
+            </Grid>
+            <StackPanel>
+                <Grid Margin="6,40,0,0" VerticalAlignment="Top">
+                    <TextBlock Margin="12,0,6,0" Background="#00FFFFFF" Foreground="#FF888888" TextWrapping="Wrap">说明：连接到OBS的WebSocket地址，可控制OBS场景素材的显示和隐藏,请先【连接】成功后【开启OBS控制】,在OBS菜单-工具-&gt;WebSocket 服务器设置<LineBreak /><Span Foreground="#FFFF0000">如果没有获取到OBS场景和素材可多点两下【连接】按钮！</Span></TextBlock>
+                    <TextBlock Margin="0,0,6,0" HorizontalAlignment="Right" Background="#00FFFFFF" Foreground="#FF888888" TextWrapping="Wrap">
+            <Hyperlink FontSize="14" Click="bJn">使用教程</Hyperlink>
+                    </TextBlock>
+                </Grid>
+                <StackPanel Margin="0,18,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal">
+                    <Label Background="#00FFFFFF" BorderThickness="0">OBS WebSocket 服务器地址:</Label>
+                    <TextBox Width="87" ToolTip="在OBS菜单-工具-&gt;WebSocket 服务器设置" Text="{Binding Host}" />
+                    <Label Background="#00FFFFFF" BorderThickness="0">端口:</Label>
+                    <hc:NumericUpDown Width="75" Height="30" FontSize="12" Increment="1" Maximum="999999" Minimum="1" ToolTip="端口" Value="{Binding Port}" />
+                    <Label Background="#00FFFFFF" BorderThickness="0">密码:</Label>
+                    <TextBox Width="104" ToolTip="如果没有可为空" Text="{Binding Pass}" />
+                    <Button Width="68" Margin="8,0,0,0" Background="#FF1B45C5" Foreground="#FFFFFFFF" Click="MJd">连接</Button>
+                    <Label Name="lbConnState" Background="#00FFFFFF" BorderThickness="0" Content="没有连接" Foreground="#FFFF0000" />
+                </StackPanel>
+                <Rectangle Height="1" Margin="0,6,0,0" Fill="#FFBBBBBB" />
+                <Grid Height="44" Margin="0,16,0,0" VerticalAlignment="Top" Background="#FFBBBBBB">
+                    <CheckBox Margin="26,0,0,0" BorderBrush="#FFBD1717" BorderThickness="1" FontSize="16" FontWeight="Bold" Foreground="{StaticResource Vip2ColorBrush}" ToolTip="开启才能和直播间互动控制OBS素材显示或隐藏" IsChecked="{Binding Enabled}" Click="AJx">开启OBS控制</CheckBox>
+                    <Label Margin="170,0,0,0" Padding="0" HorizontalAlignment="Left" Background="#00FFFFFF" BorderThickness="0" Content="最大缓存队列数：" ToolTip="最大缓存队列数，默认10" />
+                    <hc:NumericUpDown Width="68" Height="30" Margin="268,0,0,0" HorizontalAlignment="Left" FontSize="12" Increment="1" Maximum="250" Minimum="1" ToolTip="最大缓存队列数，默认10" Value="{Binding CacheMax}" />
+                    <Label Margin="350,0,0,0" Padding="0" HorizontalAlignment="Left" Background="#00FFFFFF" BorderThickness="0" Content="当前队列数量：" ToolTip="等待执行的当前队列数量" />
+                    <Label Name="lbCacheCount" Margin="434,0,0,0" Padding="0" HorizontalAlignment="Left" Background="#00FFFFFF" BorderThickness="0" Content="0" FontWeight="Bold" ToolTip="等待执行的当前队列数量" />
+                    <Button Width="100" Margin="470,0,80,0" HorizontalAlignment="Left" BorderBrush="#FF555555" Click="VJw">清空缓存队列</Button>
+                    <Button Width="68" Margin="0,0,8,0" HorizontalAlignment="Right" BorderBrush="#FF555555" Click="nJe">日志</Button>
+                </Grid>
+            </StackPanel>
+            <Grid Margin="11,188,11,11" Background="#FFEEEEEE">
+                <StackPanel Margin="22,12,22,0" VerticalAlignment="Top">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Background="#00FFFFFF" BorderThickness="0">注意：礼物名为空匹配任意礼物。</Label>
+                        <CheckBox BorderBrush="#FF8A2BE2" ToolTip="一次送多少个执行多少次,默认执行一次" IsChecked="{Binding GiftExcuteByCount}">礼物按照个数执行对应次数</CheckBox>
+                    </StackPanel>
+                    <StackPanel Margin="0,8,0,2" Orientation="Horizontal">
+                        <Label Margin="0,0,0,0" HorizontalAlignment="Left" Background="#21888888" BorderThickness="0" Content="礼   物：" FontWeight="Bold" Foreground="#FF0821B8" ToolTip="指定礼物,'其他'或者'*'匹配任意礼物" />
+                        <TextBox Name="txtGiftName" Width="80" VerticalAlignment="Top" Text="小心心" ToolTip=" 如:'小心心',注意：'其他'或者'*'匹配任意礼物，" />
+                        <Label Margin="8,0,0,0" Padding="0" HorizontalAlignment="Left" Background="#00FFFFFF" BorderThickness="0" Content="场景：" ToolTip="指定OBS场景" />
+                        <ComboBox Name="comboxGiftObsSences" Width="81" Height="30" ToolTip="OBS场景" ItemsSource="{Binding}" SelectionChanged="JJ4" />
+                        <Label Margin="8,0,0,0" Padding="0" HorizontalAlignment="Left" Background="#00FFFFFF" BorderThickness="0" Content="素材：" ToolTip="指定OBS场景里的素材" />
+                        <ComboBox Name="comboxGiftObsAssets" Width="81" Height="30" ToolTip="OBS场景里的素材" />
+                        <Label Margin="18,0,0,0" Padding="0" HorizontalAlignment="Left" Background="#00FFFFFF" BorderThickness="0" Content="控制：" ToolTip="控制显示或者隐藏" />
+                        <ComboBox Name="comboxGiftObsCmdType" Width="81" Height="30" ToolTip="控制显示或者隐藏">
+                            <ComboBoxItem IsSelected="True">显示</ComboBoxItem>
+                            <ComboBoxItem>隐藏</ComboBoxItem>
+                        </ComboBox>
+                        <Label Margin="1,0,0,0" Padding="0" HorizontalAlignment="Left" Background="#00FFFFFF" BorderThickness="0" Content="持续(秒)：" ToolTip="共持续多少秒" />
+                        <hc:NumericUpDown Name="numGiftObsCmdLastSeconds" Width="68" Height="30" FontSize="12" Increment="1" Maximum="50" Minimum="1" ToolTip="共持续多少秒" Value="4" />
+                        <Label Margin="1,0,0,0" Padding="0" HorizontalAlignment="Left" Background="#00FFFFFF" BorderThickness="0" Content="然后：" ToolTip="然后" />
+                        <ComboBox Name="comboxGiftObsCmdType2" Width="81" Height="30" ToolTip="控制显示或者隐藏">
+                            <ComboBoxItem>显示</ComboBoxItem>
+                            <ComboBoxItem IsSelected="True">隐藏</ComboBoxItem>
+                        </ComboBox>
+                        <Button Width="80" Margin="11,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#FF1B45C5" Content="添加" Foreground="#FFFFFFFF" ToolTip="添加整条指令" Click="pJH" />
+                    </StackPanel>
+                    <StackPanel Margin="0,6,0,2" Background="#100821B8" Orientation="Horizontal">
+                        <Label Margin="0,0,0,0" HorizontalAlignment="Left" Background="#21888888" BorderThickness="0" Content="弹   幕：" FontWeight="Bold" Foreground="#FF0821B8" ToolTip="指定礼物,'其他'或者'*'匹配任意礼物" />
+                        <TextBox Name="txtChatWord" Width="80" VerticalAlignment="Top" Text="666" ToolTip=" 如:666" />
+                        <Label Margin="8,0,0,0" Padding="0" HorizontalAlignment="Left" Background="#00FFFFFF" BorderThickness="0" Content="场景：" ToolTip="指定OBS场景" />
+                        <ComboBox Name="comboxChatObsSences" Width="81" Height="30" ToolTip="OBS场景" ItemsSource="{Binding}" SelectionChanged="UJf" />
+                        <Label Margin="8,0,0,0" Padding="0" HorizontalAlignment="Left" Background="#00FFFFFF" BorderThickness="0" Content="素材：" ToolTip="指定OBS场景里的素材" />
+                        <ComboBox Name="comboxChatObsAssets" Width="81" Height="30" ToolTip="OBS场景里的素材" />
+                        <Label Margin="18,0,0,0" Padding="0" HorizontalAlignment="Left" Background="#00FFFFFF" BorderThickness="0" Content="控制：" ToolTip="控制显示或者隐藏" />
+                        <ComboBox Name="comboxChatObsCmdType" Width="81" Height="30" ToolTip="控制显示或者隐藏">
+                            <ComboBoxItem IsSelected="True">显示</ComboBoxItem>
+                            <ComboBoxItem>隐藏</ComboBoxItem>
+                        </ComboBox>
+                        <Label Margin="1,0,0,0" Padding="0" HorizontalAlignment="Left" Background="#00FFFFFF" BorderThickness="0" Content="持续(秒)：" ToolTip="共持续多少秒" />
+                        <hc:NumericUpDown Name="numChatObsCmdLastSeconds" Width="68" Height="30" FontSize="12" Increment="1" Maximum="50" Minimum="1" ToolTip="共持续多少秒" Value="4" />
+                        <Label Margin="1,0,0,0" Padding="0" HorizontalAlignment="Left" Background="#00FFFFFF" BorderThickness="0" Content="然后：" ToolTip="然后" />
+                        <ComboBox Name="comboxChatObsCmdType2" Width="81" Height="30" ToolTip="控制显示或者隐藏">
+                            <ComboBoxItem>显示</ComboBoxItem>
+                            <ComboBoxItem IsSelected="True">隐藏</ComboBoxItem>
+                        </ComboBox>
+                        <Button Width="80" Margin="11,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#FF1B45C5" Content="添加" Foreground="#FFFFFFFF" ToolTip="添加整条指令" Click="OJK" />
+                    </StackPanel>
+                    <StackPanel Margin="0,6,0,2" Orientation="Horizontal">
+                        <Label Margin="0,0,0,0" HorizontalAlignment="Left" Background="#21888888" BorderThickness="0" Content="点   赞：" FontWeight="Bold" Foreground="#FF0821B8" ToolTip="指定礼物,'其他'或者'*'匹配任意礼物" />
+                        <Label Margin="89,0,0,0" Padding="0" HorizontalAlignment="Left" Background="#00FFFFFF" BorderThickness="0" Content="场景：" ToolTip="指定OBS场景" />
+                        <ComboBox Name="comboxLikeObsSences" Width="81" Height="30" ToolTip="OBS场景" ItemsSource="{Binding}" SelectionChanged="NJF" />
+                        <Label Margin="8,0,0,0" Padding="0" HorizontalAlignment="Left" Background="#00FFFFFF" BorderThickness="0" Content="素材：" ToolTip="指定OBS场景里的素材" />
+                        <ComboBox Name="comboxLikeObsAssets" Width="81" Height="30" ToolTip="OBS场景里的素材" />
+                        <Label Margin="18,0,0,0" Padding="0" HorizontalAlignment="Left" Background="#00FFFFFF" BorderThickness="0" Content="控制：" ToolTip="控制显示或者隐藏" />
+                        <ComboBox Name="comboxLikeObsCmdType" Width="81" Height="30" ToolTip="控制显示或者隐藏">
+                            <ComboBoxItem IsSelected="True">显示</ComboBoxItem>
+                            <ComboBoxItem>隐藏</ComboBoxItem>
+                        </ComboBox>
+                        <Label Margin="1,0,0,0" Padding="0" HorizontalAlignment="Left" Background="#00FFFFFF" BorderThickness="0" Content="持续(秒)：" ToolTip="共持续多少秒" />
+                        <hc:NumericUpDown Name="numLikeObsCmdLastSeconds" Width="68" Height="30" FontSize="12" Increment="1" Maximum="50" Minimum="1" ToolTip="共持续多少秒" Value="4" />
+                        <Label Margin="1,0,0,0" Padding="0" HorizontalAlignment="Left" Background="#00FFFFFF" BorderThickness="0" Content="然后：" ToolTip="然后" />
+                        <ComboBox Name="comboxLikeObsCmdType2" Width="81" Height="30" ToolTip="控制显示或者隐藏">
+                            <ComboBoxItem>显示</ComboBoxItem>
+                            <ComboBoxItem IsSelected="True">隐藏</ComboBoxItem>
+                        </ComboBox>
+                        <Button Width="80" Margin="11,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#FF1B45C5" Content="添加" Foreground="#FFFFFFFF" ToolTip="添加整条指令" Click="HJQ" />
+                    </StackPanel>
+                </StackPanel>
+                <Label Margin="18,155,11,11" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#00FFFFFF" BorderThickness="0">OBS素材控制指令列表：</Label>
+                <ListBox Name="listBoxObsCmd" Margin="28,180,28,21" Background="#2F777700" BorderBrush="#02ffffff" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Auto" Style="{StaticResource BaseStyle}" VirtualizingPanel.IsContainerVirtualizable="True" VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Width="536" HorizontalContentAlignment="Left" Content="{Binding CmdDesc}" />
+                                <Button Background="#FFEEEEEE" Content="测试" Tag="{Binding}" Click="PJs" />
+                                <Button Background="#FFEEEEEE" Content="删除" Tag="{Binding}" Click="Ybz" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ListBox>
+            </Grid>
+            <Grid Name="gridLog" Margin="0,0,0,0" Background="#FF999999" Visibility="Collapsed">
+                <Rectangle Height="33" VerticalAlignment="Top" Fill="#FF666666" />
+                <TextBox Name="txtLog" Margin="66,66,66,100" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Text="{Binding Content}" />
+                <Label Margin="0,5,0,0" VerticalAlignment="Top" Background="#00FFFFFF" BorderThickness="0" Foreground="#FFEEEEEE">日志</Label>
+                <Button Width="36" Height="26" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#FF888888" Content="x" Foreground="#FFFFFFFF" Style="{StaticResource ButtonPrimary}" ToolTip="关闭" Click="dJq" />
+                <Button Width="122" Margin="0,55,0,30" VerticalAlignment="Bottom" Click="dJq">确定</Button>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

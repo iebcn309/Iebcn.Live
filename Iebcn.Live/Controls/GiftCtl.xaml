@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UserControl x:Class="Iebcn.Live.Controls.GiftCtl" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:Iebcn.Live.Controls" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" x:Name="ctl" Width="420" Height="80" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+    <FrameworkElement.Resources>
+        <ResourceDictionary>
+            <Storyboard x:Key="sb1">
+                <DoubleAnimation Storyboard.TargetName="t1" Storyboard.TargetProperty="X" From="-240" To="0" Duration="0:0:0.7">
+                    <DoubleAnimation.EasingFunction>
+                        <PowerEase Power="9" />
+                    </DoubleAnimation.EasingFunction>
+                </DoubleAnimation>
+                <DoubleAnimation Storyboard.TargetName="ctl" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.3" />
+                <DoubleAnimation BeginTime="0:0:2.3" Storyboard.TargetName="ctl" Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:0.3" />
+            </Storyboard>
+        </ResourceDictionary>
+    </FrameworkElement.Resources>
+    <UIElement.RenderTransform>
+        <TransformGroup>
+            <ScaleTransform />
+            <SkewTransform />
+            <RotateTransform />
+            <TranslateTransform x:Name="t1" X="0" />
+        </TransformGroup>
+    </UIElement.RenderTransform>
+    <Grid>
+        <Border Width="280" Margin="0,0,0,0" HorizontalAlignment="Left" Background="#490A0A0A" BorderThickness="1" CornerRadius="38" />
+        <Ellipse Width="68" Height="68" Margin="6" HorizontalAlignment="Left" VerticalAlignment="Stretch">
+            <Shape.Fill>
+                <ImageBrush ImageSource="{Binding UserHeadPic}" />
+            </Shape.Fill>
+        </Ellipse>
+        <TextBlock Margin="92,12,0,2" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#00FFFFFF" FontSize="18" Foreground="#FFFFFFFF" Text="{Binding UserNick}" />
+        <TextBlock Margin="92,40,0,2" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="18" Foreground="#FFD6D6D6" Text="{Binding GiftName}" />
+        <Image Width="66" Height="66" Margin="205,0,10,0" HorizontalAlignment="Left" VerticalAlignment="Stretch" Source="{Binding GiftUrl}" />
+        <TextBlock Margin="288,0,0,2" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="30" FontStyle="Italic" FontWeight="Bold" Foreground="#FFFFFFFF" Text="{Binding GiftCount}" />
+    </Grid>
+</UserControl>

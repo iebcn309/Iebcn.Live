@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="Iebcn.Live.Controls.ChatBotWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Iebcn.Live.Controls" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Title="数字人" Width="480" Height="853" MinWidth="480" MinHeight="853" AllowsTransparency="True" Background="#015B5B5B" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" WindowStyle="None" MouseEnter="Window_MouseEnter" MouseLeave="Window_MouseLeave" MouseLeftButtonDown="Window_MouseLeftButtonDown">
+    <Grid>
+        <Grid Margin="0">
+            <FrameworkElement.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="设置" Click="ISo" />
+                    <MenuItem Header="退出" Click="xSv" />
+                </ContextMenu>
+            </FrameworkElement.ContextMenu>
+            <MediaElement Name="mdTalk" Width="NaN" LoadedBehavior="Manual" />
+            <MediaElement Name="mdIdle" Margin="0,0,0,0" LoadedBehavior="Manual" />
+            <MediaElement Name="mdGiftAction" Margin="0,0,0,0" LoadedBehavior="Manual" Opacity="0" />
+            <local:ChatBotMsgCtl x:Name="chatBotMsgCtl" MinWidth="280" MinHeight="120" Margin="66,431,66,33" HorizontalAlignment="Left" VerticalAlignment="Top" ToolTip="可拖动调整位置" FontSize="{Binding TextFontSize}" Visibility="{Binding ShowTextEnabled, Converter={StaticResource Boolean2VisibilityConverter}}" />
+        </Grid>
+        <Grid Name="gridBar" Height="34" VerticalAlignment="Top" Background="#FF2769A7">
+            <TextBlock Margin="8,2,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" Foreground="#FFF5F5F5">数字人</TextBlock>
+            <Button Name="btnSetting" Width="62" Height="34" Margin="0,0,45,0" HorizontalAlignment="Right" Background="#FF2B83BB" Content="设置" Style="{StaticResource ButtonDanger}" ToolTip="设置" Click="bSG" />
+            <Button Name="x" Width="45" Height="34" Margin="0,0,0,0" HorizontalAlignment="Right" Background="#0F0C79BF" Content="x" Style="{StaticResource ButtonDanger}" ToolTip="关闭" Click="PS9" />
+        </Grid>
+    </Grid>
+</Window>

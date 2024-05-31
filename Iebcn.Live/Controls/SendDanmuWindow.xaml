@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="Iebcn.Live.Controls.SendDanmuWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Iebcn.Live.Controls" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf" Title="自动发送弹幕" Width="1335" Height="780" FontSize="14" Icon="/Assets/app.ico" ShowInTaskbar="True" WindowStartupLocation="CenterScreen" MouseLeftButtonDown="t0J">
+    <FrameworkElement.Resources>
+        <ResourceDictionary>
+            <Style x:Key="{x:Type Button}" TargetType="{x:Type Button}">
+                <Setter Property="Width" Value="73" />
+                <Setter Property="Height" Value="28" />
+            </Style>
+        </ResourceDictionary>
+    </FrameworkElement.Resources>
+    <Border Margin="0" Background="#6dffffff" BorderBrush="#FFFFFFFF" BorderThickness="4" CornerRadius="2">
+        <Grid Margin="0,0,0,0">
+            <StackPanel VerticalAlignment="Top" Background="#FFF0F8FF">
+                <Grid Height="42" VerticalAlignment="Top" Background="#5DE5EAF7">
+                    <Rectangle Height="2" VerticalAlignment="Bottom" Fill="#FF808080" />
+                    <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
+                        <Button Name="btnGo" Margin="8,0,0,0" Background="#FF5F86C7" Content="打开直播页面" Foreground="#FFFFFFFF" Style="{StaticResource ButtonPrimary}" Click="l09" />
+                        <Button Name="btnOpenAnchorPage" Margin="8,0,0,0" Background="#FF5F86C7" Content="打开主播后台页面" Foreground="#FFFFFFFF" Style="{StaticResource ButtonPrimary}" Click="o05" />
+                        <Label Margin="14,0,0,0" VerticalAlignment="Center" Background="#00FFFFFF" BorderThickness="0">注：支持直播页面和主播后台模式两种，如果你是主播自己，推荐使用主播后台地址模式。</Label>
+                    </StackPanel>
+                    <Button Name="btnShowSetting" Margin="8,0,80,0" HorizontalAlignment="Right" VerticalAlignment="Top" hc:IconElement.Geometry="{StaticResource AlignHCenterGeometry}" Background="#FF0870B3" Content="设置" Style="{StaticResource ButtonPrimary}" Click="j06" />
+                    <Button Name="btnShowLog" Margin="0,0,5,0" HorizontalAlignment="Right" VerticalAlignment="Top" hc:IconElement.Geometry="{StaticResource TwoPageModeGeometry}" Background="#FF4D5D67" Content="日志" Style="{StaticResource ButtonPrimary}" Click="h07" />
+                </Grid>
+                <Grid Margin="0,0,0,8">
+                    <StackPanel Orientation="Horizontal">
+                        <Label BorderThickness="0" Foreground="#FF7B3232">说明：1、先在程序主界面链接到直播间获取弹幕成功；2、点击【打开直播页面】或【打开主播后台页面】,在本页面里右上角登录自己账号；3、【设置】设置好需要的内容，勾选[开启]后程序会自动运作</Label>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+            <wv2:WebView2 Name="webView" Margin="0,84,0,60" />
+            <Label Name="lbState" Margin="10,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Bottom" Content="Ready" />
+            <Grid Name="gridSetting" Background="#dF2C374E" Visibility="Visible">
+                <Grid Margin="0,0,0,0" Background="#FFFAFAFA">
+                    <StackPanel VerticalAlignment="Top" Background="#FFDEDEDE" Orientation="Horizontal">
+                        <Label Margin="22,0,0,0" Padding="0" HorizontalAlignment="Left" Background="#00FFFFFF" BorderThickness="0" ToolTip="为避免长时间页面无动静卡住或其他情况设置间隔时间刷新下页面">页面刷新间隔(分钟)：</Label>
+                        <hc:NumericUpDown Height="30" MaxWidth="68" Margin="2,0,10,0" FontSize="12" Maximum="98000" Minimum="1" ToolTip="为避免长时间页面无动静卡住或其他情况设置间隔时间刷新下页面" Value="{Binding RefreshPageMinutes}" />
+                        <Label Margin="44,0,0,0" HorizontalAlignment="Left" Background="#00FFFFFF" Foreground="#FF008000">注:所有内容支持插入变量：{当前时间}{直播间人数}{榜1昵称}{榜2昵称}{榜3昵称}</Label>
+                    </StackPanel>
+                    <StackPanel Margin="30,30,0,0">
+                        <StackPanel Margin="0,20,30,0" Background="#FFFFEFE8">
+                            <StackPanel Margin="22,10,0,0" VerticalAlignment="Top" Orientation="Horizontal">
+                                <CheckBox Name="ckAutoSendDanmu" Height="36" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="#FF000000" BorderThickness="1" Content="开启发送欢迎感谢弹幕" FontSize="14" FontWeight="Bold" Foreground="{StaticResource Vip1ColorBrush}" IsChecked="{Binding WelcomeEnabled}" Click="J0X" />
+                                <CheckBox Margin="10,0,0,0" Content="礼物" Foreground="#FF0000FF" IsChecked="{Binding OptTypes.GiftEnabled}" />
+                                <CheckBox Margin="10,0,0,0" Content="进场" Foreground="#FF0000FF" IsChecked="{Binding OptTypes.EnterRoomEnabled}" />
+                                <CheckBox Margin="10,0,0,0" Content="关注" Foreground="#FF0000FF" IsChecked="{Binding OptTypes.FollowEnabled}" />
+                                <CheckBox Margin="10,0,0,0" Content="点赞" Foreground="#FF0000FF" IsChecked="{Binding OptTypes.LikeEnabled}" />
+                                <Label Margin="35,0,0,0" Padding="0" HorizontalAlignment="Left" Background="#00FFFFFF" BorderThickness="0">发送间隔(秒)：</Label>
+                                <hc:NumericUpDown Margin="6,0,0,0" VerticalAlignment="Center" Maximum="600" Minimum="3" ToolTip="建议10秒以上" Value="{Binding InterValSecondsMin}" />
+                                <Label Margin="2,0,0,0" HorizontalAlignment="Left" Background="#38FFFFFF" BorderThickness="0">至</Label>
+                                <hc:NumericUpDown Margin="2,0,0,0" VerticalAlignment="Center" Maximum="9000" Minimum="3" ToolTip="建议20秒以上" Value="{Binding InterValSecondsMax}" />
+                                <Label Margin="10,0,0,0" Padding="0" HorizontalAlignment="Left" Background="#00FFFFFF" BorderThickness="0" ToolTip="弹幕进入等待缓存队列，数值越大会回复越久远的队列弹幕，默认回复队列最新一条弹幕">最大队列缓存：</Label>
+                                <hc:NumericUpDown Height="30" MaxWidth="68" Margin="2,0,0,0" FontSize="12" Maximum="8000" Minimum="1" ToolTip="建议10左右，弹幕进入等待缓存队列，数值越大会回复越久远的队列弹幕，默认首先回复队列最新一条弹幕" Value="{Binding MaxCacheCount}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Margin="189,0,0,0" Padding="0" HorizontalAlignment="Left" Background="#00FFFFFF" BorderThickness="0">粉丝团等级&gt;=</Label>
+                                <hc:NumericUpDown Margin="6,0,0,0" VerticalAlignment="Center" Maximum="90" Minimum="0" ToolTip="粉丝团等级大于等于多少的才欢迎感谢！" Value="{Binding FansClubLevelMin}" />
+                                <Label Margin="22,0,0,0" Padding="0" HorizontalAlignment="Left" Background="#00FFFFFF" BorderThickness="0">蓝V等级&gt;=</Label>
+                                <hc:NumericUpDown Margin="6,0,0,0" VerticalAlignment="Center" Maximum="90" Minimum="0" ToolTip="蓝V等级大于等于多少的才欢迎感谢！" Value="{Binding MiniV5Level}" />
+                                <Label Margin="22,0,0,0" Padding="0" HorizontalAlignment="Left" Background="#00FFFFFF" BorderThickness="0">礼物价值(抖币)&gt;=</Label>
+                                <hc:NumericUpDown Margin="6,0,0,0" VerticalAlignment="Center" Maximum="9000" Minimum="0" ToolTip="礼物弹幕，价值(抖币)大于等于多少的才回复感谢！" Value="{Binding LimitDiamondCount}" />
+                            </StackPanel>
+                            <StackPanel Margin="70,10,0,0" HorizontalAlignment="Left" Orientation="Horizontal">
+                                <Grid>
+                                    <StackPanel>
+                                        <TextBlock Grid.Row="0" Margin="1,0,0,4" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#38FFFFFF" LineHeight="16">内容格式: (提示：一句一行，一条弹幕长度最大50字。发送间隔建议10秒以上。)</TextBlock>
+                                        <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
+                                            <Label HorizontalAlignment="Left" Background="#38FFFFFF" BorderThickness="0" Foreground="#FF0000FF">礼物：</Label>
+                                            <TextBox Width="346" Height="70" Margin="0,0,0,0" VerticalAlignment="Center" VerticalContentAlignment="Top" AcceptsReturn="True" ToolTip="例如：&#xD; 感谢{用户}赠送的{礼物个数}个{礼物名称}&#xD;感谢我的宝宝{用户}赠送的大礼" VerticalScrollBarVisibility="Auto" Text="{Binding OptContent.GiftFormat}" />
+                                            <Label Margin="0,0,0,0" HorizontalAlignment="Left" Background="#38FFFFFF" BorderThickness="0" Foreground="#FF0000FF">进场：</Label>
+                                            <TextBox Width="346" Height="70" Margin="0,0,0,0" VerticalAlignment="Center" VerticalContentAlignment="Top" AcceptsReturn="True" ToolTip="例如：&#xD; 欢迎{用户}来到直播间！&#xD;欢迎宝贝{用户}来到直播间！" VerticalScrollBarVisibility="Auto" Text="{Binding OptContent.EnterRoomFormat}" />
+                                        </StackPanel>
+                                        <StackPanel Margin="0,8,0,0" VerticalAlignment="Top" Orientation="Horizontal">
+                                            <Label Margin="0,0,0,0" HorizontalAlignment="Left" Background="#38FFFFFF" BorderThickness="0" Foreground="#FF0000FF">关注：</Label>
+                                            <TextBox Width="346" Height="70" Margin="0,0,0,0" VerticalAlignment="Center" VerticalContentAlignment="Top" AcceptsReturn="True" ToolTip="例如：&#xD;  感谢{用户}关注！&#xD;感谢宝贝{用户}点关注，么么哒！" VerticalScrollBarVisibility="Auto" Text="{Binding OptContent.FollowFormat}" />
+                                            <Label HorizontalAlignment="Left" Background="#38FFFFFF" BorderThickness="0" Foreground="#FF0000FF">点赞：</Label>
+                                            <TextBox Width="346" Height="70" Margin="0,0,0,0" VerticalAlignment="Center" VerticalContentAlignment="Top" AcceptsReturn="True" ToolTip="例如：&#xD;  感谢{用户}的点赞！&#xD;感谢宝贝{用户}的点赞，么么哒！" VerticalScrollBarVisibility="Auto" Text="{Binding OptContent.LikeFormat}" />
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Grid>
+                                <Grid Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Label Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#00FFFFFF" BorderThickness="0" Foreground="#FF008000" ToolTip="作用是关键用户会被重点照顾，程序不会遗漏他们的欢迎感谢回复！">关键用户(一行一个关键用户昵称)：</Label>
+                                    <Button Margin="0,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" ToolTip="作用是关键用户会被重点照顾，程序不会遗漏他们的欢迎感谢回复！" Click="J0V">作用?</Button>
+                                    <TextBox Width="340" Height="134" Margin="0,30,0,12" HorizontalAlignment="Left" VerticalContentAlignment="Top" AcceptsReturn="True" Background="#ffFFFFFF" BorderBrush="#FF000000" BorderThickness="1" Foreground="#FF008000" ToolTip="作用是关键用户会被重点照顾，程序不会遗漏他们的欢迎感谢回复！" VerticalScrollBarVisibility="Auto" Text="{Binding KeyUserList}" />
+                                </Grid>
+                            </StackPanel>
+                        </StackPanel>
+                        <Grid Margin="0,2,30,0" VerticalAlignment="Top" Background="#FFF0F8F8">
+                            <StackPanel Margin="0,2,0,0">
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox Height="36" Margin="26,0,0,0" VerticalAlignment="Top" BorderBrush="#FF000000" BorderThickness="1" Content="开启发送自定义话术弹幕" FontSize="14" FontWeight="Bold" Foreground="{StaticResource Vip1ColorBrush}" IsChecked="{Binding CustEnabled}" Click="J0X" />
+                                    <Label Margin="30,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#38FFFFFF" BorderThickness="0">自定义话术一条一行：</Label>
+                                    <CheckBox Height="36" Margin="16,0,0,0" VerticalAlignment="Top" BorderBrush="#FF000000" BorderThickness="1" Content="随机" IsChecked="{Binding CustRndSend}" />
+                                    <Label Margin="35,0,0,0" Padding="0" HorizontalAlignment="Left" Background="#00FFFFFF" BorderThickness="0">发送间隔(秒)：</Label>
+                                    <hc:NumericUpDown Margin="6,0,0,0" VerticalAlignment="Center" Maximum="600" Minimum="3" ToolTip="建议10秒以上" Value="{Binding CustInterValSecondsMin}" />
+                                    <Label Margin="2,0,0,0" HorizontalAlignment="Left" Background="#38FFFFFF" BorderThickness="0">至</Label>
+                                    <hc:NumericUpDown Margin="2,0,0,0" VerticalAlignment="Center" Maximum="600" Minimum="3" ToolTip="建议20秒以上" Value="{Binding CustInterValSecondsMax}" />
+                                </StackPanel>
+                                <TextBox Width="1153" Height="128" Margin="80,6,0,15" HorizontalAlignment="Left" VerticalContentAlignment="Top" AcceptsReturn="True" Background="#ffFFFFFF" BorderBrush="#FF000000" BorderThickness="1" ToolTip="例如：&#xD; 欢迎来到宝子的直播间！&#xD;大家有什么问题可以直接扣在公屏上！" VerticalScrollBarVisibility="Auto" Text="{Binding CustContent}" />
+                            </StackPanel>
+                        </Grid>
+                        <Grid Margin="0,2,30,3" VerticalAlignment="Top" Background="#FFF9F0F0">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox Height="36" Margin="26,0,0,0" VerticalAlignment="Top" BorderBrush="#FF000000" BorderThickness="1" Content="开启发送自动问答弹幕" FontSize="14" FontWeight="Bold" Foreground="{StaticResource Vip2ColorBrush}" IsChecked="{Binding QAEnabled}" Click="Q0y" />
+                                    <Label Margin="3,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#38FFFFFF" BorderThickness="0" ToolTip="支持多个关键词匹配多个随机回复，多个关键词或多个回复内容中间用|隔开">一条一行，格式:关键词1|关键词2|关键词n..=回复内容1|回复内容2..</Label>
+                                    <Button Width="84" Margin="10,0,0,0" VerticalAlignment="Center" Click="J0v">查看示例</Button>
+                                    <CheckBox Height="36" Margin="26,0,0,0" VerticalAlignment="Top" BorderBrush="#FF000000" BorderThickness="1" Content="@用户" ToolTip="回复@用户" IsChecked="{Binding QAAtUser}" />
+                                    <Label Margin="28,0,0,0" HorizontalAlignment="Left" Background="#00FFFFFF" BorderThickness="0">排除用户昵称：</Label>
+                                    <TextBox Width="281" Margin="0,0,20,0" VerticalAlignment="Center" AcceptsReturn="False" BorderBrush="#FF000000" ToolTip="例如：用户昵称1|用户昵称abc，多个昵称用|符号隔开;这个排除作用是不想希望自己回复自己问题或者其他不希望回复的用户的问题" Text="{Binding BlockNicks}" />
+                                </StackPanel>
+                                <TextBox Width="1150" Height="128" Margin="80,6,0,10" HorizontalAlignment="Left" VerticalContentAlignment="Top" AcceptsReturn="True" Background="#ffFFFFFF" BorderBrush="#FF000000" BorderThickness="1" ToolTip="例如：&#xD; 怎么购买|下单=点击下方小黄车下单|下方小黄车&#xD;什么时候开播|开播|开播时间=主播开播时间是每天8点到12点|8点到12点开播哦！   &#xD;注：支持多个关键词匹配多个随机回复，多个关键词或多个回复内容中间用|隔开" VerticalScrollBarVisibility="Auto" Text="{Binding QAContent}" />
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                    <Button Width="162" Height="34" Margin="0,0,0,12" VerticalAlignment="Bottom" Background="#FF2774F1" Foreground="#FFFFFFFF" Click="e0T">确定</Button>
+                </Grid>
+                <Button Width="36" Height="26" Margin="0,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" Content="x" Style="{StaticResource ButtonDanger}" Click="e0T" />
+            </Grid>
+            <Grid Name="gridLog" Background="#dF2C374E" Visibility="Collapsed">
+                <Button Width="36" Height="26" Margin="0,33,32,0" HorizontalAlignment="Right" VerticalAlignment="Top" Content="x" Style="{StaticResource ButtonDanger}" Click="H0G" />
+                <Grid Margin="33,66,33,33" Background="#FFF0F8FF">
+                    <TextBox Name="txtLog" VerticalContentAlignment="Top" AcceptsReturn="True" IsReadOnly="True" TextWrapping="WrapWithOverflow" VerticalScrollBarVisibility="Auto" />
+                </Grid>
+            </Grid>
+            <local:MessageTip x:Name="messageTip" Height="55" HorizontalAlignment="Stretch" VerticalAlignment="Top" IsHitTestVisible="False" Visibility="Collapsed" />
+        </Grid>
+    </Border>
+</Window>

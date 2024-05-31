@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="Iebcn.Live.Controls.PlayerSettingWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Iebcn.Live.Controls" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" Title="弹幕页设置" Width="600" Height="371" BorderBrush="#FFFDF9FD" BorderThickness="1" FontFamily="Arial" FontSize="12" Icon="pack://application:,,,/Assets/app.ico" Style="{StaticResource NoResize_window}" WindowStartupLocation="CenterOwner" MouseLeftButtonDown="z25">
+    <Control.Background>
+        <ImageBrush ImageSource="pack://application:,,,/Assets/bg.jpg" />
+    </Control.Background>
+    <Border Background="#E5DCDBDB" CornerRadius="6">
+        <Grid Name="settingGrid" Margin="0">
+            <StackPanel VerticalAlignment="Top" Background="#54ECECEC" Orientation="Horizontal">
+                <Label Width="94" Height="30" Margin="0" HorizontalAlignment="Right" Background="#00FFFFFF">弹幕UI设置</Label>
+            </StackPanel>
+            <Button Name="x" Width="36" Height="26" Margin="0,1,2,0" HorizontalAlignment="Right" VerticalAlignment="Top" Content="x" Style="{StaticResource ButtonDanger}" ToolTip="关闭" Click="G2j" />
+            <Grid Margin="0,29,0,0">
+                <StackPanel Height="40" Margin="0,9,0,0" VerticalAlignment="Top" Background="#3affffff" Orientation="Horizontal">
+                    <CheckBox Margin="25,0,0,0" BorderBrush="#FF827C81" Content="弹幕" Foreground="#FF0000FF" IsChecked="{Binding Config.OptTypes.ChatEnabled}" />
+                    <CheckBox Margin="10,0,0,0" BorderBrush="#FF827C81" Content="礼物" Foreground="#FF0000FF" IsChecked="{Binding Config.OptTypes.GiftEnabled}" />
+                    <CheckBox Margin="10,0,0,0" BorderBrush="#FF827C81" Content="进场" Foreground="#FF0000FF" IsChecked="{Binding Config.OptTypes.EnterRoomEnabled}" />
+                    <CheckBox Margin="10,0,0,0" BorderBrush="#FF827C81" Content="关注" Foreground="#FF0000FF" IsChecked="{Binding Config.OptTypes.FollowEnabled}" />
+                    <CheckBox Margin="10,0,0,0" BorderBrush="#FF827C81" Content="点赞" Foreground="#FF0000FF" IsChecked="{Binding Config.OptTypes.LikeEnabled}" />
+                    <CheckBox Height="35" Margin="25,0,0,0" HorizontalAlignment="Left" BorderBrush="#FF827C81" BorderThickness="1" Content="窗口置顶" IsChecked="{Binding Config.Topmost}" />
+                    <CheckBox Name="ckGameTop" Height="35" Margin="5,0,0,0" HorizontalAlignment="Left" BorderBrush="#FF827C81" BorderThickness="1" Content="全屏游戏里置顶" ToolTip="支持全屏游戏里置顶" IsChecked="{Binding Config.GameTopmost}" Click="R2X" />
+                </StackPanel>
+                <Button Name="btnChooseColor" Grid.Row="0" Width="94" Margin="23,121,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FF405663" Style="{StaticResource ButtonInfo}" Click="V2L">弹幕字体颜色</Button>
+                <Button Name="btnNickColor" Grid.Row="0" Width="94" Margin="323,121,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FF585555" Style="{StaticResource ButtonInfo}" Click="q27">昵称字体颜色</Button>
+                <Label Grid.Row="0" Margin="122,121,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#38FFFFFF" BorderThickness="0">字体大小：</Label>
+                <Slider Width="108" Margin="207,126,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" Maximum="100" Minimum="1" Value="{Binding Config.DanmuFontSize}" />
+                <StackPanel Margin="24,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
+                    <Label Margin="0,0,0,0" Padding="0" HorizontalAlignment="Left" Background="#00FFFFFF" BorderThickness="0" Foreground="#FF7E22C1">蓝V等级&gt;=</Label>
+                    <hc:NumericUpDown VerticalAlignment="Center" Increment="1" Maximum="900" Minimum="0" ToolTip="注:如果后面勾选了礼物价值且送礼抖币价值超过设置值，则忽略等级要求" Value="{Binding Config.MiniV5Level}" MouseDown="B2l" />
+                    <CheckBox Name="ckPrice" Margin="20,0,0,0" BorderBrush="#FF827C81" Content="只显示价值&gt;=" Foreground="#FF840792" ToolTip="勾选后优先级最高" IsChecked="{Binding GiftPriceLimitEnabled}" Click="g2F" />
+                    <hc:NumericUpDown Maximum="99999" Minimum="0" ToolTip="填抖币数量，可用于只关注土豪送礼情况" IsEnabled="{Binding GiftPriceLimitEnabled}" Value="{Binding LimitDiamondCount}" />
+                    <Label Padding="0" Background="#00FFFFFF" BorderThickness="0" Foreground="#FF840792" IsEnabled="{Binding GiftPriceLimitEnabled}">抖币的送礼信息(可用于只关注土豪送礼情况)</Label>
+                </StackPanel>
+                <StackPanel Margin="24,94,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
+                    <CheckBox BorderBrush="#FF827C81" Content="显示间信息(点赞数，在线人数)" ToolTip="弹幕页标题栏显示房间信息(点赞数，在线人数)" IsChecked="{Binding Config.RoomInfoEnabled}" />
+                </StackPanel>
+                <Button Name="btnPageBackColor" Width="94" Margin="23,158,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FF405663" Style="{StaticResource ButtonInfo}" Click="m2o">弹幕页背景色</Button>
+                <Label Margin="121,159,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#38FFFFFF" BorderThickness="0">背景透明度：</Label>
+                <Slider Width="108" Margin="218,164,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" Maximum="1" Minimum="0" Value="{Binding Config.PageBackgroundOpacity}" />
+                <Label Width="85" Height="29" Margin="23,215,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#38FFFFFF" BorderThickness="0">窗口宽度：</Label>
+                <Slider Width="108" Height="28" Margin="113,220,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" Maximum="2000" Minimum="50" Value="{Binding Config.PageWidth}" />
+                <Label Width="84" Height="37" Margin="231,210,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#38FFFFFF" BorderThickness="0" RenderTransformOrigin="0.53,1.243">窗口高度：</Label>
+                <Slider Width="108" Height="28" Margin="329,220,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" Maximum="2000" Minimum="50" Value="{Binding Config.PageHeight}" />
+            </Grid>
+            <Button Name="btnCloseSetting" Width="170" Height="43" Margin="0,297,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonPrimary}" Click="y2R">确定</Button>
+        </Grid>
+    </Border>
+</Window>

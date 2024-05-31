@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="Iebcn.Live.Controls.RollWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Iebcn.Live.Controls" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Title="Roll点" Width="868" AllowsTransparency="True" Background="#00FFFFFF" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" WindowStyle="None" Height="{Binding WindowHeight, Mode=TwoWay}" MinHeight="{Binding WindowHeight, Mode=TwoWay}" MouseEnter="OYS" MouseLeave="EYZ" MouseLeftButtonDown="oYA">
+    <FrameworkElement.Resources>
+        <ResourceDictionary>
+            <Style x:Key="{x:Type ListBoxItem}" TargetType="{x:Type ListBoxItem}">
+                <Setter Property="Focusable" Value="False" />
+            </Style>
+        </ResourceDictionary>
+    </FrameworkElement.Resources>
+    <Grid Name="gridMain" Background="#01000000">
+        <Rectangle Name="bgRect" Fill="#DD000000" Opacity="1" />
+        <ScrollViewer Name="scrollview" Margin="0,88,0,0" HorizontalAlignment="Center" VerticalScrollBarVisibility="Auto">
+            <ListBox Name="listBox" Background="#00FFFFFF" BorderThickness="0" Style="{StaticResource BaseStyle}" FontSize="{Binding FontSize}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Width="833">
+                            <StackPanel Orientation="Horizontal">
+                                <Ellipse Stroke="#FFFFFFFF" StrokeThickness="4" Width="{Binding Path=Value, ElementName=numPicSize}" Height="{Binding Path=Value, ElementName=numPicSize}">
+                                    <Shape.Fill>
+                                        <ImageBrush ImageSource="{Binding UserHeadPic}" />
+                                    </Shape.Fill>
+                                </Ellipse>
+                                <Label Background="#00FFFFFF" BorderThickness="0" Foreground="#FFFFFFFF" Content="{Binding UserNick}">
+                                    <UIElement.Effect>
+                                        <DropShadowEffect BlurRadius="2" Direction="-45" ShadowDepth="2" />
+                                    </UIElement.Effect>
+                                </Label>
+                                <Label Background="#00FFFFFF" BorderThickness="0" Content="Roll出" Foreground="#FFFFFFFF" />
+                                <Label Background="#00FFFFFF" BorderThickness="0" FontWeight="Bold" Foreground="#FF90EE90" Content="{Binding Roll}" />
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ListBox>
+        </ScrollViewer>
+        <Grid Name="gridBar" VerticalAlignment="Top" Background="#EE555555">
+            <Grid VerticalAlignment="Top" Background="#EC424242">
+                <Label HorizontalAlignment="Left" VerticalAlignment="Top" Background="#00FFFFFF" BorderThickness="0" FontSize="14" FontWeight="Bold" Foreground="#FFF5F5F5" ToolTip="互动直播玩法，可设置送礼物,随机Roll点！例如观众Roll到多少点主播干嘛">Roll点</Label>
+                <Label Margin="102,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#00FFFFFF" BorderThickness="0" FontSize="14" Foreground="#FFF5F5F5" ToolTip="互动直播玩法，可设置送礼物,随机Roll点！例如观众Roll到多少点主播干嘛">（互动直播玩法，默认送一次礼物可Roll一次点数(1-100点)，也可指定礼物才可以Roll）</Label>
+                <Button Width="48" Height="26" Margin="0,1,40,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#8C589A0D" BorderThickness="0" Content="锁定" Foreground="#FFFFFFFF" ToolTip="锁定后不能再次更改，锁定后具有鼠标穿透效果。可在任务栏选择本窗口关闭。" Click="fYc" />
+                <Button Name="x" Width="36" Height="26" Margin="0,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" Content="x" Style="{StaticResource ButtonDanger}" ToolTip="关闭" Click="hYk" />
+            </Grid>
+            <Grid Margin="20,44,20,0" VerticalAlignment="Top">
+                <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
+                    <CheckBox Name="ckEnabled" HorizontalAlignment="Left" Content="开启Roll点" FontWeight="Bold" Foreground="{StaticResource Vip2ColorBrush}" ToolTip="开启才能实时统计到送礼信息和产生随机的Roll点" IsChecked="{Binding Enabled}" Click="JYt" />
+                    <Label Background="#00FFFFFF" BorderThickness="0" Content="窗口高:" Foreground="#FFEEEEEE" />
+                    <Slider Width="88" VerticalAlignment="Center" Background="#FF808080" Foreground="#FFF5F5F5" Maximum="2000" Minimum="200" SmallChange="1" ToolTip="调节需要的高度后添可将本窗口加到OBS或直播伴侣" Value="{Binding WindowHeight}" />
+                    <Label Margin="0,0,0,0" Padding="0" Background="#00FFFFFF" BorderThickness="0" Content="字体大小:" Foreground="#FFEEEEEE" />
+                    <hc:NumericUpDown Margin="1,0,0,0" Background="#FFDDDDDD" BorderThickness="0" Maximum="120" Minimum="10" Value="{Binding FontSize}" />
+                    <Label Margin="0,0,0,0" Background="#00FFFFFF" BorderThickness="0" Content="头像大小:" Foreground="#FFEEEEEE" />
+                    <hc:NumericUpDown Name="numPicSize" Margin="1,0,0,0" Background="#FFDDDDDD" BorderThickness="0" Maximum="120" Minimum="10" Value="{Binding PicSize}" />
+                    <Label Margin="0" Background="#00FFFFFF" BorderThickness="0" Content="指定礼物:" Foreground="#FFEEEEEE" ToolTip="为空表示不限制礼物类型" />
+                    <TextBox Width="144" Margin="0" Background="#FFDDDDDD" BorderThickness="1" Foreground="#FF000000" ToolTip="多个礼物用|分割，为空表示任何礼物都可以" Text="{Binding Gifts}" />
+                    <Button Width="68" Margin="10,1,40,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#8C1E6135" BorderBrush="#FFaaaaaa" BorderThickness="1" Content="测试下" Foreground="#FFFFFFFF" Click="qYM" />
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

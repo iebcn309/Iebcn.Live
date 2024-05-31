@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="Iebcn.Live.Controls.FloatScreenWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Iebcn.Live.Controls" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Title="飘屏动画" Width="1400" Height="444" AllowsTransparency="True" Background="#01000000" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" WindowStyle="None" MouseLeftButtonDown="gDU">
+    <Grid>
+        <Grid>
+            <Rectangle Fill="{StaticResource GreenbackColorBrush}" Visibility="{Binding GreenBackground, Converter={StaticResource Boolean2VisibilityConverter}}" />
+            <Grid Name="cmdBarPanel" VerticalAlignment="Top" Background="#FF0A773D" Visibility="Visible">
+                <Grid VerticalAlignment="Top" Background="#FF06B559">
+                    <Label HorizontalAlignment="Left" Background="#00FFFFFF" BorderThickness="0" FontWeight="Bold" Foreground="#FFFFFFFF">飘屏动画</Label>
+                    <CheckBox Margin="80,0,0,0" HorizontalAlignment="Left" BorderBrush="#FF0D7125" Content="绿幕背景" Foreground="#FFFFFFFF" IsChecked="{Binding GreenBackground}" />
+                    <Button Width="48" Height="26" Margin="0,0,82,0" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#8CD6DE48" Content="锁定" Foreground="#FFFFFFFF" Style="{StaticResource ButtonCustom}" ToolTip="锁定后不能再次更改，锁定后具有鼠标穿透效果。可在任务栏选择全屏弹幕页关闭。" Visibility="Collapsed" Click="TDW" />
+                    <Button Name="x" Width="36" Height="26" Margin="0" HorizontalAlignment="Right" VerticalAlignment="Top" Content="x" Style="{StaticResource ButtonDanger}" ToolTip="关闭" Click="nDu" />
+                </Grid>
+                <WrapPanel Margin="0,30,0,0" VerticalAlignment="Top" Orientation="Horizontal" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                    <Label Margin="4,0,0,0" HorizontalAlignment="Left" Background="#00FFFFFF" BorderThickness="0" Foreground="#FFFFFFFF">速度:</Label>
+                    <Slider Width="91" Margin="3,0,0,0" VerticalAlignment="Center" Maximum="20" Minimum="1" Value="{Binding Speed}" />
+                    <CheckBox Name="ckChat" Margin="20,0,0,0" Content="弹幕" Foreground="#FFFFFFFF" IsChecked="{Binding ChatEnabled}" Click="RD1" />
+                    <CheckBox Margin="10,0,0,0" Content="礼物" Foreground="#FFFFFFFF" IsChecked="{Binding GiftEnabled}" Click="RD1" />
+                    <CheckBox Margin="10,0,0,0" Content="进场" Foreground="#FFFFFFFF" IsChecked="{Binding EnterRoomEnabled}" Click="RD1" />
+                    <CheckBox Margin="10,0,0,0" Content="关注" Foreground="#FFFFFFFF" IsChecked="{Binding FollowEnabled}" Click="RD1" />
+                    <CheckBox Margin="10,0,0,0" Content="点赞" Foreground="#FFFFFFFF" IsChecked="{Binding LikeEnabled}" Click="RD1" />
+                    <Button Margin="12,0,0,0" Background="#FF259E37" BorderBrush="#FF999999" BorderThickness="1" Content="字体颜色" Foreground="#FFFFFFFF" Click="jDa" />
+                    <Label Margin="4,0,0,0" HorizontalAlignment="Left" Background="#00FFFFFF" BorderThickness="0" Foreground="#FFFFFFFF">同时飘屏最多个数:</Label>
+                    <hc:NumericUpDown Margin="0,0,0,0" Increment="1" Maximum="10" Minimum="1" ToolTip="同时飘屏支持最多个数,太多可能不好看" Value="{Binding MaxRunCount}" />
+                    <Label Margin="6,0,0,0" Padding="0" HorizontalAlignment="Left" Background="#00FFFFFF" BorderThickness="0" Foreground="#FFFFFFFF">间隔(秒):</Label>
+                    <hc:NumericUpDown Margin="3,0,0,0" Increment="1" Maximum="10" Minimum="1" ToolTip="2个飘屏中间间隔多少秒，太短会出现重贴效果" Value="{Binding IntervalSeconds}" />
+                    <Label Margin="6,0,0,0" Padding="0" HorizontalAlignment="Left" Background="#00FFFFFF" BorderThickness="0" Foreground="#FFFFFFFF">礼物弹幕价值(抖币)&gt;=</Label>
+                    <hc:NumericUpDown BorderBrush="{StaticResource Vip2ColorBrush}" Foreground="{StaticResource Vip2ColorBrush}" Maximum="99999" Minimum="0" ToolTip="填抖币数量，可用于只显示土豪送礼飘屏" Value="{Binding LimitDiamondCount}" PreviewMouseDown="TDr" />
+                    <Label Margin="20,0,0,0" Padding="0" HorizontalAlignment="Left" Background="#00FFFFFF" BorderThickness="0" Foreground="#FFECD9F9">蓝V等级&gt;=</Label>
+                    <hc:NumericUpDown VerticalAlignment="Top" BorderBrush="{StaticResource Vip2ColorBrush}" Foreground="{StaticResource Vip2ColorBrush}" Increment="1" Maximum="900" Minimum="0" ToolTip="用户等级限制" Value="{Binding MiniV5Level}" PreviewMouseDown="TDr" />
+                    <CheckBox Margin="8,6,0,0" Padding="10,0,10,0" VerticalAlignment="Top" BorderThickness="1" Content="显示动图" Foreground="#FFFFFFFF" ToolTip="可自己将需要的动图，都丢到【动图文件夹】" IsChecked="{Binding GifPicEnabled}" />
+                    <Button Margin="8,0,0,0" Padding="10,0,10,0" VerticalAlignment="Top" Background="#8C87839A" BorderBrush="#FF999999" BorderThickness="1" Content="打开动图文件夹" Foreground="#FFFFFFFF" ToolTip="可自己将需要的动图，都丢到这个文件夹，下次启动生效" Click="tDL" />
+                    <CheckBox Margin="8,4,0,0" VerticalAlignment="Top" Content="弹幕触发飘屏：" Foreground="{StaticResource Vip2ColorBrush}" ToolTip="输入弹幕触发关键词（一行一条）,如:666=欢迎{用户}加入蓝队。&#xA;可以根据观众弹幕内容触发飘屏，如用户扣‘666’触发飘屏‘欢迎{用户}加入蓝队’" IsChecked="{Binding ChatTriggerEnabled}" Checked="cDS" Click="tDm" />
+                    <TextBox Width="238" Height="67" Margin="8,4,0,0" VerticalAlignment="Top" VerticalContentAlignment="Top" AcceptsReturn="True" BorderBrush="{StaticResource Vip2ColorBrush}" Foreground="#FF000000" ToolTip="输入弹幕触发关键词（一行一条）。&#xA;如:666=欢迎{用户}加入蓝队。&#xA;777=欢迎{用户}加入红队。" VerticalScrollBarVisibility="Auto" Text="{Binding ChatTriggerContent}" />
+                    <Button Width="155" Margin="4,6,0,0" Padding="10,0,10,0" VerticalAlignment="Top" Background="#8C17DE87" BorderBrush="#FF999999" BorderThickness="0" Content="效果测试(送礼)" Foreground="#FFFFFFFF" ToolTip="效果测试" Click="PDP" />
+                    <Button Width="135" Margin="6,6,0,0" Padding="10,0,10,0" VerticalAlignment="Top" Background="#8C17DE87" BorderBrush="#FF999999" BorderThickness="0" Content="测试弹幕触发" Foreground="#FFFFFFFF" ToolTip="效果测试" Click="JDZ" />
+                    <Label Margin="0,6,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#00FFFFFF" BorderThickness="0" FontWeight="Bold" Foreground="#FFFFFFFF">注：在OBS或直播伴侣里按住Alt键可裁剪自己需要的区域</Label>
+                </WrapPanel>
+            </Grid>
+            <Grid Name="gridItems" Margin="0,180,0,0" VerticalAlignment="Top" />
+        </Grid>
+    </Grid>
+</Window>

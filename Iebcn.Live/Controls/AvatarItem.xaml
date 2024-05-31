@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UserControl x:Class="Iebcn.Live.Controls.AvatarItem" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:Iebcn.Live.Controls" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
+    <Grid Background="#FFEBEEEF">
+        <Image Margin="0,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Source="/Assets/sampleHead1.jpg" Stretch="UniformToFill" />
+        <Image Name="img" Margin="0,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Source="/Assets/ThanksGifs/p7.gif" Stretch="UniformToFill" />
+        <TextBlock Name="txt" Margin="0,6,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="16" Foreground="#FF4A4A4A" Text="感谢3243而额头赠送的2个小心心" Visibility="{Binding Path=ShowTextEnabled, Converter={StaticResource Boolean2VisibilityConverter}}" />
+    </Grid>
+</UserControl>

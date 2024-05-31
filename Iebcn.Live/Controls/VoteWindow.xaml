@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="Iebcn.Live.Controls.VoteWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Iebcn.Live.Controls" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Title="弹幕投票" Width="1060" Height="800" AllowsTransparency="True" Background="#00FFFFFF" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" WindowStyle="None" Topmost="{Binding Config.Topmost}" MouseEnter="q92" MouseLeave="h98" MouseLeftButtonDown="J9M">
+    <FrameworkElement.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="t1">
+                <Viewbox Width="{Binding Path=Value, ElementName=sldItemWidth}" Height="{Binding Path=Value, ElementName=sldItemHeight}">
+                    <Border Width="222" BorderBrush="#FF090D2B" BorderThickness="4" Tag="{Binding}" MouseEnter="L9Y" MouseLeave="p90">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                <GradientStop Color="#CC000000" />
+                                <GradientStop Offset="1" Color="#FF310B9E" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <UIElement.Effect>
+                            <DropShadowEffect ShadowDepth="1" />
+                        </UIElement.Effect>
+                        <Grid>
+                            <StackPanel Margin="8">
+                                <Image MaxHeight="177" Margin="0,0,0,9" Stretch="UniformToFill" ToolTip="点击可自定义图片" Source="{Binding HeadPic}" Tag="{Binding}" Visibility="{Binding Path=IsChecked, ElementName=ckShowHeadPic, Converter={StaticResource Boolean2VisibilityConverter}}" MouseLeftButtonDown="N9J" />
+                                <TextBox HorizontalContentAlignment="Center" Background="#00FFFFFF" Foreground="#FFFFFFFF" TextWrapping="Wrap" ToolTip="这是投票标题选项，点击可直接编辑" FontSize="{Binding Path=Value, ElementName=numFontSize}" Text="{Binding Title}" />
+                                <TextBlock Margin="0,5,0,0" HorizontalAlignment="Center">
+                  <InlineUIContainer>
+                    <TextBox MinWidth="34" Background="#552F76D6" BorderThickness="0" FontSize="25" FontWeight="Bold" Foreground="#FFFFFFFF" ToolTip="这里是投票数量，点击可直接编辑" Text="{Binding Count}" />
+                  </InlineUIContainer> <InlineUIContainer><Label Padding="0" VerticalAlignment="Center" Background="#00FFFFFF" BorderThickness="0" FontSize="20" Foreground="#FFFFFFFF">票</Label></InlineUIContainer></TextBlock>
+                                <TextBlock Margin="8" HorizontalAlignment="Center" Foreground="#FFFFFFFF" Visibility="{Binding Path=IsChecked, ElementName=ckShowCmdTip, Converter={StaticResource Boolean2VisibilityConverter}}">
+                  <InlineUIContainer>
+                    <TextBox Background="#00FFFFFF" BorderThickness="0" FontSize="14" Foreground="#FFFFFFFF" ToolTip="点击可直接编辑(接收弹幕投票的命令词)" Text="{Binding CmdTip}" />
+                  </InlineUIContainer> <InlineUIContainer><TextBox Background="#252F76D6" BorderThickness="0" FontSize="36" FontWeight="Bold" Foreground="#FFFFFF00" ToolTip="点击可直接编辑(接收弹幕投票的命令词)" Text="{Binding DanmuCmd}" /></InlineUIContainer></TextBlock>
+                            </StackPanel>
+                            <Button Name="btnDeleteItem" Width="36" Height="26" Margin="0,1,2,0" HorizontalAlignment="Right" VerticalAlignment="Top" Content="x" ToolTip="删除" Style="{StaticResource ButtonDanger}" Tag="{Binding}" Visibility="{Binding BtnDelVisibility}" Click="o9R" />
+                        </Grid>
+                    </Border>
+                </Viewbox>
+            </DataTemplate>
+            <DataTemplate x:Key="t2">
+                <Viewbox Width="{Binding Path=Value, ElementName=sldItemWidth}" Height="{Binding Path=Value, ElementName=sldItemHeight}">
+                    <Border Width="222" BorderBrush="#FF090D2B" BorderThickness="4" Tag="{Binding}" MouseEnter="L9Y" MouseLeave="p90">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                <GradientStop Color="#CC000000" />
+                                <GradientStop Offset="1" Color="#FF310B9E" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <UIElement.Effect>
+                            <DropShadowEffect ShadowDepth="1" />
+                        </UIElement.Effect>
+                        <Grid>
+                            <StackPanel Margin="8">
+                                <TextBox HorizontalContentAlignment="Center" Background="#00FFFFFF" Foreground="#FFFFFFFF" TextWrapping="Wrap" ToolTip="这是投票标题选项，点击可直接编辑" FontSize="{Binding Path=Value, ElementName=numFontSize}" Text="{Binding Title}" />
+                                <TextBlock Margin="0,5,0,0" HorizontalAlignment="Center">
+                  <InlineUIContainer>
+                    <TextBox MinWidth="34" Background="#552F76D6" BorderThickness="0" FontSize="46" FontWeight="Bold" Foreground="#FFFFFFFF" ToolTip="这里是投票数量，点击可直接编辑" Text="{Binding Count}" />
+                  </InlineUIContainer>
+                                </TextBlock>
+                                <TextBlock Margin="8" HorizontalAlignment="Center" Foreground="#FFFFFFFF" Visibility="{Binding Path=IsChecked, ElementName=ckShowCmdTip, Converter={StaticResource Boolean2VisibilityConverter}}">
+                  <InlineUIContainer>
+                    <TextBox Background="#00FFFFFF" BorderThickness="0" FontSize="14" Foreground="#FFFFFFFF" ToolTip="点击可直接编辑(提示词)" Text="{Binding CmdTip}" />
+                  </InlineUIContainer> <InlineUIContainer><TextBox Background="#252F76D6" BorderThickness="0" FontSize="36" FontWeight="Bold" Foreground="#FFFFFF00" ToolTip="点击可直接编辑(弹幕投票此项需要发的文字)" Text="{Binding DanmuCmd}" /></InlineUIContainer></TextBlock>
+                            </StackPanel>
+                            <Button Name="btnDeleteItem" Width="36" Height="26" Margin="0,1,2,0" HorizontalAlignment="Right" VerticalAlignment="Top" Content="x" ToolTip="删除" Style="{StaticResource ButtonDanger}" Tag="{Binding}" Visibility="{Binding BtnDelVisibility}" Click="o9R" />
+                        </Grid>
+                    </Border>
+                </Viewbox>
+            </DataTemplate>
+        </ResourceDictionary>
+    </FrameworkElement.Resources>
+    <Grid Name="gridMain" Background="#01000000">
+        <Rectangle Opacity="{Binding Path=Value, ElementName=sldBgOpacity}">
+            <Shape.Fill>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <GradientStop Color="Black" />
+                    <GradientStop Offset="1" Color="#FF033CEA" />
+                </LinearGradientBrush>
+            </Shape.Fill>
+        </Rectangle>
+        <Grid Name="gridBar" Height="78" VerticalAlignment="Top" Background="#CE000000">
+            <StackPanel Height="30" Margin="12,0,12,0" VerticalAlignment="Top" Orientation="Horizontal">
+                <CheckBox Name="ckEnabled" Background="#FF808080" Content="开启投票" FontSize="18" FontWeight="Bold" Foreground="#FFDDDDDD" ToolTip="开启后可接受弹幕投票" IsChecked="{Binding Enabled}" Click="B9i" />
+                <Button Margin="15,0,0,0" Padding="12,4,12,4" Background="#CE000000" BorderBrush="#FF808080" Content="+ 选项" FontSize="16" FontWeight="Bold" Foreground="#FFDDDDDD" ToolTip="添加一个图片选项，可直接编辑各个部分，如选项表题，头图，初始票数，提示和弹幕投票需要发的文字" Click="h9p" />
+                <Label Background="#00FFFFFF" BorderThickness="0" Content="字体大小:" FontSize="12" Foreground="#FFDDDDDD" />
+                <hc:NumericUpDown Name="numFontSize" Width="68" Background="#FFDDDDDD" FontSize="12" Maximum="100" Minimum="8" Value="{Binding FontSize}" />
+                <Label Background="#00FFFFFF" BorderThickness="0" Content="背景透明度:" FontSize="12" Foreground="#FFDDDDDD" />
+                <Slider Name="sldBgOpacity" Width="78" VerticalAlignment="Center" VerticalContentAlignment="Center" Maximum="1" Minimum="0.1" SmallChange="0.1" Value="{Binding BgOpacity}" />
+                <Label Background="#00FFFFFF" BorderThickness="0" Content="选项宽:" FontSize="12" Foreground="#FFDDDDDD" />
+                <Slider Name="sldItemWidth" Width="74" VerticalAlignment="Center" VerticalContentAlignment="Center" Maximum="400" Minimum="50" SmallChange="1" Value="{Binding ItemWidth}" />
+                <Label Background="#00FFFFFF" BorderThickness="0" Content="选项高:" FontSize="12" Foreground="#FFDDDDDD" />
+                <Slider Name="sldItemHeight" Width="76" VerticalAlignment="Center" VerticalContentAlignment="Center" Maximum="400" Minimum="50" SmallChange="1" Value="{Binding ItemHeight}" />
+                <CheckBox Name="ckShowHeadPic" Content="显示头图" Foreground="#FFDDDDDD" IsChecked="{Binding ShowItemHeadPic}" />
+                <CheckBox Name="ckShowCmdTip" Margin="4,0,0,0" Content="显示弹幕提示词" Foreground="#FFDDDDDD" ToolTip="就是接收用户发弹幕投某个选项的文字命令" IsChecked="{Binding ShowCmdTip}" />
+            </StackPanel>
+            <StackPanel Margin="12,38,0,8" VerticalAlignment="Top" Orientation="Horizontal">
+                <CheckBox Content="一人可投票多个选择" Foreground="#FFDDDDDD" ToolTip="一个人可以对多个选项投票" IsChecked="{Binding AllowVoteMoreItems}" />
+                <CheckBox Margin="12,0,0,0" Content="可重复投票" Foreground="#FFDDDDDD" ToolTip="一个人可以对某个选项重复投票" IsChecked="{Binding AllowVoteItemRepeat}" />
+                <Label Margin="34,0,0,0" Padding="0" Background="#00FFFFFF" BorderThickness="0" Content="单个用户最多能投票数:" FontSize="12" Foreground="#FFDDDDDD" />
+                <hc:NumericUpDown Width="88" Margin="0,0,0,0" VerticalAlignment="Center" Background="#FFDDDDDD" FontSize="12" Increment="1" Maximum="10000" Minimum="1" ToolTip="单个用户最多能投票数,最大值10000" Value="{Binding SingleUserMaxVoteLimit}" />
+                <Label Margin="44,0,0,0" Padding="0" Background="#00FFFFFF" BorderThickness="0" Content="样式预设:" FontSize="12" Foreground="#FFDDDDDD" />
+                <Button Width="50" Height="26" Margin="16,0,12,0" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#8C5353EC" Content="预设1" Foreground="#FFFFFFFF" Style="{StaticResource ButtonCustom}" Tag="t1" ToolTip="预设1" Click="a99" />
+                <Button Width="50" Height="26" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#8C5353EC" Content="预设2" Foreground="#FFFFFFFF" Style="{StaticResource ButtonCustom}" Tag="t2" ToolTip="预设2" Click="a99" />
+                <Label Margin="44,0,0,0" Padding="0" Background="#00FFFFFF" BorderThickness="0" Content="倒计时(秒):" FontSize="12" Foreground="#FFDDDDDD" />
+                <hc:NumericUpDown Width="88" Margin="0,0,0,0" VerticalAlignment="Center" Background="#FFDDDDDD" FontSize="12" Increment="1" Maximum="6000" Minimum="10" ToolTip="看自己需求，输入多少秒后点击开始倒计时" Value="{Binding CountDownSeconds}" />
+                <Button Height="26" Margin="6,0,0,0" Padding="5" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#8C53F3EC" Content="开始倒计时" Foreground="#FFFFFFFF" Style="{StaticResource ButtonPrimary}" Tag="t2" ToolTip="开始倒计时动画" Click="o9D" />
+            </StackPanel>
+            <Button Name="btnMinWindow" Width="36" Height="26" Margin="0,1,40,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#A86496C5" Content="□" FontSize="16" Foreground="#FFFFFFFF" Style="{StaticResource ButtonCustom}" ToolTip="最大化" Click="G9g" />
+            <Button Name="btnDeleteItem" Width="36" Height="26" Margin="0,1,2,0" HorizontalAlignment="Right" VerticalAlignment="Top" Content="x" Style="{StaticResource ButtonDanger}" ToolTip="关闭" Visibility="{Binding BtnDelVisibility}" Click="S9h" />
+        </Grid>
+        <ScrollViewer Name="scrollview" Margin="10,48,10,10" IsHitTestVisible="False" VerticalScrollBarVisibility="Auto" Visibility="Collapsed">
+            <WrapPanel Name="myWrapPanel">
+                <Border Width="222" BorderBrush="#FF090D2B" BorderThickness="4">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                            <GradientStop Color="#CC000000" />
+                            <GradientStop Offset="1" Color="#FF310B9E" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <UIElement.Effect>
+                        <DropShadowEffect ShadowDepth="1" />
+                    </UIElement.Effect>
+                    <StackPanel Margin="8">
+                        <Image MaxHeight="177" Margin="0,0,0,9" Stretch="UniformToFill" Visibility="Visible" Source="{Binding HeadPic}" />
+                        <TextBox HorizontalContentAlignment="Center" Background="#00FFFFFF" Foreground="#FFFFFFFF" TextWrapping="Wrap" FontSize="{Binding Path=Value, ElementName=numFontSize}" Text="{Binding Title}" />
+                        <Label Margin="4" Background="#00FFFFFF" BorderThickness="0" FontSize="20" FontWeight="Bold" Foreground="#FFFFFFFF" Content="{Binding CountCN}" />
+                        <TextBlock Margin="8" HorizontalAlignment="Center" Foreground="#FFFFFFFF">
+              <InlineUIContainer>
+                <Label Background="#00FFFFFF" BorderThickness="0" Foreground="#FFFFFFFF">弹幕投票扣:</Label>
+              </InlineUIContainer> <InlineUIContainer><TextBox Background="#552F76D6" BorderThickness="0" FontSize="16" FontWeight="Bold" Foreground="#FFFFFFFF" Text="{Binding DanmuCmd}" /></InlineUIContainer></TextBlock>
+                    </StackPanel>
+                </Border>
+                <Border Width="222" BorderBrush="#FF090D2B" BorderThickness="4">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                            <GradientStop Color="#CC000000" />
+                            <GradientStop Offset="1" Color="#FF310B9E" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <UIElement.Effect>
+                        <DropShadowEffect ShadowDepth="1" />
+                    </UIElement.Effect>
+                    <StackPanel Margin="8">
+                        <Image MaxHeight="177" Margin="0,0,0,9" Stretch="UniformToFill" Visibility="Visible" />
+                        <TextBox HorizontalContentAlignment="Center" Background="#00FFFFFF" Foreground="#FFFFFFFF" Text="Binding Title" TextWrapping="Wrap" FontSize="{Binding Path=Value, ElementName=numFontSize}" />
+                        <Label Margin="4" Background="#00FFFFFF" BorderThickness="0" FontSize="20" FontWeight="Bold" Foreground="#FFFFFFFF">99999票</Label>
+                        <TextBlock Margin="8" HorizontalAlignment="Center" Foreground="#FFFFFFFF">
+              <InlineUIContainer>
+                <Label Background="#00FFFFFF" BorderThickness="0" Foreground="#FFFFFFFF">弹幕投票扣:</Label>
+              </InlineUIContainer> <InlineUIContainer><TextBox Background="#552F76D6" BorderThickness="0" FontSize="16" FontWeight="Bold" Foreground="#FFFFFFFF" Text="A124" /></InlineUIContainer></TextBlock>
+                    </StackPanel>
+                </Border>
+            </WrapPanel>
+        </ScrollViewer>
+        <ScrollViewer Margin="0,83,0,0" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+            <ItemsControl Name="voteListView" HorizontalAlignment="Center" ItemTemplate="{StaticResource t1}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </ScrollViewer>
+        <Border Name="loading" Margin="0,0,0,0" HorizontalAlignment="Stretch" Background="#7808084E" BorderBrush="#FCF5DEB3" BorderThickness="4" CornerRadius="12" Visibility="Collapsed">
+            <UIElement.Effect>
+                <DropShadowEffect />
+            </UIElement.Effect>
+            <Grid>
+                <StackPanel VerticalAlignment="Center">
+                    <Label Name="txtWords" Height="80" Margin="22" HorizontalAlignment="Center" Content="GPT正在忙碌中....请GPT空闲后再提问." FontSize="20" FontWeight="Bold" Foreground="#FFFFFFFF" />
+                </StackPanel>
+            </Grid>
+        </Border>
+        <StackPanel Name="stackPanelCountDown" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#8FFF0000" Orientation="Horizontal" Visibility="Collapsed">
+            <Label Background="#00FFFFFF" BorderThickness="0" Content="倒计时:" FontSize="33" Foreground="#FFFBE6C0" />
+            <TextBlock Name="countdown" Margin="0,0,10,0" Padding="12" FontSize="44" FontWeight="Bold" Foreground="#FFFFFFFF" Text="6576" />
+        </StackPanel>
+    </Grid>
+</Window>

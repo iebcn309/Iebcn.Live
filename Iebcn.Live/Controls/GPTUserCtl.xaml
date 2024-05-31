@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UserControl x:Class="Iebcn.Live.Controls.GPTUserCtl" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:Iebcn.Live.Controls" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Margin="12">
+    <Grid>
+        <Grid Width="86" Height="145" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <StackPanel>
+                <Ellipse Stroke="#FFF5F5F5" StrokeThickness="4" Height="80" Width="80" VerticalAlignment="Top">
+                    <Shape.Fill>
+                        <ImageBrush ImageSource="{Binding UserHeadPic}" />
+                    </Shape.Fill>
+                </Ellipse>
+                <Label HorizontalAlignment="Stretch" Background="#EEFFFFFF" BorderThickness="0" FontWeight="Bold" FontSize="12" Foreground="#FF565353" Content="{Binding UserNick}" />
+            </StackPanel>
+        </Grid>
+        <Border Margin="0,0,88,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#FF247B59" CornerRadius="8">
+            <TextBlock Name="txt" Margin="12" HorizontalAlignment="Right" Foreground="#FFFFFFFF" TextWrapping="Wrap" Text="{Binding PureMsg}" />
+        </Border>
+    </Grid>
+</UserControl>

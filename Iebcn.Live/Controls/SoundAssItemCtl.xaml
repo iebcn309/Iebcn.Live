@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UserControl x:Class="Iebcn.Live.Controls.SoundAssItemCtl" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:gif="http://wpfanimatedgif.codeplex.com" xmlns:local="clr-namespace:Iebcn.Live.Controls" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Width="88" Height="88" Margin="4" Background="#FFFFFFFF" MouseEnter="pTl" MouseLeave="KTz">
+    <FrameworkElement.ToolTip>
+        <Grid>
+            <TextBlock>
+        <Span>
+          <ContentControl Content="标题：" />
+        </Span> <Span><ContentControl Content="{Binding Title}" /></Span><LineBreak /><Span><ContentControl Content="快键：" /></Span> <Span><ContentControl Content="{Binding HotKeys}" /></Span><LineBreak /><Span><ContentControl Content="触发：" /></Span> <Span><ContentControl Content="{Binding ActInfo}" /></Span></TextBlock>
+        </Grid>
+    </FrameworkElement.ToolTip>
+    <Grid>
+        <Rectangle Stroke="#FF000000" />
+        <Image Width="80" Height="80" gif:ImageBehavior.AutoStart="True" gif:ImageBehavior.RepeatBehavior="Forever" Stretch="Uniform" gif:ImageBehavior.AnimatedSource="{Binding PicUrl}" Source="{Binding PicUrl}" />
+        <Button Name="btnPlay" Width="84" Height="60" Margin="0,26,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="#DF104051" BorderThickness="0" Foreground="#FFF5F5F5" Visibility="Collapsed" Click="aGs">Play</Button>
+        <Grid Name="gridBar" VerticalAlignment="Top" Visibility="Collapsed">
+            <Button Width="22" Height="25" Margin="0,0,0,0" Padding="0" HorizontalAlignment="Right" Background="#99AAAAAA" BorderThickness="0" FontSize="10" Foreground="#FFF5F5F5" ToolTip="删除" Click="mGd">✖</Button>
+            <Button Width="22" Height="25" Margin="0,0,23,0" Padding="0" HorizontalAlignment="Right" Background="#99AAAAAA" BorderThickness="0" FontSize="10" Foreground="#FFF5F5F5" ToolTip="修改" Click="UGx">☀</Button>
+        </Grid>
+    </Grid>
+</UserControl>

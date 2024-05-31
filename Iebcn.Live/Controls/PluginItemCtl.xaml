@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Button x:Class="Iebcn.Live.Controls.PluginItemCtl" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:Iebcn.Live.Controls" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" x:Name="root" Width="222" Height="66" BorderBrush="#FFEEEEEE" BorderThickness="1">
+    <Grid Width="222" Background="#FFF1F3F3">
+        <Button Height="66" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderThickness="0" Cursor="Hand" />
+        <Image Name="iconImg" Width="46" Height="46" Margin="8,4,4,4" HorizontalAlignment="Left" IsHitTestVisible="False" Stretch="Uniform" />
+        <StackPanel Margin="70,12,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" IsHitTestVisible="False" Orientation="Horizontal">
+            <TextBlock Name="txtTitle" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="14" IsHitTestVisible="False">弹幕页</TextBlock>
+            <Label Name="txtFlag" Margin="0,-7,0,0" Padding="0" VerticalAlignment="Top" Background="#FFFFAA88" FontSize="11" Foreground="#FFFFFFFF" IsHitTestVisible="False" />
+        </StackPanel>
+        <TextBlock Name="txtDesc" Margin="70,36,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="12" Foreground="#FF777777" IsHitTestVisible="False">弹幕页</TextBlock>
+    </Grid>
+</Button>

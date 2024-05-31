@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="Iebcn.Live.Controls.IntercutWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:gif="http://wpfanimatedgif.codeplex.com" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Iebcn.Live.Controls" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" Title="插播" Width="655" Height="428" AllowsTransparency="True" BorderBrush="#FFFDF9FD" FontSize="12" Icon="/Assets/app.ico" ShowInTaskbar="False" Style="{StaticResource NoResize_window}" WindowStartupLocation="CenterScreen" MouseLeftButtonDown="ji4">
+    <Control.Background>
+        <ImageBrush ImageSource="/Assets/bg.jpg" />
+    </Control.Background>
+    <Grid>
+        <Rectangle Fill="#EBffffff" />
+        <Grid>
+            <Grid VerticalAlignment="Top" Background="#FF1572BB">
+                <Image Height="32" HorizontalAlignment="Left" VerticalAlignment="Top" Source="/Assets/plugin_icon/Intercut.png" />
+                <Label Margin="35,2,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Left" Background="#00FFFFFF" BorderThickness="0" FontSize="16" FontWeight="Bold" Foreground="#FFFFFFFF">插播</Label>
+                <Button Name="x" Width="36" Height="34" HorizontalAlignment="Right" Content="x" Style="{StaticResource ButtonDanger}" ToolTip="关闭" Click="eiF" />
+            </Grid>
+            <Label Margin="42,48,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF888888">插播用在需要临时在直播间语音回复或其他需要主播及时发言的情况，插播内容将优先播报</Label>
+            <StackPanel Margin="0,100,0,0">
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                    <Label Margin="0,0,0,0" Padding="0" HorizontalAlignment="Left" Background="#00FFFFFF" BorderThickness="0">插播内容：</Label>
+                    <TextBox Name="txtMsg" Width="467" Height="50" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" AcceptsReturn="True" BorderBrush="#FF000000" MaxLength="255" TextWrapping="Wrap" ToolTip="输入文本插播文本内容,最大255个字" VerticalScrollBarVisibility="Auto" Text="{Binding LastContent}" />
+                    <Button Width="65" Height="50" Margin="2,0,0,0" Background="#FF3658AB" Foreground="#FFF5F5F5" ToolTip="加入插播队列，立即执行文本转语音插播" Click="vif">插播</Button>
+                </StackPanel>
+                <Rectangle Height="1" Margin="0,8,0,0" Fill="#FFAAAAAA" />
+                <Label Margin="27,4,0,0" Padding="0" HorizontalAlignment="Left" Background="#00FFFFFF" BorderThickness="0">历史记录：</Label>
+                <RichTextBox Name="txtHistory" Height="197" Margin="20,10,20,0" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" AcceptsReturn="True" Background="#FFEEEEEE" BorderBrush="#FF000000" IsReadOnly="True" TextBlock.LineHeight="4" ToolTip="输入文本发送与机器人口播或聊天,最大255个字" VerticalScrollBarVisibility="Auto" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

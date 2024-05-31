@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UserControl x:Class="Iebcn.Live.Controls.FileDownLoaderCtl" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:Iebcn.Live.Controls" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
+    <Grid>
+        <StackPanel>
+            <Label Name="lbTip" Background="#00FFFFFF" BorderThickness="0" FontSize="14" Visibility="Collapsed">请不要关闭，程序正在下载</Label>
+            <TextBlock Name="progressText" HorizontalAlignment="Center" />
+            <ProgressBar Name="progressBar" />
+        </StackPanel>
+    </Grid>
+</UserControl>

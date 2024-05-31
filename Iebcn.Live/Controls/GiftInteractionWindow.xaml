@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="Iebcn.Live.Controls.GiftInteractionWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Iebcn.Live.Controls" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Title="礼物挑战" Width="868" AllowsTransparency="True" Background="#00FFFFFF" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" WindowStyle="None" Height="{Binding WindowHeight, Mode=TwoWay}" MinHeight="{Binding WindowHeight, Mode=TwoWay}" MouseEnter="PDE" MouseLeave="qDl" MouseLeftButtonDown="HDI">
+    <FrameworkElement.Resources>
+        <ResourceDictionary>
+            <Style x:Key="{x:Type ListBoxItem}" TargetType="{x:Type ListBoxItem}">
+                <Setter Property="Focusable" Value="False" />
+            </Style>
+        </ResourceDictionary>
+    </FrameworkElement.Resources>
+    <Grid Name="gridMain" Background="#01000000">
+        <TabControl Name="tabControl" Margin="0,72,0,0" HorizontalAlignment="Stretch" Background="#00FFFFFF" BorderThickness="0">
+            <TabItem Name="page1" Header="             1屏             ">
+                <ListBox Name="listBox" Background="#00FFFFFF" BorderThickness="0" Style="{StaticResource BaseStyle}" FontSize="{Binding FontSize}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Width="833">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Height="{Binding Path=Value, ElementName=numPicSize}" Source="{Binding pic}" />
+                                    <TextBox MinWidth="66" Background="#00FFFFFF" BorderThickness="0" CaretBrush="#FFF5F5F5" Foreground="#FFFFFFFF" ToolTip="这是要干嘛的文字描述,点击可修改" Text="{Binding ext}">
+                                        <UIElement.Effect>
+                                            <DropShadowEffect BlurRadius="2" Direction="-45" ShadowDepth="2" />
+                                        </UIElement.Effect>
+                                    </TextBox>
+                                    <TextBox Name="myLabel" Background="#00FFFFFF" BorderThickness="0" FontSize="18" FontWeight="Bold" Foreground="#FFFFC0CB" IsReadOnly="True" RenderTransformOrigin="0.5,0.5" ToolTip="这是实时统计到的礼物数量" Text="{Binding giftCount}" TextChanged="ncf">
+                                        <UIElement.RenderTransform>
+                                            <ScaleTransform ScaleX="1" ScaleY="1" />
+                                        </UIElement.RenderTransform>
+                                    </TextBox>
+                                    <TextBox MinWidth="100" Margin="16,0,0,0" Background="#23DDDDDD" BorderThickness="0" CaretBrush="#FFADD8E6" Foreground="#FFADD8E6" Text="" ToolTip="这里是额外的可输入自定义文字如:顶不住了！" />
+                                </StackPanel>
+                                <hc:NumericUpDown Margin="6,0,80,0" HorizontalAlignment="Right" VerticalAlignment="Center" hc:InfoElement.Placeholder="设置剩余数量" Background="#AA000000" FontSize="14" Foreground="#FFDDDDDD" Minimum="0" ToolTip="设置剩余数量" Value="{Binding giftCount}" ValueChanged="qcK" />
+                                <Button Margin="6,0,39,0" HorizontalAlignment="Right" Background="#DD999999" BorderThickness="0" Content="◎" Foreground="#FFEEEEEE" ToolTip="清零" Tag="{Binding}" Click="Xcq" />
+                                <Button Margin="6,0,6,0" HorizontalAlignment="Right" Background="#DD999999" BorderThickness="0" Content="x" Foreground="#FFEEEEEE" ToolTip="删除这个选项" Tag="{Binding}" Click="Ece" />
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ListBox>
+            </TabItem>
+            <TabItem Name="page2" Header="             2屏             ">
+                <ListBox Name="listBox2" Background="#00FFFFFF" BorderThickness="0" Style="{StaticResource BaseStyle}" FontSize="{Binding FontSize}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Width="833">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Height="{Binding Path=Value, ElementName=numPicSize}" Source="{Binding pic}" />
+                                    <TextBox Background="#00FFFFFF" BorderThickness="0" Foreground="#FFFFFFFF" ToolTip="这是要干嘛的文字描述,点击可修改" Text="{Binding ext}">
+                                        <UIElement.Effect>
+                                            <DropShadowEffect BlurRadius="2" Direction="-45" ShadowDepth="2" />
+                                        </UIElement.Effect>
+                                    </TextBox>
+                                    <TextBox Name="myLabel" Background="#00FFFFFF" BorderThickness="0" FontSize="18" FontWeight="Bold" Foreground="#FFFFC0CB" IsReadOnly="True" RenderTransformOrigin="0.5,0.5" ToolTip="这是实时统计到的礼物数量" Text="{Binding giftCount}" TextChanged="ncf">
+                                        <UIElement.RenderTransform>
+                                            <ScaleTransform ScaleX="1" ScaleY="1" />
+                                        </UIElement.RenderTransform>
+                                    </TextBox>
+                                    <TextBox MinWidth="100" Margin="16,0,0,0" Background="#23DDDDDD" BorderThickness="0" Foreground="#FFADD8E6" Text="" ToolTip="这里是额外的可输入自定义文字如:顶不住了！" />
+                                </StackPanel>
+                                <hc:NumericUpDown Margin="6,0,80,0" HorizontalAlignment="Right" VerticalAlignment="Center" hc:InfoElement.Placeholder="设置剩余数量" Background="#33000000" FontSize="14" Foreground="#AADDDDDD" Minimum="0" ToolTip="设置剩余数量" Value="{Binding giftCount}" ValueChanged="qcK" />
+                                <Button Margin="6,0,39,0" HorizontalAlignment="Right" Background="#AA999999" BorderThickness="0" Content="◎" Foreground="#EEEEEEEE" ToolTip="清零" Tag="{Binding}" Click="Xcq" />
+                                <Button Margin="6,0,6,0" HorizontalAlignment="Right" Background="#AA999999" BorderThickness="0" Content="x" Foreground="#EEEEEEEE" ToolTip="删除这个选项" Tag="{Binding}" Click="Ece" />
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ListBox>
+            </TabItem>
+        </TabControl>
+        <Grid Name="gridSetting" Margin="0,66,0,0" Background="#AF000000" Visibility="Collapsed">
+            <Rectangle Width="485" Fill="#FFF5F5F5" />
+            <Rectangle Fill="#01000000" Opacity="0.01" MouseLeftButtonDown="rc4" />
+            <hc:TextBox Width="444" Margin="0,20,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" hc:InfoElement.Placeholder="输入礼物名称" AutoWordSelection="True" ToolTip="输入礼物名称查询要添加的礼物项目" TextChanged="EcH" />
+            <ListBox Name="listBoxAll" Width="444" Margin="212,61,212,-4">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Height="44" ToolTip="礼物图片会显示到屏幕" Source="{Binding pic}" />
+                            <Label ToolTip="礼物名不会显示到屏幕" Content="{Binding name}" />
+                            <hc:TextBox Width="133" Margin="13,0,0,0" VerticalAlignment="Center" hc:InfoElement.Placeholder="输入挑战文本" ToolTip="输入挑战文本，如：x 1 青蛙跳" Text="{Binding ext}" />
+                            <Button Margin="4,0,0,0" Content="添加到1屏" ToolTip="添加到第1屏幕" Tag="{Binding}" Click="OcQ" />
+                            <Button Margin="2,0,0,0" Content="添加到2屏" ToolTip="添加到第2屏幕" Tag="{Binding}" Click="OcQ" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ListBox>
+        </Grid>
+        <Grid Name="gridBar" VerticalAlignment="Top" Background="#EE555555">
+            <Grid VerticalAlignment="Top" Background="#CC424242">
+                <Label HorizontalAlignment="Left" VerticalAlignment="Stretch" Background="#FF444444" BorderThickness="0" FontSize="14" FontWeight="Bold" Foreground="#FFF5F5F5" ToolTip="互动直播玩法，礼物互动挑战,观众送礼物做相应的动作项目！">礼物挑战 （互动直播玩法）</Label>
+                <StackPanel Margin="200,0,0,0" VerticalAlignment="Top" Orientation="Horizontal">
+                    <CheckBox Name="ckEnabled" HorizontalAlignment="Left" Content="开启挑礼物统计" FontWeight="Bold" Foreground="{StaticResource Vip2ColorBrush}" ToolTip="开启才能实时统计到礼物数量" IsChecked="{Binding Enabled}" Click="HDz" />
+                    <Label Background="#00FFFFFF" BorderThickness="0" Content="窗口高:" Foreground="#FFEEEEEE" />
+                    <Slider Width="88" VerticalAlignment="Center" Background="#FF808080" Foreground="#FFF5F5F5" Maximum="2000" Minimum="200" SmallChange="1" ToolTip="调节需要的高度后添可将本窗口加到OBS或直播伴侣" Value="{Binding WindowHeight}" />
+                    <Label Margin="0,0,0,0" Background="#00FFFFFF" BorderThickness="0" Content="字体大小:" Foreground="#FFEEEEEE" />
+                    <hc:NumericUpDown Margin="1,0,0,0" Background="#FFDDDDDD" BorderThickness="0" Maximum="120" Minimum="10" Value="{Binding FontSize}" />
+                    <Label Margin="0,0,0,0" Background="#00FFFFFF" BorderThickness="0" Content="图大小:" Foreground="#FFEEEEEE" />
+                    <hc:NumericUpDown Name="numPicSize" Margin="1,0,0,0" Background="#FFDDDDDD" BorderThickness="0" Maximum="120" Minimum="10" Value="{Binding PicSize}" />
+                </StackPanel>
+                <StackPanel Margin="316,42,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#00FFFFFF" Orientation="Horizontal">
+                    <CheckBox Name="ckSwitchPage" HorizontalAlignment="Left" Content="开启切屏" FontWeight="Bold" Foreground="#FFEEEEEE" ToolTip="1，2屏切换" IsChecked="{Binding SwitchPageEnabled}" />
+                    <Label Background="#00FFFFFF" BorderThickness="0" Content="切屏间隔(秒):" Foreground="#FFEEEEEE" IsEnabled="{Binding Path=IsChecked, ElementName=ckSwitchPage}" />
+                    <hc:NumericUpDown Background="#FFDDDDDD" BorderThickness="0" Maximum="120" Minimum="1" ToolTip="切屏间隔(秒)" IsEnabled="{Binding Path=IsChecked, ElementName=ckSwitchPage}" Value="{Binding SwitchSeconds}" />
+                </StackPanel>
+                <Button Width="48" Height="26" Margin="0,1,90,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#ff666666" BorderThickness="0" Content="设置" Foreground="#FFFFFFFF" ToolTip="设置要挑战的更多个礼物项目" Click="fcn" />
+                <Button Width="48" Height="26" Margin="0,1,40,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#8C589A0D" BorderThickness="0" Content="锁定" Foreground="#FFFFFFFF" ToolTip="锁定后不能再次更改，锁定后具有鼠标穿透效果。可在任务栏选择本窗口关闭。" Click="fcx" />
+                <Button Name="x" Width="36" Height="26" Margin="0,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" Content="x" Style="{StaticResource ButtonDanger}" ToolTip="关闭" Click="Kcd" />
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

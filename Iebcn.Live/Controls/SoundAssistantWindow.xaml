@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="Iebcn.Live.Controls.SoundAssistantWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:gif="http://wpfanimatedgif.codeplex.com" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Iebcn.Live.Controls" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Title="音效助手" Width="920" Height="570" AllowDrop="True" BorderBrush="#FFFDF9FD" BorderThickness="1" FontFamily="Microsoft YaHei" FontSize="12" Icon="/Assets/app.ico" ShowInTaskbar="False" Style="{StaticResource NoResize_window}" WindowStartupLocation="CenterScreen" MouseLeftButtonDown="jh2" PreviewDragEnter="YhM" PreviewDrop="Mhi">
+    <Control.Background>
+        <ImageBrush ImageSource="/Assets/bg.jpg" />
+    </Control.Background>
+    <Border CornerRadius="6">
+        <Grid>
+            <Grid Name="gridBar" VerticalAlignment="Top" Background="#3A000000">
+                <Label Margin="0,2,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#00FFFFFF" BorderThickness="0" FontSize="16" FontWeight="Bold" Foreground="#FFF5F5F5">音效助手</Label>
+                <Button Name="x" Width="36" Height="26" HorizontalAlignment="Right" VerticalAlignment="Top" Content="x" Style="{StaticResource ButtonDanger}" ToolTip="关闭" Click="dhc" />
+            </Grid>
+            <Grid Margin="0,35,0,0" Background="#EBffffff">
+                <Grid Height="36" VerticalAlignment="Top">
+                    <Panel.Background>
+                        <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                            <GradientStop Color="#FFEFEFEF" />
+                            <GradientStop Offset="1" Color="#FFDEE5EA" />
+                        </LinearGradientBrush>
+                    </Panel.Background>
+                    <Rectangle Height="1" VerticalAlignment="Bottom" Fill="#FFD4D4D4" />
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
+                        <CheckBox Margin="5,0,0,0" Padding="8,6,12,6" HorizontalAlignment="Left" BorderBrush="#FF5D5D5D" BorderThickness="1" FontWeight="Bold" Foreground="#FF214B71" ToolTip="开启音效后才能设置的快捷键或者选择的条件（礼物/弹幕/点赞）才能触发音效" IsChecked="{Binding Enabled}" Click="Nh6">开启音效</CheckBox>
+                        <Label Background="#00FFFFFF" BorderThickness="0">音量:</Label>
+                        <Slider Name="sldVolume" Width="138" Margin="10,0,0,0" VerticalAlignment="Center" Background="#FF000000" Maximum="1" Minimum="0" SmallChange="0.1" Value="{Binding Volume}" />
+                    </StackPanel>
+                    <Button Width="88" Margin="1" Padding="12,6,12,6" Background="#FF6588DE" BorderBrush="#FF666666" Foreground="#FFFFFFFF" ToolTip="添加自定义音效,也可拖拽音效文件到本窗口添加（支持mp3或者wav格式文件）" Click="khp">+</Button>
+                    <Button Width="48" Margin="1" Padding="12,6,12,6" HorizontalAlignment="Right" Background="#FF6588DE" BorderBrush="#FF666666" Foreground="#FFFFFFFF" Click="Whh">设置</Button>
+                </Grid>
+                <ScrollViewer Margin="0,48,0,0" ToolTip="可拖拽音效文件到本窗口添加（支持mp3或者wav格式文件）" VerticalScrollBarVisibility="Auto">
+                    <WrapPanel Name="wrapPanel" HorizontalAlignment="Center" />
+                </ScrollViewer>
+                <Grid Name="gridEdit" Background="#FFF5F5F5" Visibility="Collapsed">
+                    <Label Name="lbEditType" Width="222" Margin="0,4,0,0" VerticalAlignment="Top" Background="#00FFFFFF" BorderThickness="0">添加</Label>
+                    <Border Width="500" Height="230" Margin="0,68,0,0" VerticalAlignment="Top" Background="#AFEEEEEE" BorderBrush="#8FDDDDDD" BorderThickness="4" CornerRadius="4" />
+                    <StackPanel Width="433" Margin="0,86,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
+                        <StackPanel Margin="0,2,0,0" VerticalAlignment="Top" Orientation="Horizontal">
+                            <Label Margin="12,0,0,0" Background="#00FFFFFF" BorderThickness="0" Content="标题:" />
+                            <hc:TextBox Width="222" hc:InfoElement.Placeholder="音频文件标题" ToolTip="音频文件标题" Text="{Binding Title}" />
+                        </StackPanel>
+                        <StackPanel Margin="0,2,0,0" VerticalAlignment="Top" Orientation="Horizontal">
+                            <Label Margin="12,0,0,0" Background="#00FFFFFF" BorderThickness="0" Content="图片:" />
+                            <hc:TextBox Width="222" hc:InfoElement.Placeholder="图片" IsEnabled="False" IsReadOnly="True" ToolTip="图片" Text="{Binding PicUrl}" />
+                            <Button Width="89" Content="选择图片" Click="PhR" />
+                            <Image Width="30" Height="30" Margin="6,0,0,0" gif:ImageBehavior.AutoStart="True" gif:ImageBehavior.RepeatBehavior="Forever" Stretch="Uniform" ToolTip="音频图片" gif:ImageBehavior.AnimatedSource="{Binding PicUrl}" Source="{Binding PicUrl}" />
+                        </StackPanel>
+                        <StackPanel Margin="0,2,0,0" VerticalAlignment="Top" Orientation="Horizontal">
+                            <Label Margin="12,0,0,0" Background="#00FFFFFF" BorderThickness="0" Content="声音:" />
+                            <hc:TextBox Width="222" hc:InfoElement.Placeholder="声音文件" IsEnabled="False" IsReadOnly="True" ToolTip="声音文件(支持wav和mp3格式文件)" Text="{Binding AudioFile}" />
+                            <Button Width="102" Content="选择声音文件" ToolTip="声音文件(支持wav和mp3格式文件)" Click="lhY" />
+                            <Button Margin="6,0,0,0" Content="试听" Click="ah0" />
+                        </StackPanel>
+                        <StackPanel Margin="0,2,0,0" VerticalAlignment="Top" Orientation="Horizontal">
+                            <Label Margin="12,0,0,0" Background="#00FFFFFF" BorderThickness="0" Content="快捷键:" />
+                            <hc:TextBox Width="210" hc:InfoElement.Placeholder="快捷键" ToolTip="快捷键" Text="{Binding HotKeys}" KeyUp="dh8" />
+                        </StackPanel>
+                        <StackPanel Margin="0,2,0,0" VerticalAlignment="Top" Orientation="Horizontal">
+                            <Label Margin="12,0,0,0" Background="#00FFFFFF" BorderThickness="0" Content="条件选择:" />
+                            <RadioButton Margin="6,0,0,0" BorderBrush="#FF808080" BorderThickness="1" GroupName="sType" IsChecked="{Binding DanmuTypeGift}">礼物</RadioButton>
+                            <RadioButton Margin="8,0,0,0" BorderBrush="#FF808080" BorderThickness="1" GroupName="sType" IsChecked="{Binding DanmuTypeChat}">弹幕</RadioButton>
+                            <RadioButton Margin="8,0,0,0" BorderBrush="#FF808080" BorderThickness="1" GroupName="sType" IsChecked="{Binding DanmuTypeLike}">点赞</RadioButton>
+                        </StackPanel>
+                        <Grid Margin="8,4,0,0" HorizontalAlignment="Left">
+                            <Grid Name="gridTypeGift" Visibility="{Binding DanmuTypeGift, Converter={StaticResource Boolean2VisibilityConverter}}">
+                                <Label HorizontalAlignment="Left" Background="#00FFFFFF" BorderThickness="0">礼物名:</Label>
+                                <hc:TextBox Width="162" Margin="80,0,0,0" HorizontalAlignment="Left" hc:InfoElement.Placeholder="如:小心心" ToolTip="如:小心心" Text="{Binding GiftContent}" />
+                            </Grid>
+                            <Grid Name="gridTypeChat" Visibility="{Binding DanmuTypeChat, Converter={StaticResource Boolean2VisibilityConverter}}">
+                                <Label HorizontalAlignment="Left" Background="#00FFFFFF" BorderThickness="0">弹幕关键字:</Label>
+                                <hc:TextBox Width="162" Margin="80,0,0,0" HorizontalAlignment="Left" hc:InfoElement.Placeholder="弹幕关键字" ToolTip="弹幕关键字" Text="{Binding ChatContent}" />
+                            </Grid>
+                        </Grid>
+                    </StackPanel>
+                    <StackPanel Margin="0,310,0,7" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal">
+                        <Button Width="122" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Background="#FFF0F8FF" BorderBrush="#FF808080" BorderThickness="1" Click="Vhb">确 定</Button>
+                        <Button Width="122" Margin="5,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" BorderBrush="#FF808080" BorderThickness="1" Click="IhJ">取 消</Button>
+                    </StackPanel>
+                </Grid>
+                <Grid Name="gridSetting" Background="#FFF5F5F5" Visibility="Collapsed">
+                    <Grid Height="36" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="#FFECEEEF">
+                        <Label Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="#00FFFFFF" BorderThickness="0" Foreground="#FF000000">设置</Label>
+                    </Grid>
+                    <StackPanel Margin="0,126,0,0" HorizontalAlignment="Center">
+                        <Button Width="288" BorderBrush="#FF000000" Click="Rh7">重置全部音效</Button>
+                        <StackPanel Margin="0,26,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal">
+                            <Label Padding="4" BorderThickness="0">停止音效快捷键：</Label>
+                            <TextBox Width="188" BorderBrush="#FF000000" ToolTip="可用设置的快捷键停止正在播放的音效" Text="{Binding StopSoundAssHotKeys}" KeyUp="shg" />
+                        </StackPanel>
+                        <StackPanel Margin="0,153,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal">
+                            <Button Name="btnCloseSetting" Width="122" VerticalAlignment="Top" Background="#FFF0F8FF" BorderBrush="#FF000000" Click="xh9">确 定</Button>
+                            <Button Width="62" VerticalAlignment="Top" BorderBrush="#FF000000" Click="xh9">返 回</Button>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

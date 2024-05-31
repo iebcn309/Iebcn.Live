@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="Iebcn.Live.Controls.ArchiveDanmuWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Iebcn.Live.Controls" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" Title="弹幕详情" Width="980" Height="612" BorderBrush="#FFFDF9FD" BorderThickness="1" FontFamily="Arial" FontSize="12" Icon="/Assets/app.ico" Style="{StaticResource NoResize_window}" WindowStartupLocation="CenterScreen" MouseLeftButtonDown="Fql">
+    <Control.Background>
+        <ImageBrush ImageSource="/Assets/bg.jpg" />
+    </Control.Background>
+    <Grid>
+        <Border Background="#6dffffff" CornerRadius="6" />
+        <Rectangle Height="43" VerticalAlignment="Top" Fill="#33FFFFFF" />
+        <Button Name="x" Width="36" Height="26" Margin="0" HorizontalAlignment="Right" VerticalAlignment="Top" Content="x" Style="{StaticResource ButtonDanger}" ToolTip="关闭" Click="Rqz" />
+        <Button Name="btnMinWindow" Width="36" Height="26" Margin="0,1,75,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#1F2E88DC" BorderThickness="0" Content="-" FontSize="16" Foreground="#FFFFFFFF" ToolTip="最小化" Click="jns" />
+        <Button Name="btnMaxWindow" Width="36" Height="26" Margin="0,1,38,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#1F2E88DC" BorderThickness="0" Content="□" FontSize="16" Foreground="#FFFFFFFF" Style="{StaticResource ButtonCustom}" ToolTip="最大化" Click="vnx" />
+        <Label Margin="0,2,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#0FD3E1FB" BorderThickness="0" FontSize="22" FontWeight="Bold" Foreground="#FFFFFFFF">弹幕详情</Label>
+        <Label Margin="120,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#0FD3E1FB" BorderThickness="0" Foreground="#FFFFFFFF">注：为保证更好的程序流畅度，如非必要请不要勾选所有数据，以减轻程序内存占用！</Label>
+        <Grid Height="83" Margin="0,43,0,0" VerticalAlignment="Top" Background="#afffffff">
+            <Rectangle Height="83" VerticalAlignment="Center" Fill="#FFF0F8FF" />
+            <CheckBox Name="checkAutoScroll" Margin="21,17,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" BorderBrush="#FF827C81" Content="自动滚屏" Checked="Wnd" Unchecked="WnH" />
+            <Label Name="lbTotalCount" Margin="172,13,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="数据量:" />
+            <Button Name="btnTopRank" Margin="21,11,220,0" HorizontalAlignment="Right" VerticalAlignment="Top" Content="送礼数量排行榜" Click="knq" />
+            <Button Name="btnOnlineRank" Margin="21,11,120,0" HorizontalAlignment="Right" VerticalAlignment="Top" Content="在线榜单" Click="snn" />
+            <Button Name="btnExport" Width="67" Margin="0,11,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="#FFFFFFFF" Content="导出" Click="pnK" />
+            <StackPanel Margin="0,50,0,0" Background="#FFE7F1F3" Orientation="Horizontal">
+                <Label Margin="33,0,0,0" Background="#FFF0F8FF" BorderThickness="0">筛选条件:</Label>
+                <CheckBox Margin="10,0,0,0" BorderBrush="#FF827C81" Content="弹幕" IsChecked="{Binding OptTypes.ChatEnabled}" />
+                <CheckBox Margin="10,0,0,0" BorderBrush="#FF827C81" Content="礼物" IsChecked="{Binding OptTypes.GiftEnabled}" />
+                <CheckBox Margin="10,0,0,0" BorderBrush="#FF827C81" Content="进场" IsChecked="{Binding OptTypes.EnterRoomEnabled}" />
+                <CheckBox Margin="10,0,0,0" BorderBrush="#FF827C81" Content="关注" IsChecked="{Binding OptTypes.FollowEnabled}" />
+                <CheckBox Margin="10,0,0,0" BorderBrush="#FF827C81" Content="点赞" IsChecked="{Binding OptTypes.LikeEnabled}" />
+                <Label Margin="20,0,0,0" HorizontalAlignment="Left" Background="#38FFFFFF" BorderThickness="0">蓝V等级大于等于：</Label>
+                <hc:NumericUpDown VerticalAlignment="Center" Maximum="9000" Minimum="0" Value="{Binding MiniV5Level}" />
+            </StackPanel>
+            <Rectangle Height="1" Margin="0,50,0,0" VerticalAlignment="Top" Fill="#FF808080" />
+        </Grid>
+        <ListView Name="listDanmu" Margin="0,131,0,0" Background="#afffffff" BorderBrush="#02ffffff" FontSize="12" Foreground="#FF000000" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" Style="{StaticResource BaseStyle}" VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling">
+            <ListView.View>
+                <GridView VirtualizingPanel.IsContainerVirtualizable="True" VirtualizingPanel.IsVirtualizing="True">
+                    <GridViewColumn Header="类型" DisplayMemberBinding="{Binding TypeCN}" />
+                    <GridViewColumn Header="时间" DisplayMemberBinding="{Binding Timestamp}" />
+                    <GridViewColumn Width="84" Header="昵称" DisplayMemberBinding="{Binding UserNick}" />
+                    <GridViewColumn Header="性别" DisplayMemberBinding="{Binding UserSex}" />
+                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding UserId}" />
+                    <GridViewColumn Header="抖音号" DisplayMemberBinding="{Binding UserDisplayId}" />
+                    <GridViewColumn Header="蓝V等级" DisplayMemberBinding="{Binding UserV5Leve}" />
+                    <GridViewColumn Header="粉丝数" DisplayMemberBinding="{Binding UserFans}" />
+                    <GridViewColumn Header="关注数" DisplayMemberBinding="{Binding UserFollows}" />
+                    <GridViewColumn Header="内容">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox VerticalAlignment="Center" BorderThickness="0" IsReadOnly="True" Text="{Binding Msg}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="礼物数量" DisplayMemberBinding="{Binding GiftCount}" />
+                    <GridViewColumn Header="操作">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="关注" Tag="{Binding SecUid}" Click="hne" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <local:MessageTip x:Name="messageTip" Width="300" Height="27" Margin="89,0,89,0" VerticalAlignment="Top" IsHitTestVisible="False" />
+    </Grid>
+</Window>

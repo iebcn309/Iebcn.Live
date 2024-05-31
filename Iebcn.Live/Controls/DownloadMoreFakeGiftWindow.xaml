@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="Iebcn.Live.Controls.DownloadMoreFakeGiftWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:gif="http://wpfanimatedgif.codeplex.com" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:local="clr-namespace:Iebcn.Live.Controls" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sys="clr-namespace:System;assembly=mscorlib" Title="下载更多特效" Width="555" Height="258" BorderBrush="#FFFDF9FD" BorderThickness="1" FontSize="12" Icon="/Assets/app.ico" ShowInTaskbar="False" Style="{StaticResource NoResize_window}" WindowStartupLocation="CenterScreen" MouseLeftButtonDown="htd">
+    <Control.Background>
+        <ImageBrush ImageSource="/Assets/bg.jpg" />
+    </Control.Background>
+    <Border Background="#E0EDECEC" CornerRadius="6">
+        <Grid>
+            <Grid VerticalAlignment="Top">
+                <Label Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Top" HorizontalContentAlignment="Left" hc:BorderElement.CornerRadius="6,6,0,0" Background="#AF144196" BorderThickness="0" FontSize="16" FontWeight="Bold" Foreground="#FFFFFFFF">下载更多特效</Label>
+                <Button Name="x" Width="36" Height="26" HorizontalAlignment="Right" VerticalAlignment="Top" Content="x" Style="{StaticResource ButtonDanger}" ToolTip="关闭" Click="Qtx" />
+            </Grid>
+            <Grid Margin="22,47,22,22" Background="#A2FFFFFF">
+                <Button Style="{StaticResource ButtonPrimary}" Margin="0,28,0,0" VerticalAlignment="Top" Width="168" Height="35" Click="ktH">下载</Button>
+                <local:FileDownLoaderCtl x:Name="fileDownLoaderCtl" Margin="0,84,0,0" />
+            </Grid>
+        </Grid>
+    </Border>
+</Window>
